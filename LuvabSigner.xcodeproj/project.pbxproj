@@ -1,0 +1,965 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1B1181AD15EA2284D2ABF569 /* Pods_LuvabSigner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B8F5FD7BA7423E25935147 /* Pods_LuvabSigner.framework */; };
+		3F0F52E3234465B2005D8E05 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F52E2234465B2005D8E05 /* SignatureViewController.swift */; };
+		3F0F52E523447545005D8E05 /* SignatureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F52E423447545005D8E05 /* SignatureCollectionViewCell.swift */; };
+		3F0F52E723447599005D8E05 /* HeaderSignatureCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F52E623447599005D8E05 /* HeaderSignatureCollectionReusableView.swift */; };
+		3F1595BA2338A2940093620B /* LockScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1595B92338A2940093620B /* LockScreenViewController.swift */; };
+		3F1595BC2338A6C90093620B /* ConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1595BB2338A6C90093620B /* ConfigModel.swift */; };
+		3F1595BE2338BC440093620B /* PublicKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1595BD2338BC440093620B /* PublicKeyViewController.swift */; };
+		3F1D196F2330C7830038D085 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D196E2330C7830038D085 /* AppDelegate.swift */; };
+		3F1D19712330C7830038D085 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D19702330C7830038D085 /* SignUpViewController.swift */; };
+		3F1D19762330C7840038D085 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F1D19752330C7840038D085 /* Assets.xcassets */; };
+		3F1D19792330C7840038D085 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1D19772330C7840038D085 /* LaunchScreen.storyboard */; };
+		3F1D19842330C7840038D085 /* LuvabSignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D19832330C7840038D085 /* LuvabSignerTests.swift */; };
+		3F1D198F2330C7840038D085 /* LuvabSignerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D198E2330C7840038D085 /* LuvabSignerUITests.swift */; };
+		3F1D199D2330C9AD0038D085 /* BackUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D199C2330C9AD0038D085 /* BackUpViewController.swift */; };
+		3F1D19A42330CF190038D085 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D19A32330CF190038D085 /* Extension.swift */; };
+		3F1D19A82330DBF50038D085 /* MnemonicGenerationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D19A72330DBF50038D085 /* MnemonicGenerationViewController.swift */; };
+		3F1D19AC2330E99F0038D085 /* MnemonicVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D19AB2330E99F0038D085 /* MnemonicVerificationViewController.swift */; };
+		3F1D19AF2330EA100038D085 /* MnemonicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D19AD2330EA100038D085 /* MnemonicCollectionViewCell.swift */; };
+		3F1D19B02330EA100038D085 /* MnemonicCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F1D19AE2330EA100038D085 /* MnemonicCollectionViewCell.xib */; };
+		3F1D19B32330F06E0038D085 /* AppearanceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D19B22330F06E0038D085 /* AppearanceHelper.swift */; };
+		3F235AEA233C685C00C694AA /* MnemonicSuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F235AE9233C685C00C694AA /* MnemonicSuggestionsView.swift */; };
+		3F235AEC233C687200C694AA /* MnemonicSuggestionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F235AEB233C687200C694AA /* MnemonicSuggestionsView.xib */; };
+		3F29223E233DEE5300929DBC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F29223D233DEE5300929DBC /* MainViewController.swift */; };
+		3F292240233DEE9900929DBC /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F29223F233DEE9900929DBC /* MainTableViewCell.swift */; };
+		3F2BBD48233B587600552C27 /* RestoreAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BBD47233B587600552C27 /* RestoreAccountViewController.swift */; };
+		3F7CF05523419BD000E56D2E /* ApplicationCoordinatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CF05423419BD000E56D2E /* ApplicationCoordinatorHelper.swift */; };
+		3F7CF05723419C9100E56D2E /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CF05623419C9100E56D2E /* UserDefaultsHelper.swift */; };
+		3F7CF05B2341A4B300E56D2E /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CF05A2341A4B300E56D2E /* ApplicationCoordinator.swift */; };
+		3FBE8ED82345951A007238EF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBE8ED72345951A007238EF /* SettingsViewController.swift */; };
+		3FCBA596234AE6590003B25E /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBA595234AE6590003B25E /* MainTabbarViewController.swift */; };
+		3FCBA598234AE67E0003B25E /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBA597234AE67E0003B25E /* TransactionsViewController.swift */; };
+		3FCBA59A234AECA30003B25E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBA599234AECA30003B25E /* HomeViewController.swift */; };
+		3FCBA59C234B25EC0003B25E /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBA59B234B25EC0003B25E /* HomeTableViewCell.swift */; };
+		3FCBA59F234B2C6E0003B25E /* SignatureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBA59D234B2C6E0003B25E /* SignatureTableViewCell.swift */; };
+		3FCBA5A0234B2C6E0003B25E /* SignatureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FCBA59E234B2C6E0003B25E /* SignatureTableViewCell.xib */; };
+		3FDB591D23333C730038B370 /* MnemonicHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB591C23333C730038B370 /* MnemonicHelper.swift */; };
+		3FF173E32346F4A6001DC20D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FF173E52346F4A6001DC20D /* Localizable.strings */; };
+		3FF173F12346F67F001DC20D /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF173EF2346F67F001DC20D /* NSBundle+Language.m */; };
+		3FF173F8234756A3001DC20D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FF173F7234756A2001DC20D /* Main.storyboard */; };
+		3FF2F7582334D1DC0051E0EC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF2F7572334D1DC0051E0EC /* BaseViewController.swift */; };
+		C016EF59BDDE28A39CA7608E /* Pods_LuvabSignerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D75AA4F68AAAAFAA8E88798 /* Pods_LuvabSignerTests.framework */; };
+		F97F7A125C8D4EA327044C87 /* Pods_LuvabSignerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68FA6AEAFD5FEB6D1821FF76 /* Pods_LuvabSignerUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3F1D19802330C7840038D085 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F1D19632330C7830038D085 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F1D196A2330C7830038D085;
+			remoteInfo = LuvabSigner;
+		};
+		3F1D198B2330C7840038D085 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F1D19632330C7830038D085 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F1D196A2330C7830038D085;
+			remoteInfo = LuvabSigner;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		03B603C2EABF0C4FD6CF16B9 /* Pods-LuvabSigner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuvabSigner.release.xcconfig"; path = "Target Support Files/Pods-LuvabSigner/Pods-LuvabSigner.release.xcconfig"; sourceTree = "<group>"; };
+		3F0F52E2234465B2005D8E05 /* SignatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
+		3F0F52E423447545005D8E05 /* SignatureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureCollectionViewCell.swift; sourceTree = "<group>"; };
+		3F0F52E623447599005D8E05 /* HeaderSignatureCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSignatureCollectionReusableView.swift; sourceTree = "<group>"; };
+		3F1595B92338A2940093620B /* LockScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenViewController.swift; sourceTree = "<group>"; };
+		3F1595BB2338A6C90093620B /* ConfigModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigModel.swift; sourceTree = "<group>"; };
+		3F1595BD2338BC440093620B /* PublicKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyViewController.swift; sourceTree = "<group>"; };
+		3F1D196B2330C7830038D085 /* LuvabSigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LuvabSigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F1D196E2330C7830038D085 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3F1D19702330C7830038D085 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		3F1D19752330C7840038D085 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3F1D19782330C7840038D085 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3F1D197A2330C7840038D085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F1D197F2330C7840038D085 /* LuvabSignerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LuvabSignerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F1D19832330C7840038D085 /* LuvabSignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuvabSignerTests.swift; sourceTree = "<group>"; };
+		3F1D19852330C7840038D085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F1D198A2330C7840038D085 /* LuvabSignerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LuvabSignerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F1D198E2330C7840038D085 /* LuvabSignerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuvabSignerUITests.swift; sourceTree = "<group>"; };
+		3F1D19902330C7840038D085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F1D199C2330C9AD0038D085 /* BackUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpViewController.swift; sourceTree = "<group>"; };
+		3F1D19A32330CF190038D085 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		3F1D19A72330DBF50038D085 /* MnemonicGenerationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicGenerationViewController.swift; sourceTree = "<group>"; };
+		3F1D19AB2330E99F0038D085 /* MnemonicVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicVerificationViewController.swift; sourceTree = "<group>"; };
+		3F1D19AD2330EA100038D085 /* MnemonicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicCollectionViewCell.swift; sourceTree = "<group>"; };
+		3F1D19AE2330EA100038D085 /* MnemonicCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MnemonicCollectionViewCell.xib; sourceTree = "<group>"; };
+		3F1D19B22330F06E0038D085 /* AppearanceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceHelper.swift; sourceTree = "<group>"; };
+		3F235AE9233C685C00C694AA /* MnemonicSuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicSuggestionsView.swift; sourceTree = "<group>"; };
+		3F235AEB233C687200C694AA /* MnemonicSuggestionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MnemonicSuggestionsView.xib; sourceTree = "<group>"; };
+		3F29223D233DEE5300929DBC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3F29223F233DEE9900929DBC /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		3F2BBD47233B587600552C27 /* RestoreAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreAccountViewController.swift; sourceTree = "<group>"; };
+		3F7CF05423419BD000E56D2E /* ApplicationCoordinatorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinatorHelper.swift; sourceTree = "<group>"; };
+		3F7CF05623419C9100E56D2E /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
+		3F7CF05A2341A4B300E56D2E /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
+		3FBE8ED72345951A007238EF /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3FCBA595234AE6590003B25E /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
+		3FCBA597234AE67E0003B25E /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
+		3FCBA599234AECA30003B25E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		3FCBA59B234B25EC0003B25E /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		3FCBA59D234B2C6E0003B25E /* SignatureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureTableViewCell.swift; sourceTree = "<group>"; };
+		3FCBA59E234B2C6E0003B25E /* SignatureTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignatureTableViewCell.xib; sourceTree = "<group>"; };
+		3FDB591C23333C730038B370 /* MnemonicHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicHelper.swift; sourceTree = "<group>"; };
+		3FF173E42346F4A6001DC20D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3FF173E82346F4F3001DC20D /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3FF173EF2346F67F001DC20D /* NSBundle+Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Language.m"; sourceTree = "<group>"; };
+		3FF173F02346F67F001DC20D /* NSBundle+Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Language.h"; sourceTree = "<group>"; };
+		3FF173F52347360C001DC20D /* LuvabSigner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LuvabSigner-Bridging-Header.h"; sourceTree = "<group>"; };
+		3FF173F7234756A2001DC20D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		3FF2F7572334D1DC0051E0EC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		43CA2A39A12859F541066C3E /* Pods-LuvabSignerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuvabSignerUITests.release.xcconfig"; path = "Target Support Files/Pods-LuvabSignerUITests/Pods-LuvabSignerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		68FA6AEAFD5FEB6D1821FF76 /* Pods_LuvabSignerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LuvabSignerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D75AA4F68AAAAFAA8E88798 /* Pods_LuvabSignerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LuvabSignerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F213954013D3D3480D3BDCF /* Pods-LuvabSignerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuvabSignerTests.release.xcconfig"; path = "Target Support Files/Pods-LuvabSignerTests/Pods-LuvabSignerTests.release.xcconfig"; sourceTree = "<group>"; };
+		71B8F5FD7BA7423E25935147 /* Pods_LuvabSigner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LuvabSigner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D443A8E0EC85C6E7B6EFD4E /* Pods-LuvabSignerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuvabSignerUITests.debug.xcconfig"; path = "Target Support Files/Pods-LuvabSignerUITests/Pods-LuvabSignerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9A45414008DC67C3FEBBFDAE /* Pods-LuvabSignerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuvabSignerTests.debug.xcconfig"; path = "Target Support Files/Pods-LuvabSignerTests/Pods-LuvabSignerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A61F8CD6734FD4A19302B4E1 /* Pods-LuvabSigner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuvabSigner.debug.xcconfig"; path = "Target Support Files/Pods-LuvabSigner/Pods-LuvabSigner.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3F1D19682330C7830038D085 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B1181AD15EA2284D2ABF569 /* Pods_LuvabSigner.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F1D197C2330C7840038D085 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C016EF59BDDE28A39CA7608E /* Pods_LuvabSignerTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F1D19872330C7840038D085 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F97F7A125C8D4EA327044C87 /* Pods_LuvabSignerUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		03C9237D95DB855443749078 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A61F8CD6734FD4A19302B4E1 /* Pods-LuvabSigner.debug.xcconfig */,
+				03B603C2EABF0C4FD6CF16B9 /* Pods-LuvabSigner.release.xcconfig */,
+				9A45414008DC67C3FEBBFDAE /* Pods-LuvabSignerTests.debug.xcconfig */,
+				6F213954013D3D3480D3BDCF /* Pods-LuvabSignerTests.release.xcconfig */,
+				8D443A8E0EC85C6E7B6EFD4E /* Pods-LuvabSignerUITests.debug.xcconfig */,
+				43CA2A39A12859F541066C3E /* Pods-LuvabSignerUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		3F1D19622330C7830038D085 = {
+			isa = PBXGroup;
+			children = (
+				3F1D196D2330C7830038D085 /* LuvabSigner */,
+				3F1D19822330C7840038D085 /* LuvabSignerTests */,
+				3F1D198D2330C7840038D085 /* LuvabSignerUITests */,
+				3F1D196C2330C7830038D085 /* Products */,
+				03C9237D95DB855443749078 /* Pods */,
+				DB80907723ECFF2136607D51 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3F1D196C2330C7830038D085 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F1D196B2330C7830038D085 /* LuvabSigner.app */,
+				3F1D197F2330C7840038D085 /* LuvabSignerTests.xctest */,
+				3F1D198A2330C7840038D085 /* LuvabSignerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3F1D196D2330C7830038D085 /* LuvabSigner */ = {
+			isa = PBXGroup;
+			children = (
+				3FF173E92346F61E001DC20D /* Libraries */,
+				3F1D19A12330CE9C0038D085 /* Utils */,
+				3FF173E52346F4A6001DC20D /* Localizable.strings */,
+				3F1D19A02330C9D40038D085 /* Models */,
+				3F1D199F2330C9CC0038D085 /* Views */,
+				3F1D199E2330C9B70038D085 /* ViewControllers */,
+				3F1D196E2330C7830038D085 /* AppDelegate.swift */,
+				3F1D19752330C7840038D085 /* Assets.xcassets */,
+				3FF173F7234756A2001DC20D /* Main.storyboard */,
+				3F1D19772330C7840038D085 /* LaunchScreen.storyboard */,
+				3F1D197A2330C7840038D085 /* Info.plist */,
+				3FF173F52347360C001DC20D /* LuvabSigner-Bridging-Header.h */,
+			);
+			path = LuvabSigner;
+			sourceTree = "<group>";
+		};
+		3F1D19822330C7840038D085 /* LuvabSignerTests */ = {
+			isa = PBXGroup;
+			children = (
+				3F1D19832330C7840038D085 /* LuvabSignerTests.swift */,
+				3F1D19852330C7840038D085 /* Info.plist */,
+			);
+			path = LuvabSignerTests;
+			sourceTree = "<group>";
+		};
+		3F1D198D2330C7840038D085 /* LuvabSignerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3F1D198E2330C7840038D085 /* LuvabSignerUITests.swift */,
+				3F1D19902330C7840038D085 /* Info.plist */,
+			);
+			path = LuvabSignerUITests;
+			sourceTree = "<group>";
+		};
+		3F1D199E2330C9B70038D085 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3FF2F7572334D1DC0051E0EC /* BaseViewController.swift */,
+				3FCBA595234AE6590003B25E /* MainTabbarViewController.swift */,
+				3F1D19702330C7830038D085 /* SignUpViewController.swift */,
+				3F1D199C2330C9AD0038D085 /* BackUpViewController.swift */,
+				3F1D19A72330DBF50038D085 /* MnemonicGenerationViewController.swift */,
+				3F1D19AB2330E99F0038D085 /* MnemonicVerificationViewController.swift */,
+				3F1595B92338A2940093620B /* LockScreenViewController.swift */,
+				3F1595BD2338BC440093620B /* PublicKeyViewController.swift */,
+				3F2BBD47233B587600552C27 /* RestoreAccountViewController.swift */,
+				3F29223D233DEE5300929DBC /* MainViewController.swift */,
+				3F0F52E2234465B2005D8E05 /* SignatureViewController.swift */,
+				3FBE8ED72345951A007238EF /* SettingsViewController.swift */,
+				3FCBA597234AE67E0003B25E /* TransactionsViewController.swift */,
+				3FCBA599234AECA30003B25E /* HomeViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3F1D199F2330C9CC0038D085 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3F0F52E423447545005D8E05 /* SignatureCollectionViewCell.swift */,
+				3F0F52E623447599005D8E05 /* HeaderSignatureCollectionReusableView.swift */,
+				3F29223F233DEE9900929DBC /* MainTableViewCell.swift */,
+				3F1D19AD2330EA100038D085 /* MnemonicCollectionViewCell.swift */,
+				3F235AE9233C685C00C694AA /* MnemonicSuggestionsView.swift */,
+				3F1D19AE2330EA100038D085 /* MnemonicCollectionViewCell.xib */,
+				3F235AEB233C687200C694AA /* MnemonicSuggestionsView.xib */,
+				3FCBA59B234B25EC0003B25E /* HomeTableViewCell.swift */,
+				3FCBA59D234B2C6E0003B25E /* SignatureTableViewCell.swift */,
+				3FCBA59E234B2C6E0003B25E /* SignatureTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3F1D19A02330C9D40038D085 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3F1595BB2338A6C90093620B /* ConfigModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3F1D19A12330CE9C0038D085 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3F7CF05C2341A74400E56D2E /* Enums */,
+				3F1D19B12330F0580038D085 /* Helper */,
+				3F1D19A22330CEC90038D085 /* Extensions */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		3F1D19A22330CEC90038D085 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3F1D19A32330CF190038D085 /* Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3F1D19B12330F0580038D085 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				3F7CF05A2341A4B300E56D2E /* ApplicationCoordinator.swift */,
+				3F1D19B22330F06E0038D085 /* AppearanceHelper.swift */,
+				3FDB591C23333C730038B370 /* MnemonicHelper.swift */,
+				3F7CF05423419BD000E56D2E /* ApplicationCoordinatorHelper.swift */,
+				3F7CF05623419C9100E56D2E /* UserDefaultsHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		3F7CF05C2341A74400E56D2E /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		3FF173E92346F61E001DC20D /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				3FF173EE2346F67F001DC20D /* NSBundle+Language */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		3FF173EE2346F67F001DC20D /* NSBundle+Language */ = {
+			isa = PBXGroup;
+			children = (
+				3FF173EF2346F67F001DC20D /* NSBundle+Language.m */,
+				3FF173F02346F67F001DC20D /* NSBundle+Language.h */,
+			);
+			path = "NSBundle+Language";
+			sourceTree = "<group>";
+		};
+		DB80907723ECFF2136607D51 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				71B8F5FD7BA7423E25935147 /* Pods_LuvabSigner.framework */,
+				6D75AA4F68AAAAFAA8E88798 /* Pods_LuvabSignerTests.framework */,
+				68FA6AEAFD5FEB6D1821FF76 /* Pods_LuvabSignerUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3F1D196A2330C7830038D085 /* LuvabSigner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F1D19932330C7840038D085 /* Build configuration list for PBXNativeTarget "LuvabSigner" */;
+			buildPhases = (
+				453C0D85429F2B78FAE16CAE /* [CP] Check Pods Manifest.lock */,
+				3F1D19672330C7830038D085 /* Sources */,
+				3F1D19682330C7830038D085 /* Frameworks */,
+				3F1D19692330C7830038D085 /* Resources */,
+				64C58119242796E8DE5579C9 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LuvabSigner;
+			productName = LuvabSigner;
+			productReference = 3F1D196B2330C7830038D085 /* LuvabSigner.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3F1D197E2330C7840038D085 /* LuvabSignerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F1D19962330C7840038D085 /* Build configuration list for PBXNativeTarget "LuvabSignerTests" */;
+			buildPhases = (
+				A7C59DF6998A33A7C85C699F /* [CP] Check Pods Manifest.lock */,
+				3F1D197B2330C7840038D085 /* Sources */,
+				3F1D197C2330C7840038D085 /* Frameworks */,
+				3F1D197D2330C7840038D085 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3F1D19812330C7840038D085 /* PBXTargetDependency */,
+			);
+			name = LuvabSignerTests;
+			productName = LuvabSignerTests;
+			productReference = 3F1D197F2330C7840038D085 /* LuvabSignerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3F1D19892330C7840038D085 /* LuvabSignerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F1D19992330C7840038D085 /* Build configuration list for PBXNativeTarget "LuvabSignerUITests" */;
+			buildPhases = (
+				3C68BAA4770AFE8BF7165876 /* [CP] Check Pods Manifest.lock */,
+				3F1D19862330C7840038D085 /* Sources */,
+				3F1D19872330C7840038D085 /* Frameworks */,
+				3F1D19882330C7840038D085 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3F1D198C2330C7840038D085 /* PBXTargetDependency */,
+			);
+			name = LuvabSignerUITests;
+			productName = LuvabSignerUITests;
+			productReference = 3F1D198A2330C7840038D085 /* LuvabSignerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3F1D19632330C7830038D085 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1030;
+				LastUpgradeCheck = 1030;
+				ORGANIZATIONNAME = Luva;
+				TargetAttributes = {
+					3F1D196A2330C7830038D085 = {
+						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1100;
+					};
+					3F1D197E2330C7840038D085 = {
+						CreatedOnToolsVersion = 10.3;
+						TestTargetID = 3F1D196A2330C7830038D085;
+					};
+					3F1D19892330C7840038D085 = {
+						CreatedOnToolsVersion = 10.3;
+						TestTargetID = 3F1D196A2330C7830038D085;
+					};
+				};
+			};
+			buildConfigurationList = 3F1D19662330C7830038D085 /* Build configuration list for PBXProject "LuvabSigner" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				vi,
+			);
+			mainGroup = 3F1D19622330C7830038D085;
+			productRefGroup = 3F1D196C2330C7830038D085 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3F1D196A2330C7830038D085 /* LuvabSigner */,
+				3F1D197E2330C7840038D085 /* LuvabSignerTests */,
+				3F1D19892330C7840038D085 /* LuvabSignerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3F1D19692330C7830038D085 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F1D19B02330EA100038D085 /* MnemonicCollectionViewCell.xib in Resources */,
+				3FF173E32346F4A6001DC20D /* Localizable.strings in Resources */,
+				3FCBA5A0234B2C6E0003B25E /* SignatureTableViewCell.xib in Resources */,
+				3F1D19792330C7840038D085 /* LaunchScreen.storyboard in Resources */,
+				3FF173F8234756A3001DC20D /* Main.storyboard in Resources */,
+				3F1D19762330C7840038D085 /* Assets.xcassets in Resources */,
+				3F235AEC233C687200C694AA /* MnemonicSuggestionsView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F1D197D2330C7840038D085 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F1D19882330C7840038D085 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3C68BAA4770AFE8BF7165876 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LuvabSignerUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		453C0D85429F2B78FAE16CAE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LuvabSigner-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		64C58119242796E8DE5579C9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LuvabSigner/Pods-LuvabSigner-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/EZAlertController/EZAlertController.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/LKDBHelper/LKDBHelper.framework",
+				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SmileLock/SmileLock.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
+				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
+				"${BUILT_PRODUCTS_DIR}/stellar-ios-mac-sdk/stellarsdk.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZAlertController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LKDBHelper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmileLock.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/stellarsdk.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LuvabSigner/Pods-LuvabSigner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7C59DF6998A33A7C85C699F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LuvabSignerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3F1D19672330C7830038D085 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F1D19712330C7830038D085 /* SignUpViewController.swift in Sources */,
+				3FCBA596234AE6590003B25E /* MainTabbarViewController.swift in Sources */,
+				3FCBA598234AE67E0003B25E /* TransactionsViewController.swift in Sources */,
+				3F235AEA233C685C00C694AA /* MnemonicSuggestionsView.swift in Sources */,
+				3F1D19B32330F06E0038D085 /* AppearanceHelper.swift in Sources */,
+				3F1D196F2330C7830038D085 /* AppDelegate.swift in Sources */,
+				3F1D19AF2330EA100038D085 /* MnemonicCollectionViewCell.swift in Sources */,
+				3F0F52E723447599005D8E05 /* HeaderSignatureCollectionReusableView.swift in Sources */,
+				3F1D199D2330C9AD0038D085 /* BackUpViewController.swift in Sources */,
+				3F292240233DEE9900929DBC /* MainTableViewCell.swift in Sources */,
+				3FF2F7582334D1DC0051E0EC /* BaseViewController.swift in Sources */,
+				3F29223E233DEE5300929DBC /* MainViewController.swift in Sources */,
+				3F7CF05723419C9100E56D2E /* UserDefaultsHelper.swift in Sources */,
+				3FF173F12346F67F001DC20D /* NSBundle+Language.m in Sources */,
+				3F1D19A82330DBF50038D085 /* MnemonicGenerationViewController.swift in Sources */,
+				3F2BBD48233B587600552C27 /* RestoreAccountViewController.swift in Sources */,
+				3F1595BC2338A6C90093620B /* ConfigModel.swift in Sources */,
+				3F1595BA2338A2940093620B /* LockScreenViewController.swift in Sources */,
+				3F7CF05523419BD000E56D2E /* ApplicationCoordinatorHelper.swift in Sources */,
+				3FCBA59A234AECA30003B25E /* HomeViewController.swift in Sources */,
+				3F7CF05B2341A4B300E56D2E /* ApplicationCoordinator.swift in Sources */,
+				3FDB591D23333C730038B370 /* MnemonicHelper.swift in Sources */,
+				3F1D19A42330CF190038D085 /* Extension.swift in Sources */,
+				3F0F52E3234465B2005D8E05 /* SignatureViewController.swift in Sources */,
+				3FCBA59F234B2C6E0003B25E /* SignatureTableViewCell.swift in Sources */,
+				3F0F52E523447545005D8E05 /* SignatureCollectionViewCell.swift in Sources */,
+				3F1D19AC2330E99F0038D085 /* MnemonicVerificationViewController.swift in Sources */,
+				3FCBA59C234B25EC0003B25E /* HomeTableViewCell.swift in Sources */,
+				3F1595BE2338BC440093620B /* PublicKeyViewController.swift in Sources */,
+				3FBE8ED82345951A007238EF /* SettingsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F1D197B2330C7840038D085 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F1D19842330C7840038D085 /* LuvabSignerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F1D19862330C7840038D085 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F1D198F2330C7840038D085 /* LuvabSignerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3F1D19812330C7840038D085 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F1D196A2330C7830038D085 /* LuvabSigner */;
+			targetProxy = 3F1D19802330C7840038D085 /* PBXContainerItemProxy */;
+		};
+		3F1D198C2330C7840038D085 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F1D196A2330C7830038D085 /* LuvabSigner */;
+			targetProxy = 3F1D198B2330C7840038D085 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3F1D19772330C7840038D085 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F1D19782330C7840038D085 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		3FF173E52346F4A6001DC20D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FF173E42346F4A6001DC20D /* en */,
+				3FF173E82346F4F3001DC20D /* vi */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3F1D19912330C7840038D085 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3F1D19922330C7840038D085 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3F1D19942330C7840038D085 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A61F8CD6734FD4A19302B4E1 /* Pods-LuvabSigner.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X9G7Q6SRPB;
+				INFOPLIST_FILE = LuvabSigner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.epapersmart.LuvabSigner;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "LuvabSigner/LuvabSigner-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3F1D19952330C7840038D085 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03B603C2EABF0C4FD6CF16B9 /* Pods-LuvabSigner.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X9G7Q6SRPB;
+				INFOPLIST_FILE = LuvabSigner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.epapersmart.LuvabSigner;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "LuvabSigner/LuvabSigner-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3F1D19972330C7840038D085 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A45414008DC67C3FEBBFDAE /* Pods-LuvabSignerTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LuvabSignerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.epapersmart.LuvabSignerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LuvabSigner.app/LuvabSigner";
+			};
+			name = Debug;
+		};
+		3F1D19982330C7840038D085 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F213954013D3D3480D3BDCF /* Pods-LuvabSignerTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LuvabSignerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.epapersmart.LuvabSignerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LuvabSigner.app/LuvabSigner";
+			};
+			name = Release;
+		};
+		3F1D199A2330C7840038D085 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D443A8E0EC85C6E7B6EFD4E /* Pods-LuvabSignerUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LuvabSignerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.epapersmart.LuvabSignerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LuvabSigner;
+			};
+			name = Debug;
+		};
+		3F1D199B2330C7840038D085 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43CA2A39A12859F541066C3E /* Pods-LuvabSignerUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LuvabSignerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.epapersmart.LuvabSignerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LuvabSigner;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3F1D19662330C7830038D085 /* Build configuration list for PBXProject "LuvabSigner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F1D19912330C7840038D085 /* Debug */,
+				3F1D19922330C7840038D085 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F1D19932330C7840038D085 /* Build configuration list for PBXNativeTarget "LuvabSigner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F1D19942330C7840038D085 /* Debug */,
+				3F1D19952330C7840038D085 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F1D19962330C7840038D085 /* Build configuration list for PBXNativeTarget "LuvabSignerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F1D19972330C7840038D085 /* Debug */,
+				3F1D19982330C7840038D085 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F1D19992330C7840038D085 /* Build configuration list for PBXNativeTarget "LuvabSignerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F1D199A2330C7840038D085 /* Debug */,
+				3F1D199B2330C7840038D085 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3F1D19632330C7830038D085 /* Project object */;
+}

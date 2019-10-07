@@ -1,0 +1,6 @@
+framework module Pods_LuvabSignerTests {
+  umbrella header "Pods-LuvabSignerTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

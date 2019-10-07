@@ -1,0 +1,64 @@
+/* 
+  Localizable.strings
+  LuvabSigner
+
+  Created by Nguyen Xuan Khang on 10/4/19.
+  Copyright © 2019 Luva. All rights reserved.
+*/
+
+"Multiply your security" = "Multiply your security";
+"First time user" = "Bạn mới sử dụng";
+"See our Help section" = "Hãy xem phần trợ giúp của chúng tôi";
+"BY REGISTER YOU AGREE TO OUR TERMS OF SERVICE AND PRIVACY POLICY" = "Để đăng ký tài khoản bạn phải đồng ý với các điều khoản và chính sách bảo mật của chúng tôi";
+"CREATE" = "Tạo tài khoản";
+"RESTORE" = "Khôi phục tài khoản";
+"Backup Your Account" = "Sao lưu tài khoản của bạn";
+"You will be shown a 12 word recovery phrase" = "Bạn sẽ được hiển thị một cụm từ phục hồi gồm 12 từ";
+"It will allow you to recover access to your account in case your phone is lost or stolen" = "Nó sẽ cho phép bạn khôi phục quyền truy cập vào tài khoản của bạn trong trường hợp điện thoại của bạn bị mất hoặc bị đánh cắp";
+"I Understand" = "Tôi hiểu";
+"Recovery Phrase" = "Cụm từ phục hồi";
+"NEXT" = "Tiếp tục";
+"Copy" = "Sao chép";
+"Recovery phrase can help you to recover access to your account in case your phone is lost or stolen" = "Cụm từ khôi phục có thể giúp bạn khôi phục quyền truy cập vào tài khoản của mình trong trường hợp điện thoại của bạn bị mất hoặc bị đánh cắp";
+"Write down these 12 words and keep them secure" = "Ghi lại 12 từ này và giữ chúng an toàn";
+"Don't email them or screenshot them" = "Không gửi email và chụp màn hình gửi cho người khác";
+"YOU WILL NEED TO CONFIRM RECOVERY PHRASE ON THE NEXT SCREEN" = "Bạn sẽ cần xác nhận khôi phục tài khoản ở màn hình tiếp theo";
+"Are you sure" = "Bạn có chắc không";
+"This action will cancel account creation" = "Hành động này sẽ huỷ việc tạo tài khoản của bạn";
+"Shown recovery phrase will be deleted" = "Cụm từ khôi phục tài khoản sẽ bị xoá";
+"Cancel" = "Huỷ bỏ";
+"OK" = "Đồng ý";
+"Verify Recovery Phrase" = "Xác thực cụm từ khôi phục";
+"Tap the words in the correct order" = "Nhấn vào các cụm từ theo đúng thứ tự";
+"Clear" = "Xoá";
+"Wrong order" = "Sắp xếp sai";
+"Please try again" = "Vui lòng thử lại";
+"Enter Current Passcode" = "Nhập mã khoá cũ";
+"Enter New Passcode" = "Nhập mã khoá mới";
+"Confirm New Passcode" = "Xác nhận mã khoá mới";
+"Enter Passcode" = "Nhập mã khoá";
+"Your bSigner Public Key" = "Khoá công khai bSigner của bạn";
+"This key will be set as a signer for your Stellar account" = "Khoá này sẽ được đặt làm chữ ký cho tài khoản Stellar của bạn";
+"To protect your LuvaPay account, copy and paste the key to LuvaPay" = "Để bảo vệ tài khoản LuvaPay của bạn, sao chép và dán vào tài khoản LuvaPay";
+"Copy Key" = "Sao chép";
+"Enter the 12 or 24 word recovery phrase you were given when you created your Luva bSigner account" = "Nhập cụm từ khôi phục bao gồm 12 hoặc 24 từ được cung cấp khi bạn tạo tài khoản Luva bSinger";
+"Signature" = "Chữ ký";
+"Set Passcode" = "Đặt mã khoá";
+"Enable unlock with Touch ID" = "Sử dụng mã vân tay để mở khoá";
+"Immediately" = "Ngay lập tức";
+"5 seconds" = "5 giây";
+"10 seconds" = "10 giây";
+"15 seconds" = "15 giây";
+"30 seconds" = "30 giây";
+"Automatically" = "Tự động khoá sau";
+"Time" = "Thời gian";
+"Change Passcode" = "Đổi mã khoá";
+"App language" = "Ngôn ngữ ứng dụng";
+"Changed" = "Thay đổi";
+"languge to" = "ngôn ngữ sang ";
+"Restart" = "Khởi động";
+"Logout" = "Đăng xuất";
+"Force restart app" = "Yêu cầu khởi động lại ứng dụng";
+"Change" = "thay đổi";
+"require restart app" = "yêu cầu khởi động lại ứng dụng";
+"Touch reopen app" = "Chạm để thay đổi ngôn ngữ";

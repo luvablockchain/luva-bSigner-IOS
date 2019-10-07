@@ -1,0 +1,65 @@
+/* 
+  Localizable.strings
+  LuvabSigner
+
+  Created by Nguyen Xuan Khang on 10/4/19.
+  Copyright © 2019 Luva. All rights reserved.
+*/
+
+
+"Multiply your security" = "Multiply your security";
+"First time user" = "First time user";
+"See our Help section" = "See our Help section";
+"BY REGISTER YOU AGREE TO OUR TERMS OF SERVICE AND PRIVACY POLICY" = "BY REGISTER YOU AGREE TO OUR TERMS OF SERVICE AND PRIVACY POLICY";
+"CREATE" = "CREATE";
+"RESTORE" = "RESTORE";
+"Backup Your Account" = "Backup Your Account";
+"You will be shown a 12 word recovery phrase" = "You will be shown a 12 word recovery phrase";
+"It will allow you to recover access to your account in case your phone is lost or stolen" = "It will allow you to recover access to your account in case your phone is lost or stolen";
+"I Understand" = "I Understand";
+"Recovery Phrase" = "Recovery Phrase";
+"NEXT" = "NEXT";
+"Copy" = "Copy";
+"Recovery phrase can help you to recover access to your account in case your phone is lost or stolen" = "Recovery phrase can help you to recover access to your account in case your phone is lost or stolen";
+"Write down these 12 words and keep them secure" = "Write down these 12 words and keep them secure";
+"Don't email them or screenshot them" = "Don't email them or screenshot them";
+"YOU WILL NEED TO CONFIRM RECOVERY PHRASE ON THE NEXT SCREEN" = "YOU WILL NEED TO CONFIRM RECOVERY PHRASE ON THE NEXT SCREEN";
+"Are you sure" = "Are you sure";
+"This action will cancel account creation" = "This action will cancel account creation";
+"Shown recovery phrase will be deleted" = "Shown recovery phrase will be deleted";
+"Cancel" = "Cancel";
+"OK" = "OK";
+"Verify Recovery Phrase" = "Verify Recovery Phrase";
+"Tap the words in the correct order" = "Tap the words in the correct order";
+"Clear" = "Clear";
+"Wrong order" = "Wrong order";
+"Please try again" = "Please try again";
+"Enter Current Passcode" = "Enter Current Passcode";
+"Enter New Passcode" = "Enter New Passcode";
+"Confirm New Passcode" = "Confirm New Passcode";
+"Enter Passcode" = "Enter Passcode";
+"Your bSigner Public Key" = "Your bSigner Public Key";
+"This key will be set as a signer for your Stellar account" = "This key will be set as a signer for your Stellar account";
+"To protect your LuvaPay account, copy and paste the key to LuvaPay" = "To protect your LuvaPay account, copy and paste the key to LuvaPay";
+"Copy Key" = "Copy Key";
+"Enter the 12 or 24 word recovery phrase you were given when you created your Luva bSigner account" = "Enter the 12 or 24 word recovery phrase you were given when you created your Luva bSigner account";
+"Signature" = "Signature";
+"Set Passcode" = "Set Passcode";
+"Change Passcode" = "Change Passcode";
+"Enable unlock with Touch ID" = "Enable unlock with Touch ID";
+"Automatically" = "Automatically";
+"Time" = "Time";
+"Immediately" = "Immediately";
+"5 seconds" = "5 seconds";
+"10 seconds" = "10 seconds";
+"15 seconds" = "15 seconds";
+"30 seconds" = "30 seconds";
+"App language" = "App language";
+"Changed" = "Changed";
+"languge to" = "languge to";
+"Restart" = "Restart";
+"Logout" = "Logout";
+"Force restart app" = "Force restart app";
+"Change" = "Change";
+"require restart app" = "require restart app";
+"Touch reopen app" = "Touch reopen app";
