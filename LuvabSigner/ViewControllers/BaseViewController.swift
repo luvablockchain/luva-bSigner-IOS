@@ -56,14 +56,56 @@ class BaseViewController: UIViewController {
     
 }
 extension UIViewController {
-    func pushToLockScreenViewController(delegate:LockScreenViewControllerDelegate, passCode: String = "", mnemonic: String = "", isCreateAccount: Bool) {
+    func pushToLockScreenViewController(delegate:LockScreenViewControllerDelegate, passCode: String = "", mnemonic: String = "", isCreateAccount: Bool, isDisablePass: Bool = false, isAddAccount:Bool = false) {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "lockScreenViewController") as? LockScreenViewController
         vc?.delegate = delegate
         vc?.passCode = passCode
         vc?.mnemonic = mnemonic
         vc?.isEnableBackButton = true
         vc?.isCreateAccount = isCreateAccount
+        vc?.isDisablePassCode = isDisablePass
         vc?.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    func pushChooseSignersViewController() {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "chooseSignersViewController") as? ChooseSignersViewController
+        vc?.hidesBottomBarWhenPushed = true
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
+    func pushBackUpViewController(isAddAccount:Bool = false) {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "backUpViewController") as? BackUpViewController
+        vc?.hidesBottomBarWhenPushed = true
+        vc?.isAddAcount = isAddAccount
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
+    func pushRestoreAccountViewController(isAddAccount:Bool = false) {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "restoreAccountViewController") as? RestoreAccountViewController
+        vc?.hidesBottomBarWhenPushed = true
+        vc?.isAddAcount = isAddAccount
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    func pushMnemonicGenerationViewController(isAddAccount:Bool = false) {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "mnemonicGenerationViewController") as? MnemonicGenerationViewController
+        vc?.hidesBottomBarWhenPushed = true
+        vc?.isAddAcount = isAddAccount
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
+    func pushMnemonicVerificationViewController(mnemoricList:[String] = [],isAddAccount:Bool = false ) {
+        
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "mnemonicVerificationViewController") as? MnemonicVerificationViewController
+        vc?.mnemoricList = mnemoricList
+        vc?.isAddAcount = isAddAccount
+        vc?.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
+    func pushMainTabbarViewController() {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "mainTabbarViewController") as? MainTabbarViewController
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
@@ -71,7 +113,11 @@ extension UIViewController {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "lockScreenViewController") as? LockScreenViewController
         vc?.delegate = delegate
+        vc?.hidesBottomBarWhenPushed = true
         vc?.isEnableBackButton = false
+        if #available(iOS 13.0, *) {
+            vc?.modalPresentationStyle = .fullScreen
+        }
         self.present(vc!, animated: true, completion: nil)
     }
 

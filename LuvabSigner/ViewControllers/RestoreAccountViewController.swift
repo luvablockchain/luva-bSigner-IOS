@@ -20,8 +20,13 @@ class RestoreAccountViewController: BaseViewController {
     var suggestionList: [String] = []
     let possibleWordsNumberInMnemonic = (twelveWords: 12, twentyFourWords: 24)
     private var passcode: String = ""
+    var isAddAcount = false
     
+    var model:[SignnatureModel] = []
+
     var mnemonicSuggestionsView: MnemonicSuggestionsView?
+    
+    var index = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +45,16 @@ class RestoreAccountViewController: BaseViewController {
         btnNext.layer.cornerRadius = 5
         btnNext.isEnabled = false
         lblTitle.text = "Enter the 12 or 24 word recovery phrase you were given when you created your Luva bSigner account".localizedString() + "."
+        
+        if let loadedData = UserDefaults().data(forKey: "SIGNNATURE") {
+
+            if let signnatureModel = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? [SignnatureModel] {
+                self.model = signnatureModel
+                if let index = KeychainWrapper.standard.integer(forKey: "INDEX") {
+                    self.index = index
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +64,12 @@ class RestoreAccountViewController: BaseViewController {
     override func viewDidLayoutSubviews() {
         AppearanceHelper.setDashBorders(for: txtMnemonic, with: BaseViewController.MainColor.cgColor)
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
+    }
+
     
     func add(_ suggestionWord: String, to text: String) {
         let updatedText = MnemonicHelper.addSuggestionWord(to: text, suggestionWord)
@@ -102,7 +123,29 @@ class RestoreAccountViewController: BaseViewController {
     }
     
     @IBAction func tappedRestoreAccount(_ sender: Any) {
-        pushToLockScreenViewController(delegate: self, isCreateAccount: true)
+        self.view.endEditing(true)
+        if isAddAcount {
+            
+            HUD.show(.labeledProgress(title: nil, subtitle: "Loading..."))
+            
+            DispatchQueue.global(qos: .background).async {
+                let publickey = MnemonicHelper.getKeyPairFrom(self.mnemonic).accountId
+                self.index += 1
+                self.model.append(SignnatureModel.init(title: "Signature".localizedString() + " " + "\(self.index)", publicKey: publickey))
+                let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
+                UserDefaults().set(data, forKey: "SIGNNATURE")
+                KeychainWrapper.standard.set(self.index, forKey: "INDEX")
+                DispatchQueue.main.async {
+                    if publickey != ""
+                    {
+                        HUD.hide()
+                        self.pushMainTabbarViewController()
+                    }
+                }
+            }
+        } else {
+            pushToLockScreenViewController(delegate: self, isCreateAccount: true)
+        }
     }
 }
 extension RestoreAccountViewController: MnemonicSuggestionsViewDelegate {

@@ -30,25 +30,17 @@ class ApplicationCoordinator {
         let navigationController = UINavigationController(rootViewController: vc)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
-
     }
     
     func showPinScreen() {
         
     }
     
-    func showPublicKeyScreen() {
+    func showMainScreen() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "mainTabbarViewController") as! MainTabbarViewController
         let navigationController = UINavigationController(rootViewController: vc)
         window?.rootViewController = navigationController
-//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = storyBoard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
-//        let navigationController = UINavigationController(rootViewController: vc)
-//        window?.rootViewController = navigationController
-//        window?.makeKeyAndVisible()
-
-
     }
     
     private func openStartScreen() {
@@ -57,7 +49,7 @@ class ApplicationCoordinator {
             KeychainWrapper.standard.removeAllKeys()
             showMenuScreen()
         case .waitingToBecomeSinger:
-            showPublicKeyScreen()
+            self.showMainScreen()
         case .created:
             showPinScreen()
         }

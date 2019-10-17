@@ -23,6 +23,7 @@ class MnemonicGenerationViewController: BaseViewController {
     
     var mnemonicList: [String] = []
     var mnemonic: String = ""
+    var isAddAcount = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +56,6 @@ class MnemonicGenerationViewController: BaseViewController {
             if position == 0 {
                 self.dismiss(animated: true, completion: nil)
             } else if position == 1 {
-                KeychainWrapper.standard.removeAllKeys()
                 self.navigationController?.popToRootViewController(animated: true)
             }
         }
@@ -68,9 +68,7 @@ class MnemonicGenerationViewController: BaseViewController {
     }
     
     @IBAction func tappedNextButton(_ sender: Any) {
-        let vc = self.storyboard!.instantiateViewController(withIdentifier: "mnemonicVerificationViewController") as? MnemonicVerificationViewController
-        vc?.mnemoricList = self.mnemonicList
-        self.navigationController?.pushViewController(vc!, animated: true)
+        pushMnemonicVerificationViewController(mnemoricList: self.mnemonicList,isAddAccount: isAddAcount)
     }
 }
 

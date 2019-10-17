@@ -14,6 +14,7 @@ class BackUpViewController: BaseViewController {
     @IBOutlet weak var btnConfirm: UIButton!
     @IBOutlet weak var lblNote: UILabel!
     @IBOutlet weak var lblBackUp: UILabel!
+    var isAddAcount = false
     override func viewDidLoad() {
         super.viewDidLoad()
         lblBackUp.text = "Backup Your Account".localizedString()
@@ -26,8 +27,7 @@ class BackUpViewController: BaseViewController {
     }
 
     @IBAction func tappedConfirmCreateAccount(_ sender: Any) {
-        let vc = self.storyboard!.instantiateViewController(withIdentifier: "mnemonicGenerationViewController") as? MnemonicGenerationViewController
-        self.navigationController?.pushViewController(vc!, animated: true)
+        pushMnemonicGenerationViewController(isAddAccount: isAddAcount)
     }
     
 }

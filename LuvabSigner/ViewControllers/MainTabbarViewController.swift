@@ -15,11 +15,6 @@ class MainTabbarViewController: UITabBarController,UITabBarControllerDelegate {
     
     var scrollEnabled: Bool = true
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,9 +32,15 @@ class MainTabbarViewController: UITabBarController,UITabBarControllerDelegate {
                 tabBar.items![index].title = "Settings".localizedString()
             }
             
-        }
+        }        
+        Broadcaster.register(bSignersNotificationOpenedDelegate.self, observer: self)
         UserDefaultsHelper.accountStatus = .waitingToBecomeSinger
                  
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
@@ -108,4 +109,9 @@ class MainTabbarViewController: UITabBarController,UITabBarControllerDelegate {
         }
     }
 
+}
+extension MainTabbarViewController: bSignersNotificationOpenedDelegate {
+    func notifyChooseSigners() {
+        pushChooseSignersViewController()
+    }
 }

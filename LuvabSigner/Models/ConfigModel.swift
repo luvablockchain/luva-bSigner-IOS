@@ -58,6 +58,11 @@ public enum LanguageApp: Int {
 public enum AccountType: Int {
     case on = 1, off = 2
 }
+
+public enum CheckPassType: Int {
+    case on = 1, off = 2
+}
+
 class ConfigModel: NSObject {
     
     @objc var identifier: String = "1"
@@ -82,6 +87,18 @@ class ConfigModel: NSObject {
             rawLanguageApp = newValue.rawValue
         }
     }
+    
+    @objc var rawCheckPassType: Int = CheckPassType.off.rawValue
+    
+    var checkPassType: CheckPassType {
+        get {
+            return CheckPassType(rawValue: rawCheckPassType) ?? CheckPassType.off
+        }
+        set {
+            rawCheckPassType = newValue.rawValue
+        }
+    }
+
     
     @objc var rawEnablePassCode: Int = EnablePassCode.off.rawValue
     var enablePassCode: EnablePassCode {

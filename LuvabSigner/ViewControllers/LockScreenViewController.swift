@@ -34,8 +34,9 @@ class LockScreenViewController: UIViewController {
     var isEnableBackButton = false
     var mnemonic: String?
     var isCreateAccount = false
+    var isDisablePassCode = false
     weak var delegate:LockScreenViewControllerDelegate?
-    
+    var model:[SignnatureModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,10 +55,12 @@ class LockScreenViewController: UIViewController {
         passwordContainerView = PasswordContainerView.create(in: svPass, digit: kPasswordDigit)
         let imgDelete = UIImage.init(named: "ic_backspace")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         passwordContainerView.deleteButton.setImage(imgDelete, for: .normal)
-        passwordContainerView.tintColor = UIColor.init(rgb: 0x20aee5)
         passwordContainerView.deleteButtonLocalizedTitle = ""
+        passwordContainerView.tintColor = BaseViewController.MainColor
+        passwordContainerView.touchAuthenticationButton.tintColor = .white
         passwordContainerView.highlightedColor = UIColor.init(rgb: 0x555555)
-        passwordContainerView.touchAuthenticationButton.tintColor = .clear
+        self.view.backgroundColor = .white
+        lblTitle.textColor = .darkText
         passwordContainerView.delegate = self
         passwordContainerView.touchAuthenticationButton.isEnabled = false
         if let _ = KeychainWrapper.standard.string(forKey: "MYPASS") {
@@ -72,7 +75,7 @@ class LockScreenViewController: UIViewController {
             } else if ConfigModel.sharedInstance.passCodeType == .normal {
                 lblTitle.text = "Enter Passcode".localizedString()
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                    if ConfigModel.sharedInstance.enablePassCode == .on && ConfigModel.sharedInstance.enableTouchID == .on{
+                    if ConfigModel.sharedInstance.enablePassCode == .on && ConfigModel.sharedInstance.enableTouchID == .on {
                         self.passwordContainerView.touchAuthentication()
                     }
                 }
@@ -106,7 +109,6 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
         if let passWord = KeychainWrapper.standard.string(forKey: "MYPASS") {
             if ConfigModel.sharedInstance.passCodeType == .change {
                 if passWord == input {
-                    //passCode = ""
                     delegate?.didChangePassCode()
                 } else {
                     passwordContainerView.wrongPassword()
@@ -117,6 +119,8 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
                 } else {
                     if passCode == input {
                         KeychainWrapper.standard.set(passCode, forKey: "MYPASS")
+                        ConfigModel.sharedInstance.disablePassCode = .off
+                        ConfigModel.sharedInstance.enablePassCode = .on
                         ConfigModel.sharedInstance.passCodeType = .normal
                         ConfigModel.sharedInstance.saveConfigToDB()
                         delegate?.didConfirmPassCode()
@@ -125,15 +129,15 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
                     }
                 }
             } else if ConfigModel.sharedInstance.passCodeType == .normal {
-                if ConfigModel.sharedInstance.disablePassCode == .off {
+                if isDisablePassCode {
                     if passWord == input {
-                        delegate?.didConfirmPassCodeSuccess()
+                        delegate?.didDisablePassCodeSuccess()
                     } else {
                         passwordContainerView.wrongPassword()
                     }
                 } else {
                     if passWord == input {
-                        delegate?.didDisablePassCodeSuccess()
+                        delegate?.didConfirmPassCodeSuccess()
                     } else {
                         passwordContainerView.wrongPassword()
                     }
@@ -149,27 +153,26 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
                         if let mnemonic = self.mnemonic {
                             HUD.show(.labeledProgress(title: nil, subtitle: "Loading..."))
                             DispatchQueue.global(qos: .background).async {
-                                
                                 let publickey = MnemonicHelper.getKeyPairFrom(mnemonic).accountId
-                                KeychainWrapper.standard.set(mnemonic, forKey: "MNEMONIC")
-                                KeychainWrapper.standard.set(publickey, forKey: "PUBLICKEY")
-                                
+                                self.model.append(SignnatureModel.init(title: "Signature".localizedString() + " 0", publicKey: publickey))
+                                let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
+                                UserDefaults().set(data, forKey: "SIGNNATURE")
                                 DispatchQueue.main.async {
                                     if publickey != ""
                                     {
                                         HUD.hide()
-                                        let vc = self.storyboard!.instantiateViewController(withIdentifier: "mainTabbarViewController") as? MainTabbarViewController
-                                        self.navigationController?.setNavigationBarHidden(false, animated: true)
-                                        self.navigationController?.pushViewController(vc!, animated: true)
+                                        self.pushMainTabbarViewController()
                                     }
                                 }
                             }
                         }
+                        ConfigModel.sharedInstance.disablePassCode = .on
                         ConfigModel.sharedInstance.enablePassCode = .on
                         ConfigModel.sharedInstance.saveConfigToDB()
                         delegate?.didConfirmPassCode()
                     } else {
                         KeychainWrapper.standard.set(passCode, forKey: "MYPASS")
+                        ConfigModel.sharedInstance.disablePassCode = .on
                         ConfigModel.sharedInstance.enablePassCode = .on
                         ConfigModel.sharedInstance.saveConfigToDB()
                         delegate?.didConfirmPassCode()
@@ -182,5 +185,18 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
     }
     
     func touchAuthenticationComplete(_ passwordContainerView: PasswordContainerView, success: Bool, error: Error?) {
+        if isDisablePassCode {
+            if success {
+                delegate?.didDisablePassCodeSuccess()
+            } else {
+                passwordContainerView.clearInput()
+            }
+        } else {
+            if success {
+                delegate?.didConfirmPassCodeSuccess()
+            } else {
+                passwordContainerView.clearInput()
+            }
+        }
     }
 }

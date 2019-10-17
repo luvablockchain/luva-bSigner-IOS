@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftKeychainWrapper
+import PKHUD
 
 class MnemonicVerificationViewController: BaseViewController {
 
@@ -23,7 +24,9 @@ class MnemonicVerificationViewController: BaseViewController {
     var shuffledMnemonicList: [String] = []
     var mnemonicListForVerification: [String] = []
     private var passcode: String = ""
-
+    var isAddAcount = false
+    var model:[SignnatureModel] = []
+    var index = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Verify Recovery Phrase".localizedString()
@@ -40,6 +43,15 @@ class MnemonicVerificationViewController: BaseViewController {
         collectionView2.register(MnemonicCollectionViewCell.nib, forCellWithReuseIdentifier: MnemonicCollectionViewCell.key)
         shuffledMnemonicList = mnemoricList.shuffled()
         collectionView2.allowsMultipleSelection = true
+        if let loadedData = UserDefaults().data(forKey: "SIGNNATURE") {
+
+            if let signnatureModel = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? [SignnatureModel] {
+                self.model = signnatureModel
+                if let index = KeychainWrapper.standard.integer(forKey: "INDEX") {
+                    self.index = index
+                }
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -53,8 +65,31 @@ class MnemonicVerificationViewController: BaseViewController {
         validateVerificationList()
         btnClear.isHidden = true
     }
+    
     @IBAction func tappedNextButton(_ sender: Any) {
-        pushToLockScreenViewController(delegate: self, isCreateAccount: true)
+        if isAddAcount {
+            
+            HUD.show(.labeledProgress(title: nil, subtitle: "Loading..."))
+            
+            DispatchQueue.global(qos: .background).async {
+                let mnemonic = MnemonicHelper.getStringFromSeparatedWords(in: self.mnemoricList)
+                let publickey = MnemonicHelper.getKeyPairFrom(mnemonic).accountId
+                self.index += 1
+                self.model.append(SignnatureModel.init(title: "Signature".localizedString() + " " + "\(self.index)", publicKey: publickey))
+                let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
+                UserDefaults().set(data, forKey: "SIGNNATURE")
+                KeychainWrapper.standard.set(self.index, forKey: "INDEX")
+                DispatchQueue.main.async {
+                    if publickey != ""
+                    {
+                        HUD.hide()
+                        self.pushMainTabbarViewController()
+                    }
+                }
+            }
+        } else {
+            pushToLockScreenViewController(delegate: self, isCreateAccount: true)
+        }
     }
     
     func validateVerificationList() {

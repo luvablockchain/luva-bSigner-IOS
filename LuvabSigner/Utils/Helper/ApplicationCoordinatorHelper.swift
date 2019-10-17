@@ -15,11 +15,18 @@ enum AccountStatus: Int {
   case notCreated = 0
 }
 
+protocol bSignersNotificationOpenedDelegate: class {
+    func notifyChooseSigners()
+}
+
+
 struct ApplicationCoordinatorHelper {
   
   static func logout() {
     
     UserDefaultsHelper.accountStatus = .notCreated
+    ConfigModel.sharedInstance.enablePassCode = .off
+    UserDefaults.standard.removeObject(forKey: "SIGNNATURE")
     KeychainWrapper.standard.removeAllKeys()
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
       else { return }

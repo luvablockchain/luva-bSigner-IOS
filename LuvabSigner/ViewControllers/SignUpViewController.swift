@@ -36,13 +36,11 @@ class SignUpViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     @IBAction func tappedCreateAccount(_ sender: Any) {
-        let vc = self.storyboard!.instantiateViewController(withIdentifier: "backUpViewController") as? BackUpViewController
-        self.navigationController?.pushViewController(vc!, animated: true)
+        pushBackUpViewController()
     }
     
     @IBAction func tappedRecoverAccount(_ sender: Any) {
-        let vc = self.storyboard!.instantiateViewController(withIdentifier: "restoreAccountViewController") as? RestoreAccountViewController
-        self.navigationController?.pushViewController(vc!, animated: true)
+        pushRestoreAccountViewController()
     }
 }
 
