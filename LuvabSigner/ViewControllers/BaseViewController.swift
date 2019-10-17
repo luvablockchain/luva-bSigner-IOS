@@ -67,12 +67,21 @@ extension UIViewController {
         vc?.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc!, animated: true)
     }
+    
     func pushChooseSignersViewController() {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "chooseSignersViewController") as? ChooseSignersViewController
         vc?.hidesBottomBarWhenPushed = true
         navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.pushViewController(vc!, animated: true)
     }
+    
+    func pushTransactionInfoViewController() {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "transactionInfoViewController") as? TransactionInfoViewController
+        vc?.hidesBottomBarWhenPushed = true
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+
     
     func pushBackUpViewController(isAddAccount:Bool = false) {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "backUpViewController") as? BackUpViewController

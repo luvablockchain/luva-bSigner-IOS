@@ -19,9 +19,9 @@ class ChooseSignersViewController: UIViewController {
     var signnature:String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblTitle.text = "Your Signers"
+        lblTitle.text = "Your Signers".localizedString()
         btnChoose.isEnabled = false
-        btnChoose.setTitle("Choose", for: .normal)
+        btnChoose.setTitle("Choose".localizedString(), for: .normal)
         btnChoose.layer.cornerRadius = 20
         tableView.separatorStyle = .none
         if let loadedData = UserDefaults().data(forKey: "SIGNNATURE") {
@@ -29,7 +29,6 @@ class ChooseSignersViewController: UIViewController {
                    self.listSigners = signnatureModel
                }
            }
-
     }
         
     @IBAction func tappedChooseSigner(_ sender: Any) {

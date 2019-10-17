@@ -25,7 +25,6 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
         
-    @IBOutlet weak var lblMore: UILabel!
     
     @IBOutlet weak var lblTitle: UILabel!
     
@@ -49,6 +48,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        ConfigModel.sharedInstance.loadLocalized()
         lblTitle.text = "Your signers".localizedString()
         btnAdd.isHidden = true
         if ConfigModel.sharedInstance.enablePassCode == .on {
@@ -117,9 +117,10 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func tappedAddSignature(_ sender: Any) {
-        EZAlertController.actionSheet("", message: "bSigners Account", sourceView: self.view, buttons: ["Create Account","Recover Account", "Cancel"]) { (action, position) in
+        EZAlertController.actionSheet("", message: "bSigners Account", sourceView: self.view, buttons: ["Create Account".localizedString(),"Recover Account".localizedString(), "Cancel".localizedString()]) { (action, position) in
             if position == 0 {
-                self.pushBackUpViewController(isAddAccount: true)
+                //self.pushBackUpViewController(isAddAccount: true)
+                self.pushTransactionInfoViewController()
             } else if position == 1 {
                 self.pushRestoreAccountViewController(isAddAccount: true)
             } else {
@@ -194,12 +195,13 @@ extension HomeViewController: LockScreenViewControllerDelegate {
 }
 
 extension HomeViewController: HomeTableViewCellDelegate {
+    
     func didEditTitleSignature(index: Int) {
         self.indexEdit = index
     }
     
     func didDeleteSignature(index: Int) {
-        EZAlertController.alert("Are you sure".localizedString() + "?", message:"This action cannot revert".localizedString() + ", " + "Countinue to delete this account".localizedString() + "?", buttons: ["Cancel".localizedString(), "OK".localizedString()]) { (alertAction, position) -> Void in
+        EZAlertController.alert("Are you sure".localizedString() + "?", message:"This action cannot revert".localizedString() + ", " + "Continue to delete this account".localizedString() + "?", buttons: ["Cancel".localizedString(), "OK".localizedString()]) { (alertAction, position) -> Void in
             if position == 0 {
                 self.dismiss(animated: true, completion: nil)
             } else if position == 1 {

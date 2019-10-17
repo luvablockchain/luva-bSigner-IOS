@@ -63,3 +63,16 @@
 "require restart app" = "yêu cầu khởi động lại ứng dụng";
 "Touch reopen app" = "Chạm để thay đổi ngôn ngữ";
 "More" = "Xem thêm";
+"Your signers" = "Chữ ký của bạn";
+"This action cannot revert" = "Hành động này không thể hoàn tác";
+"Continue to delete this account" = "Tiếp tục xoá tài khoản này";
+"Create Account" = "Tạo tài khoản";
+"Recover Account" = "Khôi phục tài khoản";
+"Choose" = "Chọn";
+"Transaction Info" = "Thông tin giao dịch";
+"From" = "Từ";
+"To" = "Đến";
+"Amount" = "Số tiền";
+"Memo" = "Lời nhắn";
+"Approve Transaction" =  "Xác nhận giao dịch";
+"Approve" = "Xác nhận";

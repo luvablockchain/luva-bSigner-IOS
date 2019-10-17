@@ -64,3 +64,16 @@
 "require restart app" = "require restart app";
 "Touch reopen app" = "Touch reopen app";
 "More" = "More";
+"Your signers" = "Your signers";
+"This action cannot revert" = "This action cannot revert";
+"Continue to delete this account" = "Continue to delete this account";
+"Create Account" = "Create Account";
+"Recover Account" = "Recover Account";
+"Choose" = "Choose";
+"Transaction Info" = "Transaction Info";
+"From" = "From";
+"To" = "To";
+"Amount" = "Amount";
+"Memo" = "Memo";
+"Approve Transaction" =  "Approve Transaction";
+"Approve" = "Approve";

@@ -32,6 +32,7 @@
 		3F2BBD48233B587600552C27 /* RestoreAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BBD47233B587600552C27 /* RestoreAccountViewController.swift */; };
 		3F38684F23547FF400161071 /* ChooseSignersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F38684E23547FF400161071 /* ChooseSignersViewController.swift */; };
 		3F3868512354801600161071 /* ChooseSignersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3868502354801600161071 /* ChooseSignersTableViewCell.swift */; };
+		3F3873392358128000054A3C /* TransactionInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3873382358128000054A3C /* TransactionInfoViewController.swift */; };
 		3F5C338923556BF500F55483 /* SwiftNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C338623556BF500F55483 /* SwiftNotificationCenter.swift */; };
 		3F5C338A23556BF500F55483 /* WeakObjectSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C338723556BF500F55483 /* WeakObjectSet.swift */; };
 		3F5C338C2355A51000F55483 /* CustomSignersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C338B2355A51000F55483 /* CustomSignersView.swift */; };
@@ -103,6 +104,7 @@
 		3F2BBD47233B587600552C27 /* RestoreAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreAccountViewController.swift; sourceTree = "<group>"; };
 		3F38684E23547FF400161071 /* ChooseSignersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSignersViewController.swift; sourceTree = "<group>"; };
 		3F3868502354801600161071 /* ChooseSignersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSignersTableViewCell.swift; sourceTree = "<group>"; };
+		3F3873382358128000054A3C /* TransactionInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionInfoViewController.swift; sourceTree = "<group>"; };
 		3F5C338623556BF500F55483 /* SwiftNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftNotificationCenter.swift; sourceTree = "<group>"; };
 		3F5C338723556BF500F55483 /* WeakObjectSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakObjectSet.swift; sourceTree = "<group>"; };
 		3F5C338823556BF500F55483 /* SwiftNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftNotificationCenter.h; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				3FCBA597234AE67E0003B25E /* TransactionsViewController.swift */,
 				3FCBA599234AECA30003B25E /* HomeViewController.swift */,
 				3F38684E23547FF400161071 /* ChooseSignersViewController.swift */,
+				3F3873382358128000054A3C /* TransactionInfoViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				3F1D19B32330F06E0038D085 /* AppearanceHelper.swift in Sources */,
 				3F1D196F2330C7830038D085 /* AppDelegate.swift in Sources */,
 				3F1D19AF2330EA100038D085 /* MnemonicCollectionViewCell.swift in Sources */,
+				3F3873392358128000054A3C /* TransactionInfoViewController.swift in Sources */,
 				3F0F52E723447599005D8E05 /* HeaderSignatureCollectionReusableView.swift in Sources */,
 				3F1D199D2330C9AD0038D085 /* BackUpViewController.swift in Sources */,
 				3FF2F7582334D1DC0051E0EC /* BaseViewController.swift in Sources */,
