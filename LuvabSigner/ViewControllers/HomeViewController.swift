@@ -51,7 +51,7 @@ class HomeViewController: UIViewController {
         ConfigModel.sharedInstance.loadLocalized()
         lblTitle.text = "Your signers".localizedString()
         btnAdd.isHidden = true
-        if ConfigModel.sharedInstance.enablePassCode == .on {
+        if ConfigModel.sharedInstance.enablePassCode == .on &&         ConfigModel.sharedInstance.accountType == .normal{
             presentToLockScreenViewController(delegate: self)
         }
         Broadcaster.register(bSignersNotificationOpenedDelegate.self, observer: self)
@@ -86,6 +86,8 @@ class HomeViewController: UIViewController {
     
     @objc func didEnterBackground() {
         if ConfigModel.sharedInstance.enablePassCode == .on {
+            ConfigModel.sharedInstance.accountType = .normal
+            ConfigModel.sharedInstance.saveConfigToDB()
             self.timeBackGround = Date()
             let second = ConfigModel.sharedInstance.configType.second
             shouldShowLockScreen = true

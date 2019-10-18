@@ -279,7 +279,7 @@ class SettingsViewController: FormViewController {
                 }
                 EZAlertController.alert("Force restart app".localizedString(), message:"\("Change".localizedString()) \("App language".localizedString()) \("require restart app".localizedString())", buttons: ["Restart".localizedString(), "Cancel".localizedString()]) { (alertAction, position) -> Void in
                     if position == 0 {
-                        self.exitAppAndRequestReopenNotify(content: content)
+                       self.exitAppAndRequestReopenNotify(content: content)
                     } else if position == 1 {
                         self.dismiss(animated: true, completion: nil)
                     }
@@ -302,7 +302,15 @@ class SettingsViewController: FormViewController {
                 cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
             }).onCellSelection {[weak self] cell, row in
                 row.reload()
-                ApplicationCoordinatorHelper.logout()
+                EZAlertController.alert("", message:"You want to exit this application".localizedString() + ".", buttons: ["Ok".localizedString(), "Cancel".localizedString()]) { (alertAction, position) -> Void in
+                    if position == 0 {
+                       exit(0)
+                    } else if position == 1 {
+                        self!.dismiss(animated: true, completion: nil)
+                    }
+                }
+
+                //ApplicationCoordinatorHelper.logout()
             }.cellUpdate({ (cell, row) in
                 cell.imageView?.image = UIImage.init(named: "ic_logout")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
                 cell.imageView?.tintColor = UIColor.red

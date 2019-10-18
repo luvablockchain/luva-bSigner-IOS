@@ -56,7 +56,7 @@ public enum LanguageApp: Int {
 }
 
 public enum AccountType: Int {
-    case on = 1, off = 2
+    case create = 1, normal = 2
 }
 
 public enum CheckPassType: Int {
@@ -110,11 +110,11 @@ class ConfigModel: NSObject {
         }
     }
     
-    @objc var rawAccountType: Int = AccountType.off.rawValue
+    @objc var rawAccountType: Int = AccountType.normal.rawValue
     
     var accountType: AccountType {
         get {
-            return AccountType(rawValue: rawAccountType) ?? AccountType.off
+            return AccountType(rawValue: rawAccountType) ?? AccountType.normal
         }
         set {
             rawAccountType = newValue.rawValue

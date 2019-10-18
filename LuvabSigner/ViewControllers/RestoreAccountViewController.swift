@@ -55,6 +55,7 @@ class RestoreAccountViewController: BaseViewController {
                 }
             }
         }
+        ConfigModel.sharedInstance.accountType = .create
     }
     
     override func viewWillAppear(_ animated: Bool) {

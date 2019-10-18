@@ -24,6 +24,7 @@ class BackUpViewController: BaseViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
         imgKey.image = UIImage.init(named: "ic_key")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         imgKey.tintColor = BaseViewController.MainColor
+        ConfigModel.sharedInstance.accountType = .create
     }
 
     @IBAction func tappedConfirmCreateAccount(_ sender: Any) {
