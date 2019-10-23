@@ -38,6 +38,11 @@
 		3F5C338C2355A51000F55483 /* CustomSignersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C338B2355A51000F55483 /* CustomSignersView.swift */; };
 		3F5C338E2355A52B00F55483 /* CustomSignersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F5C338D2355A52B00F55483 /* CustomSignersView.xib */; };
 		3F5C33922355ABBD00F55483 /* UICustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C33912355ABBD00F55483 /* UICustomView.swift */; };
+		3F5E0A90235EB48500BCB6B1 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0A8F235EB48500BCB6B1 /* TransactionModel.swift */; };
+		3F5E0A94235EB50600BCB6B1 /* bSignerServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0A93235EB50600BCB6B1 /* bSignerServiceManager.swift */; };
+		3F5E0A96235EB81800BCB6B1 /* bSignerReponseServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0A95235EB81800BCB6B1 /* bSignerReponseServiceModel.swift */; };
+		3F5E0A98235EB86F00BCB6B1 /* ServiceErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0A97235EB86F00BCB6B1 /* ServiceErrorModel.swift */; };
+		3F5E0A9A235EB93800BCB6B1 /* ResponseServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0A99235EB93800BCB6B1 /* ResponseServiceModel.swift */; };
 		3F7CF05523419BD000E56D2E /* ApplicationCoordinatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CF05423419BD000E56D2E /* ApplicationCoordinatorHelper.swift */; };
 		3F7CF05723419C9100E56D2E /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CF05623419C9100E56D2E /* UserDefaultsHelper.swift */; };
 		3F7CF05B2341A4B300E56D2E /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CF05A2341A4B300E56D2E /* ApplicationCoordinator.swift */; };
@@ -111,6 +116,12 @@
 		3F5C338B2355A51000F55483 /* CustomSignersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSignersView.swift; sourceTree = "<group>"; };
 		3F5C338D2355A52B00F55483 /* CustomSignersView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSignersView.xib; sourceTree = "<group>"; };
 		3F5C33912355ABBD00F55483 /* UICustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomView.swift; sourceTree = "<group>"; };
+		3F5E0A8E235EA92000BCB6B1 /* LuvabSigner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LuvabSigner.entitlements; sourceTree = "<group>"; };
+		3F5E0A8F235EB48500BCB6B1 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
+		3F5E0A93235EB50600BCB6B1 /* bSignerServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bSignerServiceManager.swift; sourceTree = "<group>"; };
+		3F5E0A95235EB81800BCB6B1 /* bSignerReponseServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bSignerReponseServiceModel.swift; sourceTree = "<group>"; };
+		3F5E0A97235EB86F00BCB6B1 /* ServiceErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceErrorModel.swift; sourceTree = "<group>"; };
+		3F5E0A99235EB93800BCB6B1 /* ResponseServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseServiceModel.swift; sourceTree = "<group>"; };
 		3F7CF05423419BD000E56D2E /* ApplicationCoordinatorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinatorHelper.swift; sourceTree = "<group>"; };
 		3F7CF05623419C9100E56D2E /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		3F7CF05A2341A4B300E56D2E /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
@@ -203,9 +214,10 @@
 		3F1D196D2330C7830038D085 /* LuvabSigner */ = {
 			isa = PBXGroup;
 			children = (
+				3F5E0A8E235EA92000BCB6B1 /* LuvabSigner.entitlements */,
 				3FF173E92346F61E001DC20D /* Libraries */,
 				3F1D19A12330CE9C0038D085 /* Utils */,
-				3FF173E52346F4A6001DC20D /* Localizable.strings */,
+				3F5E0A91235EB49F00BCB6B1 /* Service Data */,
 				3F1D19A02330C9D40038D085 /* Models */,
 				3F1D199F2330C9CC0038D085 /* Views */,
 				3F1D199E2330C9B70038D085 /* ViewControllers */,
@@ -280,6 +292,9 @@
 			children = (
 				3F1595BB2338A6C90093620B /* ConfigModel.swift */,
 				3F1EFD15234F0AC1003FE76B /* SignnatureModel.swift */,
+				3F5E0A8F235EB48500BCB6B1 /* TransactionModel.swift */,
+				3F5E0A97235EB86F00BCB6B1 /* ServiceErrorModel.swift */,
+				3F5E0A99235EB93800BCB6B1 /* ResponseServiceModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -287,6 +302,7 @@
 		3F1D19A12330CE9C0038D085 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3F5E0A92235EB4BA00BCB6B1 /* Localizable */,
 				3F5C33902355AB9C00F55483 /* UICustomView */,
 				3F7CF05C2341A74400E56D2E /* Enums */,
 				3F1D19B12330F0580038D085 /* Helper */,
@@ -331,6 +347,23 @@
 				3F5C33912355ABBD00F55483 /* UICustomView.swift */,
 			);
 			path = UICustomView;
+			sourceTree = "<group>";
+		};
+		3F5E0A91235EB49F00BCB6B1 /* Service Data */ = {
+			isa = PBXGroup;
+			children = (
+				3F5E0A93235EB50600BCB6B1 /* bSignerServiceManager.swift */,
+				3F5E0A95235EB81800BCB6B1 /* bSignerReponseServiceModel.swift */,
+			);
+			path = "Service Data";
+			sourceTree = "<group>";
+		};
+		3F5E0A92235EB4BA00BCB6B1 /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				3FF173E52346F4A6001DC20D /* Localizable.strings */,
+			);
+			path = Localizable;
 			sourceTree = "<group>";
 		};
 		3F7CF05C2341A74400E56D2E /* Enums */ = {
@@ -558,6 +591,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-LuvabSigner/Pods-LuvabSigner-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts-Swift/BoltsSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/EZAlertController/EZAlertController.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
@@ -565,6 +600,7 @@
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SmileLock/SmileLock.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
 				"${BUILT_PRODUCTS_DIR}/stellar-ios-mac-sdk/stellarsdk.framework",
 			);
@@ -572,6 +608,8 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BoltsSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZAlertController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
@@ -579,6 +617,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmileLock.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/stellarsdk.framework",
 			);
@@ -640,7 +679,12 @@
 				3F5C338A23556BF500F55483 /* WeakObjectSet.swift in Sources */,
 				3F3868512354801600161071 /* ChooseSignersTableViewCell.swift in Sources */,
 				3FCBA59A234AECA30003B25E /* HomeViewController.swift in Sources */,
+				3F5E0A94235EB50600BCB6B1 /* bSignerServiceManager.swift in Sources */,
+				3F5E0A96235EB81800BCB6B1 /* bSignerReponseServiceModel.swift in Sources */,
+				3F5E0A9A235EB93800BCB6B1 /* ResponseServiceModel.swift in Sources */,
 				3F5C338923556BF500F55483 /* SwiftNotificationCenter.swift in Sources */,
+				3F5E0A90235EB48500BCB6B1 /* TransactionModel.swift in Sources */,
+				3F5E0A98235EB86F00BCB6B1 /* ServiceErrorModel.swift in Sources */,
 				3F7CF05B2341A4B300E56D2E /* ApplicationCoordinator.swift in Sources */,
 				3FDB591D23333C730038B370 /* MnemonicHelper.swift in Sources */,
 				3F1D19A42330CF190038D085 /* Extension.swift in Sources */,
@@ -829,18 +873,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X9G7Q6SRPB;
+				CODE_SIGN_ENTITLEMENTS = LuvabSigner/LuvabSigner.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = F7F4YCHSQV;
 				INFOPLIST_FILE = LuvabSigner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.epapersmart.LuvabSigner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luvapay.bsigner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = BsignerDev;
 				SWIFT_OBJC_BRIDGING_HEADER = "LuvabSigner/LuvabSigner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -854,18 +899,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X9G7Q6SRPB;
+				CODE_SIGN_ENTITLEMENTS = LuvabSigner/LuvabSigner.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = F7F4YCHSQV;
 				INFOPLIST_FILE = LuvabSigner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.epapersmart.LuvabSigner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luvapay.bsigner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = BsignerDev;
 				SWIFT_OBJC_BRIDGING_HEADER = "LuvabSigner/LuvabSigner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

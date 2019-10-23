@@ -21,12 +21,19 @@ class MnemonicVerificationViewController: BaseViewController {
     @IBOutlet weak var lblTitle: UILabel!
     
     var mnemoricList: [String] = []
+    
     var shuffledMnemonicList: [String] = []
+    
     var mnemonicListForVerification: [String] = []
+    
     private var passcode: String = ""
+    
     var isAddAcount = false
+    
     var model:[SignnatureModel] = []
+    
     var index = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Verify Recovery Phrase".localizedString()
@@ -75,7 +82,7 @@ class MnemonicVerificationViewController: BaseViewController {
                 let mnemonic = MnemonicHelper.getStringFromSeparatedWords(in: self.mnemoricList)
                 let publickey = MnemonicHelper.getKeyPairFrom(mnemonic).accountId
                 self.index += 1
-                self.model.append(SignnatureModel.init(title: "Signature".localizedString() + " " + "\(self.index)", publicKey: publickey))
+                self.model.append(SignnatureModel.init(title: "Signature".localizedString() + " " + "\(self.index)", publicKey: publickey,mnemonic:mnemonic))
                 let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
                 UserDefaults().set(data, forKey: "SIGNNATURE")
                 KeychainWrapper.standard.set(self.index, forKey: "INDEX")

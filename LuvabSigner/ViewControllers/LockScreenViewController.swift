@@ -154,7 +154,7 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
                             HUD.show(.labeledProgress(title: nil, subtitle: "Loading..."))
                             DispatchQueue.global(qos: .background).async {
                                 let publickey = MnemonicHelper.getKeyPairFrom(mnemonic).accountId
-                                self.model.append(SignnatureModel.init(title: "Signature".localizedString() + " 0", publicKey: publickey))
+                                self.model.append(SignnatureModel.init(title: "Signature".localizedString() + " 0", publicKey: publickey,mnemonic: mnemonic))
                                 let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
                                 UserDefaults().set(data, forKey: "SIGNNATURE")
                                 DispatchQueue.main.async {

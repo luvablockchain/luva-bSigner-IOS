@@ -132,7 +132,7 @@ class RestoreAccountViewController: BaseViewController {
             DispatchQueue.global(qos: .background).async {
                 let publickey = MnemonicHelper.getKeyPairFrom(self.mnemonic).accountId
                 self.index += 1
-                self.model.append(SignnatureModel.init(title: "Signature".localizedString() + " " + "\(self.index)", publicKey: publickey))
+                self.model.append(SignnatureModel.init(title: "Signature".localizedString() + " " + "\(self.index)", publicKey: publickey, mnemonic:self.mnemonic))
                 let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
                 UserDefaults().set(data, forKey: "SIGNNATURE")
                 KeychainWrapper.standard.set(self.index, forKey: "INDEX")

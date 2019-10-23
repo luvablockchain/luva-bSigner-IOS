@@ -65,6 +65,15 @@ extension String {
     public func localizedString() -> String {
         return NSLocalizedString(self, comment: "")
     }
+    
+    func encodeUrl() -> String {
+        return self.addingPercentEncoding( withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? ""
+    }
+    
+    func decodeUrl() -> String {
+        return self.removingPercentEncoding ?? ""
+    }
+
 }
 
 extension UIView {
@@ -101,5 +110,28 @@ extension UIView {
             child.bottomAnchor.constraint(equalTo: bottomAnchor)
             ])
     }
+    
+}
+
+extension URL {
+    func getKeyVals() -> Dictionary<String, String>? {
+        var results = [String: String]()
+        if let keyValues = self.query?.decodeUrl().components(separatedBy: "&") {
+            if(keyValues.count > 0) {
+                results["host"] = self.host ?? ""
+                results["path"] = self.path
+                for pair in keyValues {
+                    let kv = pair.components(separatedBy: "=")
+                    if kv.count > 1 {
+                        results.updateValue(kv[1], forKey: kv[0])
+                    }
+                }
+            }
+            return results
+        }
+        return nil
+        
+    }
+    
     
 }

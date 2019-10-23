@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import stellarsdk
 
 class TransactionInfoViewController: UIViewController {
     
@@ -40,6 +41,14 @@ class TransactionInfoViewController: UIViewController {
     
     @IBOutlet weak var lblFromKey: UILabel!
     
+    var model:TransactionModel!
+    
+    var signer:SignnatureModel!
+    
+    var keyPairToSign:KeyPair!
+        
+    var signature:String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         lblTransactions.text = "Transaction Info".localizedString()
@@ -52,19 +61,35 @@ class TransactionInfoViewController: UIViewController {
         btnCancel.layer.cornerRadius = 20
         btnConfirm.layer.cornerRadius = 20
         btnConfirm.setTitle("Approve".localizedString(), for: .normal)
-        lblFromKey.text = "GDPKQOKONZJ4LOGS2LGEHWVNVEHQN2JE4Z4CV7QSSNI6ZBNPJY62IK53"
-        lblToKey.text = "GCASWWNIP4F4XEWIGWSB7EKGIYDGDVIYDUGNLRLWNHHUW2EBROSV5YTI"
-        lblName.text = "Test"
-        lblSignnature.text = "GDPKQOKONZJ4LOGS2LGEHWVNVEHQN2JE4Z4CV7QSSNI6ZBNPJY62IK53"
-        lblMoney.text = "200.000"
-        lblNote.text = "test"
+        lblFromKey.text = model.senderUserId
+        lblToKey.text = model.destUserId
+        lblName.text = signer.title
+        lblSignnature.text = signer.publicKey
+        lblMoney.text = model.amount
+        lblNote.text = model.note
         viewTransaction.layer.cornerRadius = 5
         viewTransaction.layer.borderWidth = 0.5
         viewTransaction.layer.borderColor = UIColor.lightGray.cgColor
+        keyPairToSign = MnemonicHelper.getKeyPairFrom(signer.mnemonic!)
+        do {
+            let envelope = try TransactionEnvelopeXDR(xdr:model.transactionXDR)
+            let transactionHash =  try [UInt8](envelope.tx.hash(network: .testnet))
+            let decoratedSignature = keyPairToSign.signDecorated(transactionHash)
+            let signatures = decoratedSignature.signature
+            self.signature = signatures.base64EncodedString(options: NSData.Base64EncodingOptions())
+        } catch {
+            print("Invalid xdr string")
+        }
+
     }
 
     @IBAction func tappedConfirmTransactions(_ sender: Any) {
-        
+        let application = UIApplication.shared
+        let luvaApp = "luvaapp://?signature=\(self.signature!)&logId=\(self.model.logId)&signerPublicKey=\(self.signer.publicKey!)"
+        let appUrl = URL(string: luvaApp)!
+        if application.canOpenURL(appUrl) {
+            application.open(appUrl, options: [:], completionHandler: nil)
+        }
     }
     
     @IBAction func tappedCancelTransactions(_ sender: Any) {

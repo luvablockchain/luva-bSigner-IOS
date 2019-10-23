@@ -119,10 +119,10 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func tappedAddSignature(_ sender: Any) {
-        EZAlertController.actionSheet("", message: "bSigners Account", sourceView: self.view, buttons: ["Create Account".localizedString(),"Recover Account".localizedString(), "Cancel".localizedString()]) { (action, position) in
+        EZAlertController.actionSheet("", message: "bSigners Account".localizedString(), sourceView: self.view, buttons: ["Create Account".localizedString(),"Recover Account".localizedString(), "Cancel".localizedString()]) { (action, position) in
             if position == 0 {
-                //self.pushBackUpViewController(isAddAccount: true)
-                self.pushTransactionInfoViewController()
+                self.pushBackUpViewController(isAddAccount: true)
+                //self.pushTransactionInfoViewController()
             } else if position == 1 {
                 self.pushRestoreAccountViewController(isAddAccount: true)
             } else {
@@ -131,6 +131,7 @@ class HomeViewController: UIViewController {
         }
     }
 }
+
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -216,6 +217,7 @@ extension HomeViewController: HomeTableViewCellDelegate {
     }
     
 }
+
 extension HomeViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         model[indexEdit].title = textField.text!
@@ -226,6 +228,10 @@ extension HomeViewController: UITextFieldDelegate {
 }
 
 extension HomeViewController: bSignersNotificationOpenedDelegate {
+    func notifyApproveTransaction(model: TransactionModel) {
+        pushChooseSignersViewController(model: model)
+    }
+    
     func notifyChooseSigners() {
         pushChooseSignersViewController()
     }

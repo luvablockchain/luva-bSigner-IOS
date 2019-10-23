@@ -31,11 +31,9 @@ class MainTabbarViewController: UITabBarController,UITabBarControllerDelegate {
             } else if(index == 2) {
                 tabBar.items![index].title = "Settings".localizedString()
             }
-            
         }        
         Broadcaster.register(bSignersNotificationOpenedDelegate.self, observer: self)
         UserDefaultsHelper.accountStatus = .waitingToBecomeSinger
-                 
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,6 +109,10 @@ class MainTabbarViewController: UITabBarController,UITabBarControllerDelegate {
 
 }
 extension MainTabbarViewController: bSignersNotificationOpenedDelegate {
+    func notifyApproveTransaction(model: TransactionModel) {
+        pushChooseSignersViewController(model: model)
+    }
+    
     func notifyChooseSigners() {
         pushChooseSignersViewController()
     }

@@ -13,7 +13,6 @@ class BaseViewController: UIViewController {
     static let MainColor = UIColor.init(rgb: 0x70b500)
     
     var btnBack:UIButton?
-    var btnHelp:UIButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,31 +29,14 @@ class BaseViewController: UIViewController {
             let leftBarButton = UIBarButtonItem()
             leftBarButton.customView = btnBack
             self.navigationItem.leftBarButtonItem = leftBarButton
-            
-            btnHelp = UIButton.init(type: .system)
-            if #available(iOS 11.0, *) {
-                btnHelp?.contentHorizontalAlignment = .trailing
-            }
-            btnHelp!.setImage(UIImage(named: "ic_help")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate), for: .normal)
-            btnHelp!.tintColor = BaseViewController.MainColor
-            btnHelp!.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-            btnHelp!.addTarget(self, action:#selector(tappedAtRightButton), for: .touchUpInside)
-            let rightBarButton = UIBarButtonItem()
-            rightBarButton.customView = btnHelp
-            
-            self.navigationItem.rightBarButtonItem = rightBarButton
         }
     }
     
     @objc func tappedAtLeftButton(sender:UIButton) {
         navigationController?.popViewController(animated: true)
     }
-    
-    @objc func tappedAtRightButton(sender:UIButton) {
-        
-    }
-    
 }
+
 extension UIViewController {
     func pushToLockScreenViewController(delegate:LockScreenViewControllerDelegate, passCode: String = "", mnemonic: String = "", isCreateAccount: Bool, isDisablePass: Bool = false, isAddAccount:Bool = false) {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "lockScreenViewController") as? LockScreenViewController
@@ -68,16 +50,19 @@ extension UIViewController {
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
-    func pushChooseSignersViewController() {
+    func pushChooseSignersViewController(model:TransactionModel? = nil) {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "chooseSignersViewController") as? ChooseSignersViewController
         vc?.hidesBottomBarWhenPushed = true
+        vc?.model = model
         navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
-    func pushTransactionInfoViewController() {
+    func pushTransactionInfoViewController(signer:SignnatureModel, model:TransactionModel) {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "transactionInfoViewController") as? TransactionInfoViewController
         vc?.hidesBottomBarWhenPushed = true
+        vc?.signer = signer
+        vc?.model = model
         navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.pushViewController(vc!, animated: true)
     }

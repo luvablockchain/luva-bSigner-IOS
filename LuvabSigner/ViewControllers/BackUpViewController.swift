@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BackUpViewController: BaseViewController {
+class BackUpViewController: UIViewController {
 
     @IBOutlet weak var imgKey: UIImageView!
     @IBOutlet weak var btnConfirm: UIButton!

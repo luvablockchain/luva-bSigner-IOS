@@ -13,12 +13,22 @@ class TransactionsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        Broadcaster.register(bSignersNotificationOpenedDelegate.self, observer: self)
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
+}
+
+extension TransactionsViewController: bSignersNotificationOpenedDelegate {
+    func notifyApproveTransaction(model: TransactionModel) {
+        pushChooseSignersViewController(model: model)
+    }
+    
+    func notifyChooseSigners() {
+        self.pushChooseSignersViewController()
+    }
 }

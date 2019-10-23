@@ -16,7 +16,13 @@ class ChooseSignersViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var listSigners:[SignnatureModel] = []
+    
     var signnature:String = ""
+    
+    var model:TransactionModel!
+    
+    var signers:SignnatureModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         lblTitle.text = "Your Signers".localizedString()
@@ -32,11 +38,15 @@ class ChooseSignersViewController: UIViewController {
     }
         
     @IBAction func tappedChooseSigner(_ sender: Any) {
-        let application = UIApplication.shared
-        let luvaApp = "luvaapp://?signers=" + signnature
-        let appUrl = URL(string: luvaApp)!
-        if application.canOpenURL(appUrl) {
-            application.open(appUrl, options: [:], completionHandler: nil)
+        if model != nil {
+            pushTransactionInfoViewController(signer: signers, model: model)
+        } else {
+            let application = UIApplication.shared
+            let luvaApp = "luvaapp://?signers=" + signnature
+            let appUrl = URL(string: luvaApp)!
+            if application.canOpenURL(appUrl) {
+                application.open(appUrl, options: [:], completionHandler: nil)
+            }
         }
     }
 }
@@ -58,6 +68,7 @@ extension ChooseSignersViewController: UITableViewDelegate, UITableViewDataSourc
         btnChoose.backgroundColor = BaseViewController.MainColor
         btnChoose.setTitleColor(.white, for: .normal)
         signnature = listSigners[indexPath.row].publicKey!
+        signers = listSigners[indexPath.row]
     }
     
 }

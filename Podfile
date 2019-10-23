@@ -14,7 +14,10 @@ target 'LuvabSigner' do
   pod 'SmileLock'
   pod 'Eureka'
   pod 'XLPagerTabStrip'
-  
+  pod 'SwiftyJSON'
+  pod 'Alamofire'
+  pod 'Bolts-Swift'
+
   target 'LuvabSignerTests' do
     inherit! :search_paths
     # Pods for testing

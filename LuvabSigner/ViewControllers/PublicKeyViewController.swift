@@ -10,7 +10,7 @@ import UIKit
 import SwiftKeychainWrapper
 import PKHUD
 
-class PublicKeyViewController: BaseViewController {
+class PublicKeyViewController: UIViewController {
     
     @IBOutlet weak var viewSignnature: UIView!
     @IBOutlet weak var lblName: UILabel!
@@ -22,9 +22,6 @@ class PublicKeyViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        btnHelp?.isHidden = true
-        btnHelp?.setImage(UIImage(named: "ic_settings")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate), for: .normal)
-        btnHelp?.tintColor = BaseViewController.MainColor
         btnCopy.setImage(UIImage(named: "ic_copy")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate), for: .normal)
         btnCopy.tintColor = BaseViewController.MainColor
         btnCopy.setTitle(" " + "Copy Key", for: .normal)
@@ -39,7 +36,10 @@ class PublicKeyViewController: BaseViewController {
         self.lblPublicKey.text = model.publicKey
         self.imgQRCode.image = generateQRCode(from: model.publicKey!)
     }
-            
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated:true)
+    }
     @IBAction func tappedCopyPublicKey(_ sender: Any) {
         UIPasteboard.general.string = model.publicKey
         HUD.flash(.success, delay: 1.0)

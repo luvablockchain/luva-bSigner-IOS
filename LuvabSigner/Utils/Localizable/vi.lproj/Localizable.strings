@@ -6,7 +6,7 @@
   Copyright © 2019 Luva. All rights reserved.
 */
 
-"Multiply your security" = "Multiply your security";
+"Multiply your security" = "Tăng cường bảo mật";
 "First time user" = "Bạn mới sử dụng";
 "See our Help section" = "Hãy xem phần trợ giúp của chúng tôi";
 "BY REGISTER YOU AGREE TO OUR TERMS OF SERVICE AND PRIVACY POLICY" = "Để đăng ký tài khoản bạn phải đồng ý với các điều khoản và chính sách bảo mật của chúng tôi";
@@ -44,7 +44,7 @@
 "Enter the 12 or 24 word recovery phrase you were given when you created your Luva bSigner account" = "Nhập cụm từ khôi phục bao gồm 12 hoặc 24 từ được cung cấp khi bạn tạo tài khoản Luva bSinger";
 "Signature" = "Chữ ký";
 "Set Passcode" = "Đặt mã khoá";
-"Enable unlock with Touch ID" = "Sử dụng mã vân tay để mở khoá";
+"Enable unlock with Touch ID or Face ID" = "Sử dụng vân tay hoặc khuôn mặt để mở khoá";
 "Immediately" = "Ngay lập tức";
 "5 seconds" = "5 giây";
 "10 seconds" = "10 giây";
@@ -78,3 +78,6 @@
 "Approve" = "Xác nhận";
 "You want to exit this application" = "Bạn muốn thoát ứng dụng này";
 "Multiply your security" = "Tăng cường khả năng bảo mật";
+"Term of service" = "Điều khoản sử dụng";
+"Frequently Asked Questions" = "Câu hỏi thường gặp";
+"bSigners Account" = "Tài khoản bSigners";

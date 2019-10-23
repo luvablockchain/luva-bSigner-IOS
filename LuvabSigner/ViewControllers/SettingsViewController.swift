@@ -14,17 +14,29 @@ import SwiftKeychainWrapper
 class SettingsViewController: FormViewController {
     
     private var code: String = ""
+    
     var isDisablePassCode = false
+    
     var passCodeRow: SwitchRow!
+    
     var changePassRow: LabelRow!
+    
     var touchIDRow: SwitchRow!
+    
     var timeRow: PushRow<String>!
+    
+    var helpRow: LabelRow!
+    
+    var termsRow: LabelRow!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ConfigModel.sharedInstance.loadLocalized()
         title = "Settings".localizedString()
+        Broadcaster.register(bSignersNotificationOpenedDelegate.self, observer: self)
         loadForm()
     }
+    
     func loadForm() {
         
         self.passCodeRow = SwitchRow() {
@@ -54,7 +66,6 @@ class SettingsViewController: FormViewController {
                 if ConfigModel.sharedInstance.disablePassCode == .on {
                     self?.pushToLockScreenViewController(delegate:self!,isCreateAccount: false, isDisablePass: true)
                 }
-                
             }
             
         }.cellUpdate({ (cell, row) in
@@ -101,7 +112,7 @@ class SettingsViewController: FormViewController {
         })
         
         self.touchIDRow = SwitchRow() {
-            $0.title = "Enable unlock with Touch ID".localizedString()
+            $0.title = "Enable unlock with Touch ID or Face ID".localizedString()
             $0.tag = "TouchID"
             self.setTextColor(textLabel:$0.cell.textLabel!)
 
@@ -144,6 +155,7 @@ class SettingsViewController: FormViewController {
             cell.imageView?.image = UIImage.init(named: "ic_faceID")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
             cell.imageView?.tintColor = BaseViewController.MainColor
             cell.textLabel?.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.regular)
+            cell.textLabel?.numberOfLines = 0
             if ConfigModel.sharedInstance.enablePassCode == .on {
                 self.setTextColor(textLabel:cell.textLabel!)
             } else {
@@ -227,6 +239,46 @@ class SettingsViewController: FormViewController {
 
         })
         
+        self.helpRow = LabelRow () {
+            $0.title = "Frequently Asked Questions".localizedString()
+        }.cellSetup({ (cell, row) in
+            cell.imageView?.image = UIImage.init(named: "ic_help")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+            cell.imageView?.tintColor = BaseViewController.MainColor
+            cell.selectionStyle = UITableViewCell.SelectionStyle.default
+            cell.textLabel?.numberOfLines = 0
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.regular)
+            cell.height = { UITableView.automaticDimension }
+            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+            self.setTextColor(textLabel:cell.textLabel!)
+        }).onCellSelection {[weak self] cell, row in
+        }.cellUpdate({ (cell, row) in
+            cell.imageView?.image = UIImage.init(named: "ic_help")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+            cell.imageView?.tintColor = BaseViewController.MainColor
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.regular)
+            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+        })
+        
+        self.termsRow = LabelRow () {
+            $0.title = "Term of service".localizedString()
+        }.cellSetup({ (cell, row) in
+            cell.imageView?.image = UIImage.init(named: "ic_policy")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+            cell.imageView?.tintColor = BaseViewController.MainColor
+            cell.selectionStyle = UITableViewCell.SelectionStyle.default
+            cell.textLabel?.numberOfLines = 0
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.regular)
+            cell.height = { UITableView.automaticDimension }
+            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+            self.setTextColor(textLabel:cell.textLabel!)
+        }).onCellSelection {[weak self] cell, row in
+        }.cellUpdate({ (cell, row) in
+            cell.imageView?.image = UIImage.init(named: "ic_policy")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+            cell.imageView?.tintColor = BaseViewController.MainColor
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.regular)
+            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+        })
+
+
+        
         
         form
             +++
@@ -248,6 +300,30 @@ class SettingsViewController: FormViewController {
             self.touchIDRow
             <<<
             self.timeRow
+            +++ Section(){ section in
+                section.header = {
+                    var header = HeaderFooterView<UIView>(.callback({
+                        let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 0))
+                        return view
+                    }))
+                    header.height = {0}
+                    return header
+                }()
+            }
+            <<<
+            self.termsRow
+            <<<
+            self.helpRow
+            +++ Section(){ section in
+                section.header = {
+                    var header = HeaderFooterView<UIView>(.callback({
+                        let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 0))
+                        return view
+                    }))
+                    header.height = {0}
+                    return header
+                }()
+            }
             <<< ActionSheetRow<String>() {
                 
                 $0.title = "App language".localizedString()
@@ -290,6 +366,16 @@ class SettingsViewController: FormViewController {
                 cell.imageView?.tintColor = BaseViewController.MainColor
                 self.setTextColor(textLabel: cell.textLabel!)
             })
+            +++ Section(){ section in
+                section.header = {
+                    var header = HeaderFooterView<UIView>(.callback({
+                        let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 0))
+                        return view
+                    }))
+                    header.height = {0}
+                    return header
+                }()
+            }
             <<< LabelRow () {
                 $0.title = "Logout".localizedString()
             }.cellSetup({ (cell, row) in
@@ -428,5 +514,15 @@ extension SettingsViewController: LockScreenViewControllerDelegate {
         ConfigModel.sharedInstance.disablePassCode = .off
         ConfigModel.sharedInstance.saveConfigToDB()
         self.navigationController?.popToViewController(self, animated: true)
+    }
+}
+
+extension SettingsViewController: bSignersNotificationOpenedDelegate {
+    func notifyApproveTransaction(model: TransactionModel) {
+        pushChooseSignersViewController(model: model)
+    }
+    
+    func notifyChooseSigners() {
+        self.pushChooseSignersViewController()
     }
 }

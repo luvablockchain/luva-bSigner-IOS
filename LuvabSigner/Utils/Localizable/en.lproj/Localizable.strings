@@ -46,7 +46,7 @@
 "Signature" = "Signature";
 "Set Passcode" = "Set Passcode";
 "Change Passcode" = "Change Passcode";
-"Enable unlock with Touch ID" = "Enable unlock with Touch ID";
+"Enable unlock with Touch ID or Face ID" = "Enable unlock with Touch ID or Face ID";
 "Automatically" = "Automatically";
 "Time" = "Time";
 "Immediately" = "Immediately";
@@ -79,3 +79,6 @@
 "Approve" = "Approve";
 "You want to exit this application" = "You want to exit this application";
 "Multiply your security" = "Multiply your security";
+"Term of service" = "Term of service";
+"Frequently Asked Questions" = "Frequently Asked Questions";
+"bSigners Account" = "bSigners Account";

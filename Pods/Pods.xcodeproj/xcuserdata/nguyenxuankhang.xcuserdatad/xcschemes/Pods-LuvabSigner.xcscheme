@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EA6A81685DF2060CFFCF8DDDCC221ED1"
+               BlueprintIdentifier = "EB70B82A8B83702D01190AE1CF71F3FC"
                BuildableName = "Pods_LuvabSigner.framework"
                BlueprintName = "Pods-LuvabSigner"
                ReferencedContainer = "container:Pods.xcodeproj">
