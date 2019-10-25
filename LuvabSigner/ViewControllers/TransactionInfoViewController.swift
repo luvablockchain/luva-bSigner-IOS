@@ -42,13 +42,16 @@ class TransactionInfoViewController: UIViewController {
     @IBOutlet weak var lblFromKey: UILabel!
     
     var model:TransactionModel!
-    
-    var signer:SignnatureModel!
-    
+        
     var keyPairToSign:KeyPair!
         
     var signature:String?
     
+    var listSigner:[SignatureModel] = []
+    
+    var index = 0
+    
+    var stellar:StellarSDK!
     override func viewDidLoad() {
         super.viewDidLoad()
         lblTransactions.text = "Transaction Info".localizedString()
@@ -63,16 +66,29 @@ class TransactionInfoViewController: UIViewController {
         btnConfirm.setTitle("Approve".localizedString(), for: .normal)
         lblFromKey.text = model.senderUserId
         lblToKey.text = model.destUserId
-        lblName.text = signer.title
-        lblSignnature.text = signer.publicKey
         lblMoney.text = model.amount
         lblNote.text = model.note
         viewTransaction.layer.cornerRadius = 5
         viewTransaction.layer.borderWidth = 0.5
         viewTransaction.layer.borderColor = UIColor.lightGray.cgColor
-        keyPairToSign = MnemonicHelper.getKeyPairFrom(signer.mnemonic!)
+        if let loadedData = UserDefaults().data(forKey: "SIGNNATURE") {
+
+            if let signnatureModel = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? [SignatureModel] {
+                self.listSigner = signnatureModel
+            }
+        }
+  
+        for signer in listSigner {
+            if signer.publicKey == model.signers {
+                break;
+            }
+            index += 1
+        }
+        lblName.text = listSigner[index].title
+        lblSignnature.text = listSigner[index].publicKey
+        keyPairToSign = MnemonicHelper.getKeyPairFrom(listSigner[index].mnemonic!)
         do {
-            let envelope = try TransactionEnvelopeXDR(xdr:model.transactionXDR)
+            let envelope = try TransactionEnvelopeXDR(xdr:model.transactionXDR)        
             let transactionHash =  try [UInt8](envelope.tx.hash(network: .testnet))
             let decoratedSignature = keyPairToSign.signDecorated(transactionHash)
             let signatures = decoratedSignature.signature
@@ -80,12 +96,21 @@ class TransactionInfoViewController: UIViewController {
         } catch {
             print("Invalid xdr string")
         }
-
+        NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIApplication.didEnterBackgroundNotification
+            , object: nil)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+        
+    @objc func didEnterBackground() {
+        pushMainTabbarViewController()
     }
 
     @IBAction func tappedConfirmTransactions(_ sender: Any) {
         let application = UIApplication.shared
-        let luvaApp = "luvaapp://?signature=\(self.signature!)&logId=\(self.model.logId)&signerPublicKey=\(self.signer.publicKey!)"
+        let luvaApp = "luvaapp://?signature=\(self.signature!)&logId=\(self.model.logId)&signerPublicKey=\(self.listSigner[index].publicKey!)"
         let appUrl = URL(string: luvaApp)!
         if application.canOpenURL(appUrl) {
             application.open(appUrl, options: [:], completionHandler: nil)

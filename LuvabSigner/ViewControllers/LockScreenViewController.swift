@@ -36,13 +36,13 @@ class LockScreenViewController: UIViewController {
     var isCreateAccount = false
     var isDisablePassCode = false
     weak var delegate:LockScreenViewControllerDelegate?
-    var model:[SignnatureModel] = []
+    var model:[SignatureModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ConfigModel.sharedInstance.loadLocalized()
         navigationController?.setNavigationBarHidden(true, animated: true)
-        
+        Broadcaster.register(bSignersNotificationOpenedDelegate.self, observer: self)
         let imgBack = UIImage.init(named: "ic_back")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         btnBack.setImage(imgBack, for: .normal)
         btnBack.tintColor = BaseViewController.MainColor
@@ -87,6 +87,7 @@ class LockScreenViewController: UIViewController {
                 lblTitle.text = "Confirm New Passcode".localizedString()
             }
         }
+
     }
     
     @IBAction func tappedBackButton(_ sender: Any) {
@@ -154,7 +155,7 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
                             HUD.show(.labeledProgress(title: nil, subtitle: "Loading..."))
                             DispatchQueue.global(qos: .background).async {
                                 let publickey = MnemonicHelper.getKeyPairFrom(mnemonic).accountId
-                                self.model.append(SignnatureModel.init(title: "Signature".localizedString() + " 0", publicKey: publickey,mnemonic: mnemonic))
+                                self.model.append(SignatureModel.init(title: "Signature".localizedString() + " 0", publicKey: publickey,mnemonic: mnemonic))
                                 let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
                                 UserDefaults().set(data, forKey: "SIGNNATURE")
                                 DispatchQueue.main.async {
@@ -198,5 +199,14 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
                 passwordContainerView.clearInput()
             }
         }
+    }
+}
+extension LockScreenViewController: bSignersNotificationOpenedDelegate {
+    func notifyChooseSigners() {
+        pushChooseSignersViewController()
+    }
+    
+    func notifyApproveTransaction(model: TransactionModel) {
+        
     }
 }

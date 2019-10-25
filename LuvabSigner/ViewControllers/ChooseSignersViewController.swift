@@ -15,13 +15,13 @@ class ChooseSignersViewController: UIViewController {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    var listSigners:[SignnatureModel] = []
+    var listSigners:[SignatureModel] = []
     
     var signnature:String = ""
     
     var model:TransactionModel!
     
-    var signers:SignnatureModel!
+    var signers:SignatureModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +31,22 @@ class ChooseSignersViewController: UIViewController {
         btnChoose.layer.cornerRadius = 20
         tableView.separatorStyle = .none
         if let loadedData = UserDefaults().data(forKey: "SIGNNATURE") {
-               if let signnatureModel = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? [SignnatureModel] {
+               if let signnatureModel = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? [SignatureModel] {
                    self.listSigners = signnatureModel
                }
            }
+        NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIApplication.didEnterBackgroundNotification
+            , object: nil)
     }
         
+    @objc func didEnterBackground() {
+        pushMainTabbarViewController()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     @IBAction func tappedChooseSigner(_ sender: Any) {
         if model != nil {
             pushTransactionInfoViewController(signer: signers, model: model)

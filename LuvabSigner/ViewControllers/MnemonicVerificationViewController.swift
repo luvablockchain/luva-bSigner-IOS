@@ -30,7 +30,7 @@ class MnemonicVerificationViewController: BaseViewController {
     
     var isAddAcount = false
     
-    var model:[SignnatureModel] = []
+    var model:[SignatureModel] = []
     
     var index = 0
     
@@ -52,7 +52,7 @@ class MnemonicVerificationViewController: BaseViewController {
         collectionView2.allowsMultipleSelection = true
         if let loadedData = UserDefaults().data(forKey: "SIGNNATURE") {
 
-            if let signnatureModel = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? [SignnatureModel] {
+            if let signnatureModel = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? [SignatureModel] {
                 self.model = signnatureModel
                 if let index = KeychainWrapper.standard.integer(forKey: "INDEX") {
                     self.index = index
@@ -82,7 +82,7 @@ class MnemonicVerificationViewController: BaseViewController {
                 let mnemonic = MnemonicHelper.getStringFromSeparatedWords(in: self.mnemoricList)
                 let publickey = MnemonicHelper.getKeyPairFrom(mnemonic).accountId
                 self.index += 1
-                self.model.append(SignnatureModel.init(title: "Signature".localizedString() + " " + "\(self.index)", publicKey: publickey,mnemonic:mnemonic))
+                self.model.append(SignatureModel.init(title: "Signature".localizedString() + " " + "\(self.index)", publicKey: publickey,mnemonic:mnemonic))
                 let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
                 UserDefaults().set(data, forKey: "SIGNNATURE")
                 KeychainWrapper.standard.set(self.index, forKey: "INDEX")

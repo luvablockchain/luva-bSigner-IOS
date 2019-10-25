@@ -23,6 +23,10 @@ class TransactionModel: NSObject {
     
     var senderUserId:String = ""
     
+    var signers:String = ""
+    
+    var destination:String = ""
+    
     init(json:JSON) {
         super.init()
         self.logId = json["logId"].stringValue
@@ -31,6 +35,8 @@ class TransactionModel: NSObject {
         self.note = json["note"].stringValue
         self.destUserId = json["destUserId"].stringValue
         self.senderUserId = json["senderUserId"].stringValue
+        self.signers = json["signers"].stringValue
+        self.destination = json["destination"].stringValue
     }
 
 }

@@ -50,7 +50,7 @@ class ApplicationCoordinator {
             showMenuScreen()
         case .waitingToBecomeSinger:
             self.showMainScreen()
-        case .created:
+        case .chooseSigners:
             showPinScreen()
         }
     }

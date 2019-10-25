@@ -18,7 +18,7 @@ class PublicKeyViewController: UIViewController {
     @IBOutlet weak var lblPublicKey: UILabel!
     @IBOutlet weak var imgQRCode: UIImageView!
     
-    var model:SignnatureModel!
+    var model:SignatureModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

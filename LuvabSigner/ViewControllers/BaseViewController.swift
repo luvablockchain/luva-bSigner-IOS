@@ -58,10 +58,9 @@ extension UIViewController {
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
-    func pushTransactionInfoViewController(signer:SignnatureModel, model:TransactionModel) {
+    func pushTransactionInfoViewController(signer:SignatureModel, model:TransactionModel) {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "transactionInfoViewController") as? TransactionInfoViewController
         vc?.hidesBottomBarWhenPushed = true
-        vc?.signer = signer
         vc?.model = model
         navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.pushViewController(vc!, animated: true)

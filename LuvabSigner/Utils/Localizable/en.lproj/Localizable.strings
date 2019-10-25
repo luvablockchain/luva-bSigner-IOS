@@ -68,7 +68,7 @@
 "This action cannot revert" = "This action cannot revert";
 "Continue to delete this account" = "Continue to delete this account";
 "Create Account" = "Create Account";
-"Recover Account" = "Recover Account";
+"Restore Account" = "Restore Account";
 "Choose" = "Choose";
 "Transaction Info" = "Transaction Info";
 "From" = "From";
@@ -82,3 +82,6 @@
 "Term of service" = "Term of service";
 "Frequently Asked Questions" = "Frequently Asked Questions";
 "bSigners Account" = "bSigners Account";
+"Home" = "Home";
+"Transactions" = "Transactions";
+"Settings" = "Settings";

@@ -46,25 +46,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    //    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-    //
-    //        return false
-    //    }
-    //
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         if url.absoluteString.lowercased() == "bsignerapp://" {
-            Broadcaster.notify(bSignersNotificationOpenedDelegate.self) {
-                $0.notifyChooseSigners()
-            }
+//            Broadcaster.notify(bSignersNotificationOpenedDelegate.self) {
+//                $0.notifyChooseSigners()
+//            }
+            pushChooseSignersViewController()
         } else {
             if let dict = url.getKeyVals() {
                 let json = JSON(dict)
                 let model = TransactionModel(json: json)
-                Broadcaster.notify(bSignersNotificationOpenedDelegate.self) {
-                    $0.notifyApproveTransaction(model: model)
-                }
+//                Broadcaster.notify(bSignersNotificationOpenedDelegate.self) {
+//                    $0.notifyApproveTransaction(model: model)
+//                }
+                pushTransactionInfoViewController(model: model)
             }
-            
         }
         return false
     }
@@ -90,5 +86,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func pushChooseSignersViewController() {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "chooseSignersViewController") as! ChooseSignersViewController
+        let navigationController = UINavigationController(rootViewController: vc)
+        window?.rootViewController = navigationController
+    }
+    func pushTransactionInfoViewController(model:TransactionModel) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "transactionInfoViewController") as! TransactionInfoViewController
+        vc.model = model
+        let navigationController = UINavigationController(rootViewController: vc)
+        window?.rootViewController = navigationController
+    }
+
 }
 

@@ -95,16 +95,5 @@ struct MnemonicHelper {
                                                 index: index)
         
         return keyPair
-    }
-    
-//    static func encryptAndStoreInKeychain(mnemonic: String,
-//                                          mnemonicManager: MnemonicManager = MnemonicManagerImpl(),
-//                                          vaultStorage: VaultStorage = VaultStorage()) {
-//        guard mnemonicManager.encryptAndStoreInKeychain(mnemonic: mnemonic) else {
-//            fatalError()
-//        }
-//        
-//        let publicKey = MnemonicHelper.getKeyPairFrom(mnemonic).accountId
-//        vaultStorage.storePublicKeyInKeychain(publicKey)
-//    }
+    }    
 }

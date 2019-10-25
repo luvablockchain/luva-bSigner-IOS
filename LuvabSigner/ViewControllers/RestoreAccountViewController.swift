@@ -22,7 +22,7 @@ class RestoreAccountViewController: BaseViewController {
     private var passcode: String = ""
     var isAddAcount = false
     
-    var model:[SignnatureModel] = []
+    var model:[SignatureModel] = []
 
     var mnemonicSuggestionsView: MnemonicSuggestionsView?
     
@@ -48,7 +48,7 @@ class RestoreAccountViewController: BaseViewController {
         
         if let loadedData = UserDefaults().data(forKey: "SIGNNATURE") {
 
-            if let signnatureModel = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? [SignnatureModel] {
+            if let signnatureModel = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? [SignatureModel] {
                 self.model = signnatureModel
                 if let index = KeychainWrapper.standard.integer(forKey: "INDEX") {
                     self.index = index
@@ -132,7 +132,7 @@ class RestoreAccountViewController: BaseViewController {
             DispatchQueue.global(qos: .background).async {
                 let publickey = MnemonicHelper.getKeyPairFrom(self.mnemonic).accountId
                 self.index += 1
-                self.model.append(SignnatureModel.init(title: "Signature".localizedString() + " " + "\(self.index)", publicKey: publickey, mnemonic:self.mnemonic))
+                self.model.append(SignatureModel.init(title: "Signature".localizedString() + " " + "\(self.index)", publicKey: publickey, mnemonic:self.mnemonic))
                 let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
                 UserDefaults().set(data, forKey: "SIGNNATURE")
                 KeychainWrapper.standard.set(self.index, forKey: "INDEX")

@@ -26,7 +26,7 @@
 		3F1D19AF2330EA100038D085 /* MnemonicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D19AD2330EA100038D085 /* MnemonicCollectionViewCell.swift */; };
 		3F1D19B02330EA100038D085 /* MnemonicCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F1D19AE2330EA100038D085 /* MnemonicCollectionViewCell.xib */; };
 		3F1D19B32330F06E0038D085 /* AppearanceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1D19B22330F06E0038D085 /* AppearanceHelper.swift */; };
-		3F1EFD16234F0AC1003FE76B /* SignnatureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1EFD15234F0AC1003FE76B /* SignnatureModel.swift */; };
+		3F1EFD16234F0AC1003FE76B /* SignatureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1EFD15234F0AC1003FE76B /* SignatureModel.swift */; };
 		3F235AEA233C685C00C694AA /* MnemonicSuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F235AE9233C685C00C694AA /* MnemonicSuggestionsView.swift */; };
 		3F235AEC233C687200C694AA /* MnemonicSuggestionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F235AEB233C687200C694AA /* MnemonicSuggestionsView.xib */; };
 		3F2BBD48233B587600552C27 /* RestoreAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2BBD47233B587600552C27 /* RestoreAccountViewController.swift */; };
@@ -39,10 +39,6 @@
 		3F5C338E2355A52B00F55483 /* CustomSignersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F5C338D2355A52B00F55483 /* CustomSignersView.xib */; };
 		3F5C33922355ABBD00F55483 /* UICustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C33912355ABBD00F55483 /* UICustomView.swift */; };
 		3F5E0A90235EB48500BCB6B1 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0A8F235EB48500BCB6B1 /* TransactionModel.swift */; };
-		3F5E0A94235EB50600BCB6B1 /* bSignerServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0A93235EB50600BCB6B1 /* bSignerServiceManager.swift */; };
-		3F5E0A96235EB81800BCB6B1 /* bSignerReponseServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0A95235EB81800BCB6B1 /* bSignerReponseServiceModel.swift */; };
-		3F5E0A98235EB86F00BCB6B1 /* ServiceErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0A97235EB86F00BCB6B1 /* ServiceErrorModel.swift */; };
-		3F5E0A9A235EB93800BCB6B1 /* ResponseServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0A99235EB93800BCB6B1 /* ResponseServiceModel.swift */; };
 		3F7CF05523419BD000E56D2E /* ApplicationCoordinatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CF05423419BD000E56D2E /* ApplicationCoordinatorHelper.swift */; };
 		3F7CF05723419C9100E56D2E /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CF05623419C9100E56D2E /* UserDefaultsHelper.swift */; };
 		3F7CF05B2341A4B300E56D2E /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CF05A2341A4B300E56D2E /* ApplicationCoordinator.swift */; };
@@ -84,16 +80,16 @@
 		3F1595B92338A2940093620B /* LockScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenViewController.swift; sourceTree = "<group>"; };
 		3F1595BB2338A6C90093620B /* ConfigModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigModel.swift; sourceTree = "<group>"; };
 		3F1595BD2338BC440093620B /* PublicKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyViewController.swift; sourceTree = "<group>"; };
-		3F1D196B2330C7830038D085 /* LuvabSigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LuvabSigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F1D196B2330C7830038D085 /* bSigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bSigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F1D196E2330C7830038D085 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F1D19702330C7830038D085 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3F1D19752330C7840038D085 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F1D19782330C7840038D085 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F1D197A2330C7840038D085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3F1D197F2330C7840038D085 /* LuvabSignerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LuvabSignerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F1D197F2330C7840038D085 /* bSignerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bSignerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F1D19832330C7840038D085 /* LuvabSignerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuvabSignerTests.swift; sourceTree = "<group>"; };
 		3F1D19852330C7840038D085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3F1D198A2330C7840038D085 /* LuvabSignerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LuvabSignerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F1D198A2330C7840038D085 /* bSignerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bSignerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F1D198E2330C7840038D085 /* LuvabSignerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuvabSignerUITests.swift; sourceTree = "<group>"; };
 		3F1D19902330C7840038D085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F1D199C2330C9AD0038D085 /* BackUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpViewController.swift; sourceTree = "<group>"; };
@@ -103,7 +99,7 @@
 		3F1D19AD2330EA100038D085 /* MnemonicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicCollectionViewCell.swift; sourceTree = "<group>"; };
 		3F1D19AE2330EA100038D085 /* MnemonicCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MnemonicCollectionViewCell.xib; sourceTree = "<group>"; };
 		3F1D19B22330F06E0038D085 /* AppearanceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceHelper.swift; sourceTree = "<group>"; };
-		3F1EFD15234F0AC1003FE76B /* SignnatureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignnatureModel.swift; sourceTree = "<group>"; };
+		3F1EFD15234F0AC1003FE76B /* SignatureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureModel.swift; sourceTree = "<group>"; };
 		3F235AE9233C685C00C694AA /* MnemonicSuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicSuggestionsView.swift; sourceTree = "<group>"; };
 		3F235AEB233C687200C694AA /* MnemonicSuggestionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MnemonicSuggestionsView.xib; sourceTree = "<group>"; };
 		3F2BBD47233B587600552C27 /* RestoreAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreAccountViewController.swift; sourceTree = "<group>"; };
@@ -118,10 +114,6 @@
 		3F5C33912355ABBD00F55483 /* UICustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomView.swift; sourceTree = "<group>"; };
 		3F5E0A8E235EA92000BCB6B1 /* LuvabSigner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LuvabSigner.entitlements; sourceTree = "<group>"; };
 		3F5E0A8F235EB48500BCB6B1 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
-		3F5E0A93235EB50600BCB6B1 /* bSignerServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bSignerServiceManager.swift; sourceTree = "<group>"; };
-		3F5E0A95235EB81800BCB6B1 /* bSignerReponseServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bSignerReponseServiceModel.swift; sourceTree = "<group>"; };
-		3F5E0A97235EB86F00BCB6B1 /* ServiceErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceErrorModel.swift; sourceTree = "<group>"; };
-		3F5E0A99235EB93800BCB6B1 /* ResponseServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseServiceModel.swift; sourceTree = "<group>"; };
 		3F7CF05423419BD000E56D2E /* ApplicationCoordinatorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinatorHelper.swift; sourceTree = "<group>"; };
 		3F7CF05623419C9100E56D2E /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		3F7CF05A2341A4B300E56D2E /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
@@ -204,9 +196,9 @@
 		3F1D196C2330C7830038D085 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3F1D196B2330C7830038D085 /* LuvabSigner.app */,
-				3F1D197F2330C7840038D085 /* LuvabSignerTests.xctest */,
-				3F1D198A2330C7840038D085 /* LuvabSignerUITests.xctest */,
+				3F1D196B2330C7830038D085 /* bSigner.app */,
+				3F1D197F2330C7840038D085 /* bSignerTests.xctest */,
+				3F1D198A2330C7840038D085 /* bSignerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -217,7 +209,6 @@
 				3F5E0A8E235EA92000BCB6B1 /* LuvabSigner.entitlements */,
 				3FF173E92346F61E001DC20D /* Libraries */,
 				3F1D19A12330CE9C0038D085 /* Utils */,
-				3F5E0A91235EB49F00BCB6B1 /* Service Data */,
 				3F1D19A02330C9D40038D085 /* Models */,
 				3F1D199F2330C9CC0038D085 /* Views */,
 				3F1D199E2330C9B70038D085 /* ViewControllers */,
@@ -291,10 +282,8 @@
 			isa = PBXGroup;
 			children = (
 				3F1595BB2338A6C90093620B /* ConfigModel.swift */,
-				3F1EFD15234F0AC1003FE76B /* SignnatureModel.swift */,
+				3F1EFD15234F0AC1003FE76B /* SignatureModel.swift */,
 				3F5E0A8F235EB48500BCB6B1 /* TransactionModel.swift */,
-				3F5E0A97235EB86F00BCB6B1 /* ServiceErrorModel.swift */,
-				3F5E0A99235EB93800BCB6B1 /* ResponseServiceModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -349,15 +338,6 @@
 			path = UICustomView;
 			sourceTree = "<group>";
 		};
-		3F5E0A91235EB49F00BCB6B1 /* Service Data */ = {
-			isa = PBXGroup;
-			children = (
-				3F5E0A93235EB50600BCB6B1 /* bSignerServiceManager.swift */,
-				3F5E0A95235EB81800BCB6B1 /* bSignerReponseServiceModel.swift */,
-			);
-			path = "Service Data";
-			sourceTree = "<group>";
-		};
 		3F5E0A92235EB4BA00BCB6B1 /* Localizable */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,9 +384,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3F1D196A2330C7830038D085 /* LuvabSigner */ = {
+		3F1D196A2330C7830038D085 /* bSigner */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F1D19932330C7840038D085 /* Build configuration list for PBXNativeTarget "LuvabSigner" */;
+			buildConfigurationList = 3F1D19932330C7840038D085 /* Build configuration list for PBXNativeTarget "bSigner" */;
 			buildPhases = (
 				453C0D85429F2B78FAE16CAE /* [CP] Check Pods Manifest.lock */,
 				3F1D19672330C7830038D085 /* Sources */,
@@ -418,14 +398,14 @@
 			);
 			dependencies = (
 			);
-			name = LuvabSigner;
+			name = bSigner;
 			productName = LuvabSigner;
-			productReference = 3F1D196B2330C7830038D085 /* LuvabSigner.app */;
+			productReference = 3F1D196B2330C7830038D085 /* bSigner.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3F1D197E2330C7840038D085 /* LuvabSignerTests */ = {
+		3F1D197E2330C7840038D085 /* bSignerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F1D19962330C7840038D085 /* Build configuration list for PBXNativeTarget "LuvabSignerTests" */;
+			buildConfigurationList = 3F1D19962330C7840038D085 /* Build configuration list for PBXNativeTarget "bSignerTests" */;
 			buildPhases = (
 				A7C59DF6998A33A7C85C699F /* [CP] Check Pods Manifest.lock */,
 				3F1D197B2330C7840038D085 /* Sources */,
@@ -437,14 +417,14 @@
 			dependencies = (
 				3F1D19812330C7840038D085 /* PBXTargetDependency */,
 			);
-			name = LuvabSignerTests;
+			name = bSignerTests;
 			productName = LuvabSignerTests;
-			productReference = 3F1D197F2330C7840038D085 /* LuvabSignerTests.xctest */;
+			productReference = 3F1D197F2330C7840038D085 /* bSignerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		3F1D19892330C7840038D085 /* LuvabSignerUITests */ = {
+		3F1D19892330C7840038D085 /* bSignerUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F1D19992330C7840038D085 /* Build configuration list for PBXNativeTarget "LuvabSignerUITests" */;
+			buildConfigurationList = 3F1D19992330C7840038D085 /* Build configuration list for PBXNativeTarget "bSignerUITests" */;
 			buildPhases = (
 				3C68BAA4770AFE8BF7165876 /* [CP] Check Pods Manifest.lock */,
 				3F1D19862330C7840038D085 /* Sources */,
@@ -456,9 +436,9 @@
 			dependencies = (
 				3F1D198C2330C7840038D085 /* PBXTargetDependency */,
 			);
-			name = LuvabSignerUITests;
+			name = bSignerUITests;
 			productName = LuvabSignerUITests;
-			productReference = 3F1D198A2330C7840038D085 /* LuvabSignerUITests.xctest */;
+			productReference = 3F1D198A2330C7840038D085 /* bSignerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -485,7 +465,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3F1D19662330C7830038D085 /* Build configuration list for PBXProject "LuvabSigner" */;
+			buildConfigurationList = 3F1D19662330C7830038D085 /* Build configuration list for PBXProject "bSigner" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -499,9 +479,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3F1D196A2330C7830038D085 /* LuvabSigner */,
-				3F1D197E2330C7840038D085 /* LuvabSignerTests */,
-				3F1D19892330C7840038D085 /* LuvabSignerUITests */,
+				3F1D196A2330C7830038D085 /* bSigner */,
+				3F1D197E2330C7840038D085 /* bSignerTests */,
+				3F1D19892330C7840038D085 /* bSignerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -669,7 +649,7 @@
 				3F1D199D2330C9AD0038D085 /* BackUpViewController.swift in Sources */,
 				3FF2F7582334D1DC0051E0EC /* BaseViewController.swift in Sources */,
 				3F7CF05723419C9100E56D2E /* UserDefaultsHelper.swift in Sources */,
-				3F1EFD16234F0AC1003FE76B /* SignnatureModel.swift in Sources */,
+				3F1EFD16234F0AC1003FE76B /* SignatureModel.swift in Sources */,
 				3FF173F12346F67F001DC20D /* NSBundle+Language.m in Sources */,
 				3F1D19A82330DBF50038D085 /* MnemonicGenerationViewController.swift in Sources */,
 				3F2BBD48233B587600552C27 /* RestoreAccountViewController.swift in Sources */,
@@ -679,12 +659,8 @@
 				3F5C338A23556BF500F55483 /* WeakObjectSet.swift in Sources */,
 				3F3868512354801600161071 /* ChooseSignersTableViewCell.swift in Sources */,
 				3FCBA59A234AECA30003B25E /* HomeViewController.swift in Sources */,
-				3F5E0A94235EB50600BCB6B1 /* bSignerServiceManager.swift in Sources */,
-				3F5E0A96235EB81800BCB6B1 /* bSignerReponseServiceModel.swift in Sources */,
-				3F5E0A9A235EB93800BCB6B1 /* ResponseServiceModel.swift in Sources */,
 				3F5C338923556BF500F55483 /* SwiftNotificationCenter.swift in Sources */,
 				3F5E0A90235EB48500BCB6B1 /* TransactionModel.swift in Sources */,
-				3F5E0A98235EB86F00BCB6B1 /* ServiceErrorModel.swift in Sources */,
 				3F7CF05B2341A4B300E56D2E /* ApplicationCoordinator.swift in Sources */,
 				3FDB591D23333C730038B370 /* MnemonicHelper.swift in Sources */,
 				3F1D19A42330CF190038D085 /* Extension.swift in Sources */,
@@ -718,12 +694,12 @@
 /* Begin PBXTargetDependency section */
 		3F1D19812330C7840038D085 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3F1D196A2330C7830038D085 /* LuvabSigner */;
+			target = 3F1D196A2330C7830038D085 /* bSigner */;
 			targetProxy = 3F1D19802330C7840038D085 /* PBXContainerItemProxy */;
 		};
 		3F1D198C2330C7840038D085 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3F1D196A2330C7830038D085 /* LuvabSigner */;
+			target = 3F1D196A2330C7830038D085 /* bSigner */;
 			targetProxy = 3F1D198B2330C7840038D085 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -874,8 +850,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = LuvabSigner/LuvabSigner.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F7F4YCHSQV;
 				INFOPLIST_FILE = LuvabSigner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -885,7 +861,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.luvapay.bsigner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = BsignerDev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LuvabSigner/LuvabSigner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -900,8 +876,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = LuvabSigner/LuvabSigner.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F7F4YCHSQV;
 				INFOPLIST_FILE = LuvabSigner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -911,7 +887,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.luvapay.bsigner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = BsignerDev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LuvabSigner/LuvabSigner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -935,7 +911,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LuvabSigner.app/LuvabSigner";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bSigner.app/bSigner";
 			};
 			name = Debug;
 		};
@@ -956,7 +932,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LuvabSigner.app/LuvabSigner";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bSigner.app/bSigner";
 			};
 			name = Release;
 		};
@@ -1003,7 +979,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3F1D19662330C7830038D085 /* Build configuration list for PBXProject "LuvabSigner" */ = {
+		3F1D19662330C7830038D085 /* Build configuration list for PBXProject "bSigner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3F1D19912330C7840038D085 /* Debug */,
@@ -1012,7 +988,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3F1D19932330C7840038D085 /* Build configuration list for PBXNativeTarget "LuvabSigner" */ = {
+		3F1D19932330C7840038D085 /* Build configuration list for PBXNativeTarget "bSigner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3F1D19942330C7840038D085 /* Debug */,
@@ -1021,7 +997,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3F1D19962330C7840038D085 /* Build configuration list for PBXNativeTarget "LuvabSignerTests" */ = {
+		3F1D19962330C7840038D085 /* Build configuration list for PBXNativeTarget "bSignerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3F1D19972330C7840038D085 /* Debug */,
@@ -1030,7 +1006,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3F1D19992330C7840038D085 /* Build configuration list for PBXNativeTarget "LuvabSignerUITests" */ = {
+		3F1D19992330C7840038D085 /* Build configuration list for PBXNativeTarget "bSignerUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3F1D199A2330C7840038D085 /* Debug */,

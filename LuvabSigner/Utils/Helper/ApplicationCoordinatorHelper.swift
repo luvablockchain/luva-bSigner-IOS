@@ -10,7 +10,7 @@ import UIKit
 import SwiftKeychainWrapper
 
 enum AccountStatus: Int {
-  case created = 2
+  case chooseSigners = 2
   case waitingToBecomeSinger = 1
   case notCreated = 0
 }

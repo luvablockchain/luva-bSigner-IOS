@@ -67,7 +67,7 @@
 "This action cannot revert" = "Hành động này không thể hoàn tác";
 "Continue to delete this account" = "Tiếp tục xoá tài khoản này";
 "Create Account" = "Tạo tài khoản";
-"Recover Account" = "Khôi phục tài khoản";
+"Restore Account" = "Khôi phục tài khoản";
 "Choose" = "Chọn";
 "Transaction Info" = "Thông tin giao dịch";
 "From" = "Từ";
@@ -81,3 +81,6 @@
 "Term of service" = "Điều khoản sử dụng";
 "Frequently Asked Questions" = "Câu hỏi thường gặp";
 "bSigners Account" = "Tài khoản bSigners";
+"Home" = "Trang chủ";
+"Transactions" = "Giao dịch";
+"Settings" = "Cài đặt";

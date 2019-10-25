@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignnatureModel: NSObject, NSCoding {
+class SignatureModel: NSObject, NSCoding {
         
     
     var title:String?
