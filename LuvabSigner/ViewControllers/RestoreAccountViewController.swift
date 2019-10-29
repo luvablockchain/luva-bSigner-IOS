@@ -9,6 +9,7 @@
 import UIKit
 import SwiftKeychainWrapper
 import PKHUD
+import EZAlertController
 
 class RestoreAccountViewController: BaseViewController {
     
@@ -17,9 +18,13 @@ class RestoreAccountViewController: BaseViewController {
     @IBOutlet weak var lblTitle: UILabel!
     
     var mnemonic: String = ""
+    
     var suggestionList: [String] = []
+    
     let possibleWordsNumberInMnemonic = (twelveWords: 12, twentyFourWords: 24)
+    
     private var passcode: String = ""
+    
     var isAddAcount = false
     
     var model:[SignatureModel] = []
@@ -27,6 +32,10 @@ class RestoreAccountViewController: BaseViewController {
     var mnemonicSuggestionsView: MnemonicSuggestionsView?
     
     var index = 0
+    
+    var checkMnemonic = false
+    
+    var isNewSignature = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,27 +134,42 @@ class RestoreAccountViewController: BaseViewController {
     
     @IBAction func tappedRestoreAccount(_ sender: Any) {
         self.view.endEditing(true)
-        if isAddAcount {
-            
-            HUD.show(.labeledProgress(title: nil, subtitle: "Loading..."))
-            
-            DispatchQueue.global(qos: .background).async {
-                let publickey = MnemonicHelper.getKeyPairFrom(self.mnemonic).accountId
-                self.index += 1
-                self.model.append(SignatureModel.init(title: "Signature".localizedString() + " " + "\(self.index)", publicKey: publickey, mnemonic:self.mnemonic))
-                let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
-                UserDefaults().set(data, forKey: "SIGNNATURE")
-                KeychainWrapper.standard.set(self.index, forKey: "INDEX")
-                DispatchQueue.main.async {
-                    if publickey != ""
-                    {
-                        HUD.hide()
-                        self.pushMainTabbarViewController()
-                    }
-                }
+        for mnemonic in model {
+            if mnemonic.mnemonic == self.mnemonic {
+                self.checkMnemonic = true
+                break;
+            }
+        }
+        if checkMnemonic {
+            EZAlertController.alert("", message: "This signature has been created".localizedString() + "." +  "Please try again".localizedString() + ".", acceptMessage: "OK".localizedString()) {
+                self.dismiss(animated: true, completion: nil)
             }
         } else {
-            pushToLockScreenViewController(delegate: self, isCreateAccount: true)
+            if isNewSignature {
+                pushToLockScreenViewController(delegate: self, isCreateAccount: true)
+            } else {
+                if isAddAcount {
+                    
+                    HUD.show(.labeledProgress(title: nil, subtitle: "Loading..."))
+                    DispatchQueue.global(qos: .background).async {
+                        let publickey = MnemonicHelper.getKeyPairFrom(self.mnemonic).accountId
+                        self.index += 1
+                        self.model.append(SignatureModel.init(title: "Signature".localizedString() + " " + "\(self.index)", publicKey: publickey, mnemonic:self.mnemonic))
+                        let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
+                        UserDefaults().set(data, forKey: "SIGNNATURE")
+                        KeychainWrapper.standard.set(self.index, forKey: "INDEX")
+                        DispatchQueue.main.async {
+                            if publickey != ""
+                            {
+                                HUD.hide()
+                                self.pushMainTabbarViewController()
+                            }
+                        }
+                    }
+                } else {
+                    pushToLockScreenViewController(delegate: self, isCreateAccount: true)
+                }
+            }
         }
     }
 }
@@ -194,7 +218,7 @@ extension RestoreAccountViewController: LockScreenViewControllerDelegate {
     func didInPutPassCodeSuccess(_ pass: String) {
         if passcode.isEmpty {
             passcode = pass
-            pushToLockScreenViewController(delegate: self, passCode: pass,mnemonic: mnemonic, isCreateAccount: true)
+            pushToLockScreenViewController(delegate: self, passCode: pass,mnemonic: mnemonic, isCreateAccount: true,isNewSignature: true)
         }
     }
 }

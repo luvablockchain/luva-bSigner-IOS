@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B1181AD15EA2284D2ABF569 /* Pods_LuvabSigner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71B8F5FD7BA7423E25935147 /* Pods_LuvabSigner.framework */; };
 		3F0F52E523447545005D8E05 /* SignatureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F52E423447545005D8E05 /* SignatureCollectionViewCell.swift */; };
 		3F0F52E723447599005D8E05 /* HeaderSignatureCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F52E623447599005D8E05 /* HeaderSignatureCollectionReusableView.swift */; };
 		3F1595BA2338A2940093620B /* LockScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1595B92338A2940093620B /* LockScreenViewController.swift */; };
@@ -52,8 +51,9 @@
 		3FF173F12346F67F001DC20D /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF173EF2346F67F001DC20D /* NSBundle+Language.m */; };
 		3FF173F8234756A3001DC20D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FF173F7234756A2001DC20D /* Main.storyboard */; };
 		3FF2F7582334D1DC0051E0EC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF2F7572334D1DC0051E0EC /* BaseViewController.swift */; };
-		C016EF59BDDE28A39CA7608E /* Pods_LuvabSignerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D75AA4F68AAAAFAA8E88798 /* Pods_LuvabSignerTests.framework */; };
-		F97F7A125C8D4EA327044C87 /* Pods_LuvabSignerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68FA6AEAFD5FEB6D1821FF76 /* Pods_LuvabSignerUITests.framework */; };
+		8D7BA028D52782920E5E28D0 /* Pods_bSignerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A7A87EFA69A44AEE353DE9E /* Pods_bSignerUITests.framework */; };
+		B46A2B16A435C7216282CFDB /* Pods_bSignerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E28792B79D1CA98F119721D3 /* Pods_bSignerTests.framework */; };
+		E238DE890115C09801D76FA5 /* Pods_bSigner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D2510B3FC26721B7A2CB6E /* Pods_bSigner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,7 +74,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03B603C2EABF0C4FD6CF16B9 /* Pods-LuvabSigner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuvabSigner.release.xcconfig"; path = "Target Support Files/Pods-LuvabSigner/Pods-LuvabSigner.release.xcconfig"; sourceTree = "<group>"; };
+		0B7F8C06BFD1100FAB00841C /* Pods-bSignerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bSignerTests.debug.xcconfig"; path = "Target Support Files/Pods-bSignerTests/Pods-bSignerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		14D2510B3FC26721B7A2CB6E /* Pods_bSigner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bSigner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21B5D0D43EBCFD1631E22575 /* Pods-bSigner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bSigner.release.xcconfig"; path = "Target Support Files/Pods-bSigner/Pods-bSigner.release.xcconfig"; sourceTree = "<group>"; };
+		27A51164050E9D875E1F0B04 /* Pods-bSigner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bSigner.debug.xcconfig"; path = "Target Support Files/Pods-bSigner/Pods-bSigner.debug.xcconfig"; sourceTree = "<group>"; };
+		28B1E6CAB352707F42635101 /* Pods-bSignerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bSignerUITests.release.xcconfig"; path = "Target Support Files/Pods-bSignerUITests/Pods-bSignerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3F0F52E423447545005D8E05 /* SignatureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureCollectionViewCell.swift; sourceTree = "<group>"; };
 		3F0F52E623447599005D8E05 /* HeaderSignatureCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSignatureCollectionReusableView.swift; sourceTree = "<group>"; };
 		3F1595B92338A2940093620B /* LockScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenViewController.swift; sourceTree = "<group>"; };
@@ -130,14 +134,10 @@
 		3FF173F52347360C001DC20D /* LuvabSigner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LuvabSigner-Bridging-Header.h"; sourceTree = "<group>"; };
 		3FF173F7234756A2001DC20D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3FF2F7572334D1DC0051E0EC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		43CA2A39A12859F541066C3E /* Pods-LuvabSignerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuvabSignerUITests.release.xcconfig"; path = "Target Support Files/Pods-LuvabSignerUITests/Pods-LuvabSignerUITests.release.xcconfig"; sourceTree = "<group>"; };
-		68FA6AEAFD5FEB6D1821FF76 /* Pods_LuvabSignerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LuvabSignerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D75AA4F68AAAAFAA8E88798 /* Pods_LuvabSignerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LuvabSignerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6F213954013D3D3480D3BDCF /* Pods-LuvabSignerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuvabSignerTests.release.xcconfig"; path = "Target Support Files/Pods-LuvabSignerTests/Pods-LuvabSignerTests.release.xcconfig"; sourceTree = "<group>"; };
-		71B8F5FD7BA7423E25935147 /* Pods_LuvabSigner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LuvabSigner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D443A8E0EC85C6E7B6EFD4E /* Pods-LuvabSignerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuvabSignerUITests.debug.xcconfig"; path = "Target Support Files/Pods-LuvabSignerUITests/Pods-LuvabSignerUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		9A45414008DC67C3FEBBFDAE /* Pods-LuvabSignerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuvabSignerTests.debug.xcconfig"; path = "Target Support Files/Pods-LuvabSignerTests/Pods-LuvabSignerTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A61F8CD6734FD4A19302B4E1 /* Pods-LuvabSigner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuvabSigner.debug.xcconfig"; path = "Target Support Files/Pods-LuvabSigner/Pods-LuvabSigner.debug.xcconfig"; sourceTree = "<group>"; };
+		7A7A87EFA69A44AEE353DE9E /* Pods_bSignerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bSignerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5215F504A77F1137CBC7F6C /* Pods-bSignerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bSignerUITests.debug.xcconfig"; path = "Target Support Files/Pods-bSignerUITests/Pods-bSignerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E28792B79D1CA98F119721D3 /* Pods_bSignerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bSignerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC93A8C5EC34CB628BEA2E9F /* Pods-bSignerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bSignerTests.release.xcconfig"; path = "Target Support Files/Pods-bSignerTests/Pods-bSignerTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B1181AD15EA2284D2ABF569 /* Pods_LuvabSigner.framework in Frameworks */,
+				E238DE890115C09801D76FA5 /* Pods_bSigner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,7 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C016EF59BDDE28A39CA7608E /* Pods_LuvabSignerTests.framework in Frameworks */,
+				B46A2B16A435C7216282CFDB /* Pods_bSignerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,7 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F97F7A125C8D4EA327044C87 /* Pods_LuvabSignerUITests.framework in Frameworks */,
+				8D7BA028D52782920E5E28D0 /* Pods_bSignerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,12 +171,12 @@
 		03C9237D95DB855443749078 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A61F8CD6734FD4A19302B4E1 /* Pods-LuvabSigner.debug.xcconfig */,
-				03B603C2EABF0C4FD6CF16B9 /* Pods-LuvabSigner.release.xcconfig */,
-				9A45414008DC67C3FEBBFDAE /* Pods-LuvabSignerTests.debug.xcconfig */,
-				6F213954013D3D3480D3BDCF /* Pods-LuvabSignerTests.release.xcconfig */,
-				8D443A8E0EC85C6E7B6EFD4E /* Pods-LuvabSignerUITests.debug.xcconfig */,
-				43CA2A39A12859F541066C3E /* Pods-LuvabSignerUITests.release.xcconfig */,
+				27A51164050E9D875E1F0B04 /* Pods-bSigner.debug.xcconfig */,
+				21B5D0D43EBCFD1631E22575 /* Pods-bSigner.release.xcconfig */,
+				0B7F8C06BFD1100FAB00841C /* Pods-bSignerTests.debug.xcconfig */,
+				EC93A8C5EC34CB628BEA2E9F /* Pods-bSignerTests.release.xcconfig */,
+				C5215F504A77F1137CBC7F6C /* Pods-bSignerUITests.debug.xcconfig */,
+				28B1E6CAB352707F42635101 /* Pods-bSignerUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -374,9 +374,9 @@
 		DB80907723ECFF2136607D51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				71B8F5FD7BA7423E25935147 /* Pods_LuvabSigner.framework */,
-				6D75AA4F68AAAAFAA8E88798 /* Pods_LuvabSignerTests.framework */,
-				68FA6AEAFD5FEB6D1821FF76 /* Pods_LuvabSignerUITests.framework */,
+				14D2510B3FC26721B7A2CB6E /* Pods_bSigner.framework */,
+				E28792B79D1CA98F119721D3 /* Pods_bSignerTests.framework */,
+				7A7A87EFA69A44AEE353DE9E /* Pods_bSignerUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -533,7 +533,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LuvabSignerUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-bSignerUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -555,7 +555,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LuvabSigner-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-bSigner-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -570,9 +570,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LuvabSigner/Pods-LuvabSigner-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Bolts-Swift/BoltsSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-bSigner/Pods-bSigner-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/EZAlertController/EZAlertController.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
@@ -588,8 +586,6 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BoltsSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZAlertController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
@@ -603,7 +599,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LuvabSigner/Pods-LuvabSigner-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bSigner/Pods-bSigner-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A7C59DF6998A33A7C85C699F /* [CP] Check Pods Manifest.lock */ = {
@@ -621,7 +617,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LuvabSignerTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-bSignerTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -845,7 +841,7 @@
 		};
 		3F1D19942330C7840038D085 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A61F8CD6734FD4A19302B4E1 /* Pods-LuvabSigner.debug.xcconfig */;
+			baseConfigurationReference = 27A51164050E9D875E1F0B04 /* Pods-bSigner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -860,18 +856,18 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.luvapay.bsigner;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = bSigner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LuvabSigner/LuvabSigner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		3F1D19952330C7840038D085 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03B603C2EABF0C4FD6CF16B9 /* Pods-LuvabSigner.release.xcconfig */;
+			baseConfigurationReference = 21B5D0D43EBCFD1631E22575 /* Pods-bSigner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -886,17 +882,17 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.luvapay.bsigner;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = bSigner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LuvabSigner/LuvabSigner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		3F1D19972330C7840038D085 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A45414008DC67C3FEBBFDAE /* Pods-LuvabSignerTests.debug.xcconfig */;
+			baseConfigurationReference = 0B7F8C06BFD1100FAB00841C /* Pods-bSignerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -917,7 +913,7 @@
 		};
 		3F1D19982330C7840038D085 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F213954013D3D3480D3BDCF /* Pods-LuvabSignerTests.release.xcconfig */;
+			baseConfigurationReference = EC93A8C5EC34CB628BEA2E9F /* Pods-bSignerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -938,7 +934,7 @@
 		};
 		3F1D199A2330C7840038D085 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D443A8E0EC85C6E7B6EFD4E /* Pods-LuvabSignerUITests.debug.xcconfig */;
+			baseConfigurationReference = C5215F504A77F1137CBC7F6C /* Pods-bSignerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -958,7 +954,7 @@
 		};
 		3F1D199B2330C7840038D085 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43CA2A39A12859F541066C3E /* Pods-LuvabSignerUITests.release.xcconfig */;
+			baseConfigurationReference = 28B1E6CAB352707F42635101 /* Pods-bSignerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -35,6 +35,7 @@ class LockScreenViewController: UIViewController {
     var mnemonic: String?
     var isCreateAccount = false
     var isDisablePassCode = false
+    var isNewSignature = false
     weak var delegate:LockScreenViewControllerDelegate?
     var model:[SignatureModel] = []
     
@@ -149,7 +150,7 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
                 delegate?.didInPutPassCodeSuccess(input)
             } else {
                 if passCode == input {
-                    if isCreateAccount {
+                    if isNewSignature {
                         KeychainWrapper.standard.set(passCode, forKey: "MYPASS")
                         if let mnemonic = self.mnemonic {
                             HUD.show(.labeledProgress(title: nil, subtitle: "Loading..."))
@@ -162,7 +163,7 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
                                     if publickey != ""
                                     {
                                         HUD.hide()
-                                        self.pushMainTabbarViewController()
+                                        self.pushChooseSignersViewController()
                                     }
                                 }
                             }
@@ -172,12 +173,37 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
                         ConfigModel.sharedInstance.saveConfigToDB()
                         delegate?.didConfirmPassCode()
                     } else {
-                        KeychainWrapper.standard.set(passCode, forKey: "MYPASS")
-                        ConfigModel.sharedInstance.disablePassCode = .on
-                        ConfigModel.sharedInstance.enablePassCode = .on
-                        ConfigModel.sharedInstance.saveConfigToDB()
-                        delegate?.didConfirmPassCode()
+                        if isCreateAccount {
+                            KeychainWrapper.standard.set(passCode, forKey: "MYPASS")
+                            if let mnemonic = self.mnemonic {
+                                HUD.show(.labeledProgress(title: nil, subtitle: "Loading..."))
+                                DispatchQueue.global(qos: .background).async {
+                                    let publickey = MnemonicHelper.getKeyPairFrom(mnemonic).accountId
+                                    self.model.append(SignatureModel.init(title: "Signature".localizedString() + " 0", publicKey: publickey,mnemonic: mnemonic))
+                                    let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
+                                    UserDefaults().set(data, forKey: "SIGNNATURE")
+                                    DispatchQueue.main.async {
+                                        if publickey != ""
+                                        {
+                                            HUD.hide()
+                                            self.pushMainTabbarViewController()
+                                        }
+                                    }
+                                }
+                            }
+                            ConfigModel.sharedInstance.disablePassCode = .on
+                            ConfigModel.sharedInstance.enablePassCode = .on
+                            ConfigModel.sharedInstance.saveConfigToDB()
+                            delegate?.didConfirmPassCode()
+                        } else {
+                            KeychainWrapper.standard.set(passCode, forKey: "MYPASS")
+                            ConfigModel.sharedInstance.disablePassCode = .on
+                            ConfigModel.sharedInstance.enablePassCode = .on
+                            ConfigModel.sharedInstance.saveConfigToDB()
+                            delegate?.didConfirmPassCode()
+                        }
                     }
+
                 } else {
                     passwordContainerView.wrongPassword()
                 }

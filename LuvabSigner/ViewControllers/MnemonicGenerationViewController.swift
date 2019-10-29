@@ -22,8 +22,12 @@ class MnemonicGenerationViewController: BaseViewController {
     @IBOutlet weak var lblTitle: UILabel!
     
     var mnemonicList: [String] = []
+    
     var mnemonic: String = ""
+    
     var isAddAcount = false
+    
+    var isNewSignature = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,10 +44,10 @@ class MnemonicGenerationViewController: BaseViewController {
         lblTitleCopy.text = "Write down these 12 words and keep them secure".localizedString() + ". " + "Don't email them or screenshot them".localizedString() + "."
         lblConfirm.text = "YOU WILL NEED TO CONFIRM RECOVERY PHRASE ON THE NEXT SCREEN".localizedString()
         collectionView.register(MnemonicCollectionViewCell.nib, forCellWithReuseIdentifier: MnemonicCollectionViewCell.key)
-        
         let mnemonicData = MnemonicHelper.getWordMnemonic()
         mnemonicList = mnemonicData.separatedWords
         mnemonic = mnemonicData.mnemonic
+        
 
     }
     
@@ -52,11 +56,21 @@ class MnemonicGenerationViewController: BaseViewController {
     }
     
     override func tappedAtLeftButton(sender: UIButton) {
-        EZAlertController.alert("Are you sure".localizedString() + "?", message:"This action will cancel account creation".localizedString() + ". " + "Shown recovery phrase will be deleted".localizedString(), buttons: ["Cancel".localizedString(), "OK".localizedString()]) { (alertAction, position) -> Void in
-            if position == 0 {
-                self.dismiss(animated: true, completion: nil)
-            } else if position == 1 {
-                self.navigationController?.popToRootViewController(animated: true)
+        if isNewSignature {
+            EZAlertController.alert("Are you sure".localizedString() + "?", message:"This action will cancel account creation".localizedString() + ". " + "Shown recovery phrase will be deleted".localizedString(), buttons: ["Cancel".localizedString(), "OK".localizedString()]) { (alertAction, position) -> Void in
+                if position == 0 {
+                    self.dismiss(animated: true, completion: nil)
+                } else if position == 1 {
+                    self.pushSignUpViewController(isNewSignature: true)
+                }
+            }
+        } else {
+            EZAlertController.alert("Are you sure".localizedString() + "?", message:"This action will cancel account creation".localizedString() + ". " + "Shown recovery phrase will be deleted".localizedString(), buttons: ["Cancel".localizedString(), "OK".localizedString()]) { (alertAction, position) -> Void in
+                if position == 0 {
+                    self.dismiss(animated: true, completion: nil)
+                } else if position == 1 {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
             }
         }
     }
@@ -68,7 +82,7 @@ class MnemonicGenerationViewController: BaseViewController {
     }
     
     @IBAction func tappedNextButton(_ sender: Any) {
-        pushMnemonicVerificationViewController(mnemoricList: self.mnemonicList,isAddAccount: isAddAcount)
+        pushMnemonicVerificationViewController(mnemoricList: self.mnemonicList,isAddAccount: isAddAcount, isNewSignature: isNewSignature)
     }
 }
 

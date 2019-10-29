@@ -34,6 +34,8 @@ class MnemonicVerificationViewController: BaseViewController {
     
     var index = 0
     
+    var isNewSignature = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Verify Recovery Phrase".localizedString()
@@ -74,28 +76,31 @@ class MnemonicVerificationViewController: BaseViewController {
     }
     
     @IBAction func tappedNextButton(_ sender: Any) {
-        if isAddAcount {
-            
-            HUD.show(.labeledProgress(title: nil, subtitle: "Loading..."))
-            
-            DispatchQueue.global(qos: .background).async {
-                let mnemonic = MnemonicHelper.getStringFromSeparatedWords(in: self.mnemoricList)
-                let publickey = MnemonicHelper.getKeyPairFrom(mnemonic).accountId
-                self.index += 1
-                self.model.append(SignatureModel.init(title: "Signature".localizedString() + " " + "\(self.index)", publicKey: publickey,mnemonic:mnemonic))
-                let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
-                UserDefaults().set(data, forKey: "SIGNNATURE")
-                KeychainWrapper.standard.set(self.index, forKey: "INDEX")
-                DispatchQueue.main.async {
-                    if publickey != ""
-                    {
-                        HUD.hide()
-                        self.pushMainTabbarViewController()
+        if isNewSignature {
+            pushToLockScreenViewController(delegate: self, isCreateAccount: true)
+        } else {
+            if isAddAcount {
+                HUD.show(.labeledProgress(title: nil, subtitle: "Loading..."))
+                
+                DispatchQueue.global(qos: .background).async {
+                    let mnemonic = MnemonicHelper.getStringFromSeparatedWords(in: self.mnemoricList)
+                    let publickey = MnemonicHelper.getKeyPairFrom(mnemonic).accountId
+                    self.index += 1
+                    self.model.append(SignatureModel.init(title: "Signature".localizedString() + " " + "\(self.index)", publicKey: publickey,mnemonic:mnemonic))
+                    let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
+                    UserDefaults().set(data, forKey: "SIGNNATURE")
+                    KeychainWrapper.standard.set(self.index, forKey: "INDEX")
+                    DispatchQueue.main.async {
+                        if publickey != ""
+                        {
+                            HUD.hide()
+                            self.pushMainTabbarViewController()
+                        }
                     }
                 }
+            } else {
+                pushToLockScreenViewController(delegate: self, isCreateAccount: true)
             }
-        } else {
-            pushToLockScreenViewController(delegate: self, isCreateAccount: true)
         }
     }
     
@@ -230,7 +235,7 @@ extension MnemonicVerificationViewController: LockScreenViewControllerDelegate {
         if passcode.isEmpty {
             passcode = pass
             let mnemonic = MnemonicHelper.getStringFromSeparatedWords(in: mnemoricList)
-            pushToLockScreenViewController(delegate: self, passCode: pass,mnemonic: mnemonic,isCreateAccount: true)
+            pushToLockScreenViewController(delegate: self, passCode: pass,mnemonic: mnemonic,isCreateAccount: true,isNewSignature: true)
         }
     }
 }

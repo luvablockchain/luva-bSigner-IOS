@@ -16,6 +16,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnRecoverAccount: UIButton!
     @IBOutlet weak var btnCreateAccount: UIButton!
+    
+    var isNewSignature = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,22 +25,20 @@ class SignUpViewController: UIViewController {
         lblTitle.text = "Multiply your security".localizedString()
         lblHelp.text = "First time user".localizedString() + "? " + "See our Help section".localizedString()
         lblPolicy.text = "BY REGISTER YOU AGREE TO OUR TERMS OF SERVICE AND PRIVACY POLICY".localizedString()
-        btnCreateAccount.setTitle("CREATE".localizedString(), for: .normal)
+        btnCreateAccount.setTitle("CREATE ACCOUNT".localizedString(), for: .normal)
         btnCreateAccount.layer.cornerRadius = 5
-        btnRecoverAccount.setTitle("RESTORE".localizedString(), for: .normal)
+        btnRecoverAccount.setTitle("RESTORE ACCOUNT".localizedString(), for: .normal)
         btnRecoverAccount.layer.cornerRadius = 5
         btnRecoverAccount.layer.borderWidth = 0.5
         btnRecoverAccount.layer.borderColor = BaseViewController.MainColor.cgColor
     }
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: false)
-    }
+        
     @IBAction func tappedCreateAccount(_ sender: Any) {
-        pushBackUpViewController()
+        pushBackUpViewController(isNewSignature: isNewSignature)
     }
     
     @IBAction func tappedRecoverAccount(_ sender: Any) {
-        pushRestoreAccountViewController()
+        pushRestoreAccountViewController(isNewSignature: isNewSignature)
     }
 }
 

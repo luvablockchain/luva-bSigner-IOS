@@ -10,7 +10,7 @@ import UIKit
 import SwiftKeychainWrapper
 import PKHUD
 
-class PublicKeyViewController: UIViewController {
+class PublicKeyViewController: BaseViewController {
     
     @IBOutlet weak var viewSignnature: UIView!
     @IBOutlet weak var lblName: UILabel!
@@ -28,7 +28,6 @@ class PublicKeyViewController: UIViewController {
         btnCopy.layer.cornerRadius = 5
         btnCopy.layer.borderWidth = 1
         btnCopy.layer.borderColor = BaseViewController.MainColor.cgColor
-        UserDefaultsHelper.accountStatus = .waitingToBecomeSinger
         lblName.text = model.title
         viewSignnature.layer.cornerRadius = 5
         viewSignnature.layer.borderWidth = 0.5
@@ -36,10 +35,12 @@ class PublicKeyViewController: UIViewController {
         self.lblPublicKey.text = model.publicKey
         self.imgQRCode.image = generateQRCode(from: model.publicKey!)
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated:true)
     }
+    
     @IBAction func tappedCopyPublicKey(_ sender: Any) {
         UIPasteboard.general.string = model.publicKey
         HUD.flash(.success, delay: 1.0)
@@ -56,7 +57,6 @@ class PublicKeyViewController: UIViewController {
                 return UIImage(ciImage: output)
             }
         }
-        
         return nil
     }
 

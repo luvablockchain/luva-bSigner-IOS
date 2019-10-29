@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftKeychainWrapper
+import EZAlertController
 
 class ChooseSignersViewController: UIViewController {
 
@@ -34,9 +35,19 @@ class ChooseSignersViewController: UIViewController {
                if let signnatureModel = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? [SignatureModel] {
                    self.listSigners = signnatureModel
                }
-           }
+        } else {
+            EZAlertController.alert("", message:"Currently no signatures".localizedString() + ", " + "create new".localizedString(), buttons: ["Cancel".localizedString(), "OK".localizedString()]) { (alertAction, position) -> Void in
+                if position == 0 {
+                    self.dismiss(animated: true, completion: nil)
+                } else if position == 1 {
+                    self.pushSignUpViewController(isNewSignature: true)
+                }
+            }
+
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIApplication.didEnterBackgroundNotification
             , object: nil)
+        
     }
         
     @objc func didEnterBackground() {

@@ -77,14 +77,14 @@ class HomeViewController: UIViewController {
         stackView.axis = .horizontal
         stackView.spacing = 20
         stackView.distribution = .fillEqually
-        stackView.addArrangedSubview(btnRestore)
         stackView.addArrangedSubview(btnCreate)
-        btnCreate.setTitle("Create Account".localizedString(), for: .normal)
+        stackView.addArrangedSubview(btnRestore)
+        btnCreate.setTitle("Add Signature".localizedString(), for: .normal)
         btnCreate.addTarget(self, action: #selector(tappedCreateAccount), for: .touchUpInside)
         btnCreate.backgroundColor = BaseViewController.MainColor
         btnCreate.layer.cornerRadius = 20
         btnCreate.setTitleColor(.white, for: .normal)
-        btnRestore.setTitle("Restore Account".localizedString(), for: .normal)
+        btnRestore.setTitle("Restore Signature".localizedString(), for: .normal)
         btnRestore.addTarget(self, action: #selector(tappedRestoreAccount), for: .touchUpInside)
         btnRestore.backgroundColor = BaseViewController.MainColor
         btnRestore.layer.cornerRadius = 20

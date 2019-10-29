@@ -10,8 +10,8 @@
 "First time user" = "Bạn mới sử dụng";
 "See our Help section" = "Hãy xem phần trợ giúp của chúng tôi";
 "BY REGISTER YOU AGREE TO OUR TERMS OF SERVICE AND PRIVACY POLICY" = "Để đăng ký tài khoản bạn phải đồng ý với các điều khoản và chính sách bảo mật của chúng tôi";
-"CREATE" = "Tạo tài khoản";
-"RESTORE" = "Khôi phục tài khoản";
+"CREATE ACCOUNT" = "Tạo tài khoản";
+"RESTORE ACCOUNT" = "Khôi phục tài khoản";
 "Backup Your Account" = "Sao lưu tài khoản của bạn";
 "You will be shown a 12 word recovery phrase" = "Bạn sẽ được hiển thị một cụm từ phục hồi gồm 12 từ";
 "It will allow you to recover access to your account in case your phone is lost or stolen" = "Nó sẽ cho phép bạn khôi phục quyền truy cập vào tài khoản của bạn trong trường hợp điện thoại của bạn bị mất hoặc bị đánh cắp";
@@ -66,8 +66,8 @@
 "Your signers" = "Chữ ký của bạn";
 "This action cannot revert" = "Hành động này không thể hoàn tác";
 "Continue to delete this account" = "Tiếp tục xoá tài khoản này";
-"Create Account" = "Tạo tài khoản";
-"Restore Account" = "Khôi phục tài khoản";
+"Add Signature" = "Thêm chữ ký";
+"Restore Signature" = "Khôi phục chữ ký";
 "Choose" = "Chọn";
 "Transaction Info" = "Thông tin giao dịch";
 "From" = "Từ";

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "116DB2D317DB058E717D63AAE7D8FF0C"
+               BlueprintIdentifier = "FFCD263165FB997B93C1815042A70C10"
                BuildableName = "stellarsdk.framework"
                BlueprintName = "stellar-ios-mac-sdk"
                ReferencedContainer = "container:Pods.xcodeproj">

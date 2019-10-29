@@ -11,7 +11,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="oC0-WD-VGH">
             <objects>
-                <viewController storyboardIdentifier="signUpViewController" id="o4W-yk-JwK" customClass="SignUpViewController" customModule="LuvabSigner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signUpViewController" id="o4W-yk-JwK" customClass="SignUpViewController" customModule="bSigner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BYO-GP-jDs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -61,7 +61,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_logo1024" translatesAutoresizingMaskIntoConstraints="NO" id="amw-H3-ymu">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bsigner" translatesAutoresizingMaskIntoConstraints="NO" id="amw-H3-ymu">
                                 <rect key="frame" x="30" y="108" width="354" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="Kg0-Tj-Svu"/>
@@ -104,7 +104,7 @@
         <!--Public Key View Controller-->
         <scene sceneID="ZYL-QU-5xs">
             <objects>
-                <viewController storyboardIdentifier="publicKeyViewController" id="WqL-jJ-SDR" customClass="PublicKeyViewController" customModule="LuvabSigner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="publicKeyViewController" id="WqL-jJ-SDR" customClass="PublicKeyViewController" customModule="bSigner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9va-x4-1NE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -184,7 +184,7 @@
         <!--Transactions View Controller-->
         <scene sceneID="9vu-UT-WYp">
             <objects>
-                <viewController id="v33-dM-Y7h" customClass="TransactionsViewController" customModule="LuvabSigner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="v33-dM-Y7h" customClass="TransactionsViewController" customModule="bSigner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J7u-2i-eZx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -200,7 +200,7 @@
         <!--Home View Controller-->
         <scene sceneID="OHl-1C-8xb">
             <objects>
-                <viewController id="E4Y-pV-4vh" customClass="HomeViewController" customModule="LuvabSigner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="E4Y-pV-4vh" customClass="HomeViewController" customModule="bSigner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="shJ-vf-7vl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -220,7 +220,7 @@
                                 <rect key="frame" x="0.0" y="143" width="414" height="670"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="homeTableViewCell" rowHeight="174" id="ZoV-rZ-YIG" customClass="HomeTableViewCell" customModule="LuvabSigner" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="homeTableViewCell" rowHeight="174" id="ZoV-rZ-YIG" customClass="HomeTableViewCell" customModule="bSigner" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="174"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZoV-rZ-YIG" id="L2t-hP-32F">
@@ -358,7 +358,7 @@
         <!--Main Tabbar View Controller-->
         <scene sceneID="65B-pS-e8p">
             <objects>
-                <tabBarController storyboardIdentifier="mainTabbarViewController" id="4E7-4i-5ih" customClass="MainTabbarViewController" customModule="LuvabSigner" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainTabbarViewController" id="4E7-4i-5ih" customClass="MainTabbarViewController" customModule="bSigner" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LNF-49-IEL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -377,7 +377,7 @@
         <!--Restore Account View Controller-->
         <scene sceneID="JHA-qU-Na3">
             <objects>
-                <viewController storyboardIdentifier="restoreAccountViewController" id="jZ6-WM-iTY" customClass="RestoreAccountViewController" customModule="LuvabSigner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="restoreAccountViewController" id="jZ6-WM-iTY" customClass="RestoreAccountViewController" customModule="bSigner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jB4-c2-yqP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -442,7 +442,7 @@
         <!--Transaction Info View Controller-->
         <scene sceneID="YoY-uR-kSa">
             <objects>
-                <viewController storyboardIdentifier="transactionInfoViewController" id="ces-eS-KeW" customClass="TransactionInfoViewController" customModule="LuvabSigner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="transactionInfoViewController" id="ces-eS-KeW" customClass="TransactionInfoViewController" customModule="bSigner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AmS-jg-b0w">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -649,7 +649,7 @@
         <!--Back Up View Controller-->
         <scene sceneID="RdW-tM-4O9">
             <objects>
-                <viewController storyboardIdentifier="backUpViewController" id="uFG-DK-PA6" customClass="BackUpViewController" customModule="LuvabSigner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="backUpViewController" id="uFG-DK-PA6" customClass="BackUpViewController" customModule="bSigner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hVI-iT-Et0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -717,7 +717,7 @@
         <!--Mnemonic Generation View Controller-->
         <scene sceneID="RkS-rR-6p3">
             <objects>
-                <viewController storyboardIdentifier="mnemonicGenerationViewController" id="Yhl-5A-MFl" customClass="MnemonicGenerationViewController" customModule="LuvabSigner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mnemonicGenerationViewController" id="Yhl-5A-MFl" customClass="MnemonicGenerationViewController" customModule="bSigner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NI7-ec-SIz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -832,7 +832,7 @@
         <!--Mnemonic Verification View Controller-->
         <scene sceneID="nHZ-WO-6Yq">
             <objects>
-                <viewController storyboardIdentifier="mnemonicVerificationViewController" id="Sc6-Eg-zol" customClass="MnemonicVerificationViewController" customModule="LuvabSigner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mnemonicVerificationViewController" id="Sc6-Eg-zol" customClass="MnemonicVerificationViewController" customModule="bSigner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TmJ-7f-877">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -977,7 +977,7 @@
         <!--Lock Screen View Controller-->
         <scene sceneID="1tH-XI-CY6">
             <objects>
-                <viewController storyboardIdentifier="lockScreenViewController" id="w0C-Ic-EFV" customClass="LockScreenViewController" customModule="LuvabSigner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="lockScreenViewController" id="w0C-Ic-EFV" customClass="LockScreenViewController" customModule="bSigner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cEv-Th-fZQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1067,7 +1067,7 @@
         <!--Settings View Controller-->
         <scene sceneID="fmi-km-Me0">
             <objects>
-                <viewController id="j6W-Jd-wG3" customClass="SettingsViewController" customModule="LuvabSigner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="j6W-Jd-wG3" customClass="SettingsViewController" customModule="bSigner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jni-wu-BEp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1121,7 +1121,7 @@
         <!--Choose Signers View Controller-->
         <scene sceneID="txu-16-dTt">
             <objects>
-                <viewController storyboardIdentifier="chooseSignersViewController" id="Fuq-oT-czR" customClass="ChooseSignersViewController" customModule="LuvabSigner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chooseSignersViewController" id="Fuq-oT-czR" customClass="ChooseSignersViewController" customModule="bSigner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g1l-11-Uih">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1130,7 +1130,7 @@
                                 <rect key="frame" x="0.0" y="114" width="414" height="748"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chooseSignersTableViewCell" rowHeight="105" id="69K-Iz-VnL" customClass="ChooseSignersTableViewCell" customModule="LuvabSigner" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chooseSignersTableViewCell" rowHeight="105" id="69K-Iz-VnL" customClass="ChooseSignersTableViewCell" customModule="bSigner" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="69K-Iz-VnL" id="WNr-Kt-yqZ">
@@ -1229,11 +1229,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bsigner" width="1024" height="1024"/>
         <image name="ic_edit" width="24" height="24"/>
         <image name="ic_enableEdit" width="48" height="48"/>
         <image name="ic_home" width="24" height="24"/>
         <image name="ic_key" width="49" height="48"/>
-        <image name="ic_logo1024" width="1024" height="1024"/>
         <image name="ic_setting" width="24" height="24"/>
         <image name="ic_transaction" width="24" height="24"/>
         <image name="ic_trash" width="24" height="24"/>
