@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import OneSignal
 
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
@@ -132,6 +133,92 @@ extension URL {
         return nil
         
     }
+}
+
+extension AppDelegate: OSPermissionObserver, OSSubscriptionObserver {
     
     
+    func setupOnsignal(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+        OneSignal.setSubscription(true)
+        let notificationReceivedBlock: OSHandleNotificationReceivedBlock = { notification in
+            
+        }
+        
+        let notificationOpenedBlock: OSHandleNotificationActionBlock = { result in
+            if let additionalData = result?.notification.payload?.additionalData {
+
+            }
+        }
+        
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false, kOSSettingsKeyInAppAlerts: true, kOSSettingsKeyInAppLaunchURL: true, ]
+        
+        OneSignal.initWithLaunchOptions(launchOptions, appId:"abc3541d-068d-47d5-8b91-8da37e5dd2ce", handleNotificationReceived: notificationReceivedBlock, handleNotificationAction: notificationOpenedBlock, settings: onesignalInitSettings)
+        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification
+        
+        // Add your AppDelegate as an obsserver
+        OneSignal.add(self as OSPermissionObserver)
+        
+        OneSignal.add(self as OSSubscriptionObserver)
+        self.onRegisterForPushNotifications()
+    }
+    
+    // Add this new method
+    func onOSPermissionChanged(_ stateChanges: OSPermissionStateChanges!) {
+        
+        // Example of detecting answering the permission prompt
+        if stateChanges.from.status == OSNotificationPermission.notDetermined {
+            if stateChanges.to.status == OSNotificationPermission.authorized {
+                print("Thanks for accepting notifications!")
+                self.onRegisterForPushNotifications()
+            } else if stateChanges.to.status == OSNotificationPermission.denied {
+                print("Notifications not accepted. You can turn them on later under your iOS settings.")
+            }
+        }
+        // prints out all properties
+        print("PermissionStateChanges: \n\(stateChanges)")
+    }
+    
+    // Output:
+    
+    // TODO: update docs to change method name
+    // Add this new method
+    func onOSSubscriptionChanged(_ stateChanges: OSSubscriptionStateChanges!) {
+        if !stateChanges.from.subscribed && stateChanges.to.subscribed {
+            print("Subscribed for OneSignal push notifications!")
+            self.onRegisterForPushNotifications()
+        }
+        print("SubscriptionStateChange: \n\(stateChanges)")
+    }
+    
+    func onRegisterForPushNotifications() {
+        let status: OSPermissionSubscriptionState = OneSignal.getPermissionSubscriptionState()
+        let hasPrompted = status.permissionStatus.hasPrompted
+        if hasPrompted == false {
+            OneSignal.promptForPushNotifications(userResponse: { accepted in
+                if accepted == true {
+                    
+                    print("User accepted notifications: \(accepted)")
+                    if let onesignalUserId = status.subscriptionStatus.userId {
+                        bSignerServiceManager.sharedInstance.oneSignalUserId = onesignalUserId
+                    }
+                } else {
+                    print("User accepted notifications: \(accepted)")
+                }
+            })
+        } else {
+            let status: OSPermissionSubscriptionState = OneSignal.getPermissionSubscriptionState()
+            if(status.permissionStatus.status == .authorized) {
+                if let onesignalUserId = status.subscriptionStatus.userId {
+                    bSignerServiceManager.sharedInstance.oneSignalUserId = onesignalUserId
+                }
+                
+            } else {
+                displaySettingsNotification()
+            }
+        }
+    }
+    
+    func displaySettingsNotification() {
+        
+    }
 }

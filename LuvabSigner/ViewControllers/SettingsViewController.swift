@@ -353,11 +353,11 @@ class SettingsViewController: FormViewController {
                     ConfigModel.sharedInstance.loadLocalized()
                     content =  "\("Changed".localizedString()) \("languge to".localizedString()) English"
                 }
-                EZAlertController.alert("Force restart app".localizedString(), message:"\("Change".localizedString()) \("App language".localizedString()) \("require restart app".localizedString())", buttons: ["Restart".localizedString(), "Cancel".localizedString()]) { (alertAction, position) -> Void in
+                EZAlertController.alert("Force restart app".localizedString(), message:"\("Change".localizedString()) \("App language".localizedString()) \("require restart app".localizedString())", buttons: ["Cancel".localizedString(), "Restart".localizedString()]) { (alertAction, position) -> Void in
                     if position == 0 {
-                       self.exitAppAndRequestReopenNotify(content: content)
-                    } else if position == 1 {
                         self.dismiss(animated: true, completion: nil)
+                    } else if position == 1 {
+                        self.exitAppAndRequestReopenNotify(content: content)
                     }
                 }
                 
@@ -390,9 +390,9 @@ class SettingsViewController: FormViewController {
                 row.reload()
                 EZAlertController.alert("", message:"You want to exit this application".localizedString() + ".", buttons: ["Ok".localizedString(), "Cancel".localizedString()]) { (alertAction, position) -> Void in
                     if position == 0 {
-                       exit(0)
-                    } else if position == 1 {
                         self!.dismiss(animated: true, completion: nil)
+                    } else if position == 1 {
+                        exit(0)
                     }
                 }
 

@@ -31,6 +31,11 @@ class SignUpViewController: UIViewController {
         btnRecoverAccount.layer.cornerRadius = 5
         btnRecoverAccount.layer.borderWidth = 0.5
         btnRecoverAccount.layer.borderColor = BaseViewController.MainColor.cgColor
+        UIApplication.shared.getAppDelegate().getDeviceToken()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
         
     @IBAction func tappedCreateAccount(_ sender: Any) {

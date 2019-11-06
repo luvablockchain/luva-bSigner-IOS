@@ -7,14 +7,26 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class SignatureModel: NSObject, NSCoding {
         
-    
     var title:String?
+    
     var publicKey:String?
+    
     var mnemonic:String?
     
+    var public_key: String = ""
+    
+    var signature: String = ""
+    
+    init(json:JSON) {
+        super.init()
+        self.public_key = json["public_key"].stringValue
+        self.signature = json["signature"].stringValue
+    }
+
     override init() {
         super.init()
     }

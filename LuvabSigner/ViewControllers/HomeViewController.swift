@@ -21,6 +21,10 @@ struct SignModel {
 class HomeViewController: UIViewController {
     
     
+    @IBOutlet weak var btnRestoreSignature: UIButton!
+    
+    @IBOutlet weak var btnAddSignature: UIButton!
+    
     @IBOutlet weak var btnEdit: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
@@ -42,12 +46,6 @@ class HomeViewController: UIViewController {
     
     var model:[SignatureModel] = []
     
-    var btnRestore:UIButton!
-    
-    var btnCreate:UIButton!
-    
-    var stackView:UIStackView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         ConfigModel.sharedInstance.loadLocalized()
@@ -60,47 +58,16 @@ class HomeViewController: UIViewController {
             , object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIApplication.didEnterBackgroundNotification
             , object: nil)
-        if let loadedData = UserDefaults().data(forKey: "SIGNNATURE") {
+        if let loadedData = KeychainWrapper.standard.data(forKey: "SIGNATURE") {
 
             if let signatureModel = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? [SignatureModel] {
                 self.model = signatureModel
             }
         }
-
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-        btnCreate = UIButton.init(frame: .zero)
-        btnRestore = UIButton.init(frame: .zero)
-        btnRestore.translatesAutoresizingMaskIntoConstraints = false
-        btnCreate.translatesAutoresizingMaskIntoConstraints = false
-        stackView = UIStackView.init(frame: .zero)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.spacing = 20
-        stackView.distribution = .fillEqually
-        stackView.addArrangedSubview(btnCreate)
-        stackView.addArrangedSubview(btnRestore)
-        btnCreate.setTitle("Add Signature".localizedString(), for: .normal)
-        btnCreate.addTarget(self, action: #selector(tappedCreateAccount), for: .touchUpInside)
-        btnCreate.backgroundColor = BaseViewController.MainColor
-        btnCreate.layer.cornerRadius = 20
-        btnCreate.setTitleColor(.white, for: .normal)
-        btnRestore.setTitle("Restore Signature".localizedString(), for: .normal)
-        btnRestore.addTarget(self, action: #selector(tappedRestoreAccount), for: .touchUpInside)
-        btnRestore.backgroundColor = BaseViewController.MainColor
-        btnRestore.layer.cornerRadius = 20
-        btnRestore.setTitleColor(.white, for: .normal)
-        btnRestore.titleLabel!.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.regular)
-        btnCreate.titleLabel!.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.regular)
-        customView.addSubview(stackView)
-        NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: customView.leadingAnchor,constant: 20
-            ),
-            stackView.bottomAnchor.constraint(equalTo: customView.bottomAnchor,constant: -5),
-            stackView.topAnchor.constraint(equalTo: customView.topAnchor,constant: 5),
-            stackView.trailingAnchor.constraint(equalTo: customView.trailingAnchor,constant: -20)
-        ])
-
-        tableView.tableHeaderView = customView
+        btnAddSignature.layer.cornerRadius = 20
+        btnAddSignature.setTitle("Add Signature".localizedString(), for: .normal)
+        btnRestoreSignature.layer.cornerRadius = 20
+        btnRestoreSignature.setTitle("Restore Signature".localizedString(), for: .normal)
         tableView.separatorStyle = .none
         UserDefaultsHelper.accountStatus = .waitingToBecomeSinger
     }
@@ -109,15 +76,6 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
-    
-    @objc func tappedRestoreAccount (){
-        self.pushRestoreAccountViewController(isAddAccount: true)
-    }
-    
-    @objc func tappedCreateAccount () {
-        self.pushBackUpViewController(isAddAccount: true)
-    }
-
         
     @objc func willEnterForeground() {
         let currentDate = Date()
@@ -148,6 +106,14 @@ class HomeViewController: UIViewController {
         if let topViewController = UIApplication.topViewController() {
             topViewController.presentToLockScreenViewController(delegate: self)
         }
+    }
+    
+    @IBAction func tappedRestoreSignature(_ sender: Any) {
+        self.pushRestoreAccountViewController(isAddAccount: true)
+    }
+    
+    @IBAction func tappedAddSignature(_ sender: Any) {
+        self.pushBackUpViewController(isAddAccount: true)
     }
     
     @IBAction func tappedEditAccount(_ sender: Any) {
@@ -241,7 +207,7 @@ extension HomeViewController: HomeTableViewCellDelegate {
             } else if position == 1 {
                 self.model.remove(at: index)
                 let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
-                UserDefaults().set(data, forKey: "SIGNNATURE")
+                KeychainWrapper.standard.set(data, forKey: "SIGNATURE")
                 self.tableView.reloadData()
             }
         }
@@ -253,7 +219,7 @@ extension HomeViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         model[indexEdit].title = textField.text!
         let data = NSKeyedArchiver.archivedData(withRootObject: model)
-        UserDefaults().set(data, forKey: "SIGNNATURE")
+        KeychainWrapper.standard.set(data, forKey: "SIGNATURE")
         tableView.reloadData()
     }
 }

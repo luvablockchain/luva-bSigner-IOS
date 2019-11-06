@@ -38,9 +38,12 @@
 		3F5C338E2355A52B00F55483 /* CustomSignersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F5C338D2355A52B00F55483 /* CustomSignersView.xib */; };
 		3F5C33922355ABBD00F55483 /* UICustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C33912355ABBD00F55483 /* UICustomView.swift */; };
 		3F5E0A90235EB48500BCB6B1 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E0A8F235EB48500BCB6B1 /* TransactionModel.swift */; };
+		3F656C3B23711D29003D6CE5 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F656C3A23711D29003D6CE5 /* TransactionTableViewCell.swift */; };
+		3F656C3D23712636003D6CE5 /* TransactionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F656C3C23712636003D6CE5 /* TransactionDetailsViewController.swift */; };
 		3F7CF05523419BD000E56D2E /* ApplicationCoordinatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CF05423419BD000E56D2E /* ApplicationCoordinatorHelper.swift */; };
 		3F7CF05723419C9100E56D2E /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CF05623419C9100E56D2E /* UserDefaultsHelper.swift */; };
 		3F7CF05B2341A4B300E56D2E /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CF05A2341A4B300E56D2E /* ApplicationCoordinator.swift */; };
+		3F9FE33D236FDEDA00319EDE /* bSignerServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9FE33C236FDEDA00319EDE /* bSignerServiceManager.swift */; };
 		3FBE8ED82345951A007238EF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBE8ED72345951A007238EF /* SettingsViewController.swift */; };
 		3FCBA596234AE6590003B25E /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBA595234AE6590003B25E /* MainTabbarViewController.swift */; };
 		3FCBA598234AE67E0003B25E /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBA597234AE67E0003B25E /* TransactionsViewController.swift */; };
@@ -118,9 +121,12 @@
 		3F5C33912355ABBD00F55483 /* UICustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICustomView.swift; sourceTree = "<group>"; };
 		3F5E0A8E235EA92000BCB6B1 /* LuvabSigner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LuvabSigner.entitlements; sourceTree = "<group>"; };
 		3F5E0A8F235EB48500BCB6B1 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
+		3F656C3A23711D29003D6CE5 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
+		3F656C3C23712636003D6CE5 /* TransactionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewController.swift; sourceTree = "<group>"; };
 		3F7CF05423419BD000E56D2E /* ApplicationCoordinatorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinatorHelper.swift; sourceTree = "<group>"; };
 		3F7CF05623419C9100E56D2E /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		3F7CF05A2341A4B300E56D2E /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
+		3F9FE33C236FDEDA00319EDE /* bSignerServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bSignerServiceManager.swift; sourceTree = "<group>"; };
 		3FBE8ED72345951A007238EF /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3FCBA595234AE6590003B25E /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
 		3FCBA597234AE67E0003B25E /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
@@ -257,6 +263,7 @@
 				3FCBA599234AECA30003B25E /* HomeViewController.swift */,
 				3F38684E23547FF400161071 /* ChooseSignersViewController.swift */,
 				3F3873382358128000054A3C /* TransactionInfoViewController.swift */,
+				3F656C3C23712636003D6CE5 /* TransactionDetailsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -274,6 +281,7 @@
 				3F3868502354801600161071 /* ChooseSignersTableViewCell.swift */,
 				3F5C338B2355A51000F55483 /* CustomSignersView.swift */,
 				3F5C338D2355A52B00F55483 /* CustomSignersView.xib */,
+				3F656C3A23711D29003D6CE5 /* TransactionTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -291,6 +299,7 @@
 		3F1D19A12330CE9C0038D085 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3F9FE33B236FDE8E00319EDE /* Manager */,
 				3F5E0A92235EB4BA00BCB6B1 /* Localizable */,
 				3F5C33902355AB9C00F55483 /* UICustomView */,
 				3F7CF05C2341A74400E56D2E /* Enums */,
@@ -351,6 +360,14 @@
 			children = (
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		3F9FE33B236FDE8E00319EDE /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				3F9FE33C236FDEDA00319EDE /* bSignerServiceManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		3FF173E92346F61E001DC20D /* Libraries */ = {
@@ -571,6 +588,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-bSigner/Pods-bSigner-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts-Swift/BoltsSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/EZAlertController/EZAlertController.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
@@ -586,6 +605,8 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BoltsSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZAlertController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
@@ -635,6 +656,7 @@
 				3F38684F23547FF400161071 /* ChooseSignersViewController.swift in Sources */,
 				3FCBA596234AE6590003B25E /* MainTabbarViewController.swift in Sources */,
 				3F5C338C2355A51000F55483 /* CustomSignersView.swift in Sources */,
+				3F656C3D23712636003D6CE5 /* TransactionDetailsViewController.swift in Sources */,
 				3FCBA598234AE67E0003B25E /* TransactionsViewController.swift in Sources */,
 				3F235AEA233C685C00C694AA /* MnemonicSuggestionsView.swift in Sources */,
 				3F1D19B32330F06E0038D085 /* AppearanceHelper.swift in Sources */,
@@ -646,6 +668,7 @@
 				3FF2F7582334D1DC0051E0EC /* BaseViewController.swift in Sources */,
 				3F7CF05723419C9100E56D2E /* UserDefaultsHelper.swift in Sources */,
 				3F1EFD16234F0AC1003FE76B /* SignatureModel.swift in Sources */,
+				3F656C3B23711D29003D6CE5 /* TransactionTableViewCell.swift in Sources */,
 				3FF173F12346F67F001DC20D /* NSBundle+Language.m in Sources */,
 				3F1D19A82330DBF50038D085 /* MnemonicGenerationViewController.swift in Sources */,
 				3F2BBD48233B587600552C27 /* RestoreAccountViewController.swift in Sources */,
@@ -655,6 +678,7 @@
 				3F5C338A23556BF500F55483 /* WeakObjectSet.swift in Sources */,
 				3F3868512354801600161071 /* ChooseSignersTableViewCell.swift in Sources */,
 				3FCBA59A234AECA30003B25E /* HomeViewController.swift in Sources */,
+				3F9FE33D236FDEDA00319EDE /* bSignerServiceManager.swift in Sources */,
 				3F5C338923556BF500F55483 /* SwiftNotificationCenter.swift in Sources */,
 				3F5E0A90235EB48500BCB6B1 /* TransactionModel.swift in Sources */,
 				3F7CF05B2341A4B300E56D2E /* ApplicationCoordinator.swift in Sources */,
@@ -848,6 +872,7 @@
 				CODE_SIGN_ENTITLEMENTS = LuvabSigner/LuvabSigner.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = F7F4YCHSQV;
 				INFOPLIST_FILE = LuvabSigner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -855,6 +880,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luvapay.bsigner;
 				PRODUCT_NAME = bSigner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -874,6 +900,7 @@
 				CODE_SIGN_ENTITLEMENTS = LuvabSigner/LuvabSigner.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = F7F4YCHSQV;
 				INFOPLIST_FILE = LuvabSigner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -881,6 +908,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luvapay.bsigner;
 				PRODUCT_NAME = bSigner;
 				PROVISIONING_PROFILE_SPECIFIER = "";

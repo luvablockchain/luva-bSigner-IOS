@@ -15,6 +15,9 @@ target 'bSigner' do
   pod 'Eureka'
   pod 'XLPagerTabStrip'
   pod 'SwiftyJSON'
+  pod 'Alamofire'
+  pod 'Bolts-Swift'
+  pod 'OneSignal'
 
   target 'bSignerTests' do
     inherit! :search_paths

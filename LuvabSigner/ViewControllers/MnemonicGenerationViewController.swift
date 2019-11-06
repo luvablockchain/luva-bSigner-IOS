@@ -47,8 +47,6 @@ class MnemonicGenerationViewController: BaseViewController {
         let mnemonicData = MnemonicHelper.getWordMnemonic()
         mnemonicList = mnemonicData.separatedWords
         mnemonic = mnemonicData.mnemonic
-        
-
     }
     
     override func viewDidLayoutSubviews() {

@@ -1,4 +1,6 @@
 PODS:
+  - Alamofire (4.9.1)
+  - Bolts-Swift (1.5.0)
   - Eureka (5.1.0)
   - EZAlertController (3.2)
   - FMDB (2.7.5):
@@ -8,6 +10,7 @@ PODS:
     - LKDBHelper/standard (= 2.5.2)
   - LKDBHelper/standard (2.5.2):
     - FMDB
+  - OneSignal (2.11.2)
   - PKHUD (5.3.0)
   - SmileLock (3.0.7)
   - stellar-ios-mac-sdk (1.7.0)
@@ -16,9 +19,12 @@ PODS:
   - XLPagerTabStrip (9.0.0)
 
 DEPENDENCIES:
+  - Alamofire
+  - Bolts-Swift
   - Eureka
   - EZAlertController (= 3.2)
   - LKDBHelper
+  - OneSignal
   - PKHUD
   - SmileLock
   - stellar-ios-mac-sdk
@@ -28,10 +34,13 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Bolts-Swift
     - Eureka
     - EZAlertController
     - FMDB
     - LKDBHelper
+    - OneSignal
     - PKHUD
     - SmileLock
     - stellar-ios-mac-sdk
@@ -40,10 +49,13 @@ SPEC REPOS:
     - XLPagerTabStrip
 
 SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Bolts-Swift: afbbaf8c8186e7f769be4afa656949c14087ba44
   Eureka: 18a5076dcf0c41f9cd9748aa1c42f4d11434bdae
   EZAlertController: 633be01320bed47720be54054df47667d61c2481
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   LKDBHelper: 9afb4d8f314e284d698d456422b3828e691f40b4
+  OneSignal: 4e3e68bb6c29975286a2fa910cb49132bc6e20bb
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   SmileLock: 46b847b3ad963e3140d083b53f09036a4d210537
   stellar-ios-mac-sdk: d4e826707d24d4c7d16089fe184e0b3a472790d3
@@ -51,6 +63,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: e66dd4c143bc1b68e5e46a6000fa5f83e1412771
+PODFILE CHECKSUM: 6e9b266c01fbdc8dde9749afe52b2fd7142d92cc
 
 COCOAPODS: 1.6.1

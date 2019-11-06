@@ -84,3 +84,7 @@
 "Home" = "Trang chủ";
 "Transactions" = "Giao dịch";
 "Settings" = "Cài đặt";
+"Currently no signatures" = "Hiện không có chữ ký nào";
+"create new" = "tiến hành tạo mới";
+"Transaction List" = "Danh sách giao dịch";
+"Restore Signature" = "Khôi phục chữ ký";

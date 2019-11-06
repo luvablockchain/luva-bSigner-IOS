@@ -13,8 +13,8 @@ import EZAlertController
 
 class RestoreAccountViewController: BaseViewController {
     
+    @IBOutlet weak var viewMnemonic: UIView!
     @IBOutlet weak var btnNext: UIButton!
-    @IBOutlet weak var txtMnemonic: UITextView!
     @IBOutlet weak var lblTitle: UILabel!
     
     var mnemonic: String = ""
@@ -37,8 +37,11 @@ class RestoreAccountViewController: BaseViewController {
     
     var isNewSignature = false
     
+    var txtMnemonic:UITextView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Restore Signature".localizedString()
         mnemonicSuggestionsView = Bundle.main.loadNibNamed("MnemonicSuggestionsView",
                                                            owner: self,
                                                            options: nil)?.first as? MnemonicSuggestionsView
@@ -48,14 +51,26 @@ class RestoreAccountViewController: BaseViewController {
         mnemonicSuggestionsView?.layer.shadowOpacity = 0.2
         mnemonicSuggestionsView?.layer.shadowRadius = 4.0
         
-        txtMnemonic.inputAccessoryView = mnemonicSuggestionsView
-        txtMnemonic.textContainerInset = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         btnNext.setTitle("NEXT".localizedString(), for: .normal)
         btnNext.layer.cornerRadius = 5
         btnNext.isEnabled = false
         lblTitle.text = "Enter the 12 or 24 word recovery phrase you were given when you created your Luva bSigner account".localizedString() + "."
-        
-        if let loadedData = UserDefaults().data(forKey: "SIGNNATURE") {
+        txtMnemonic = UITextView.init(frame: .zero)
+        txtMnemonic!.translatesAutoresizingMaskIntoConstraints = false
+        viewMnemonic.addSubview(txtMnemonic!)
+        txtMnemonic!.backgroundColor = UIColor.init(rgb: 0xDEE7D6)
+        txtMnemonic!.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.regular)
+        txtMnemonic!.delegate = self
+        txtMnemonic!.autocapitalizationType = .none
+        NSLayoutConstraint.activate([
+            txtMnemonic!.bottomAnchor.constraint(equalTo: viewMnemonic.bottomAnchor),
+            txtMnemonic!.leadingAnchor.constraint(equalTo: viewMnemonic.leadingAnchor),
+            txtMnemonic!.trailingAnchor.constraint(equalTo: viewMnemonic.trailingAnchor),
+            txtMnemonic!.topAnchor.constraint(equalTo: viewMnemonic.topAnchor)
+            ])
+        txtMnemonic!.textContainerInset = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        txtMnemonic!.inputAccessoryView = mnemonicSuggestionsView
+        if let loadedData = KeychainWrapper.standard.data(forKey: "SIGNATURE") {
 
             if let signnatureModel = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? [SignatureModel] {
                 self.model = signnatureModel
@@ -72,7 +87,7 @@ class RestoreAccountViewController: BaseViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        AppearanceHelper.setDashBorders(for: txtMnemonic, with: BaseViewController.MainColor.cgColor)
+        AppearanceHelper.setDashBorders(for: txtMnemonic!, with: BaseViewController.MainColor.cgColor)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -84,7 +99,7 @@ class RestoreAccountViewController: BaseViewController {
     func add(_ suggestionWord: String, to text: String) {
         let updatedText = MnemonicHelper.addSuggestionWord(to: text, suggestionWord)
         clearSuggestionList()
-        txtMnemonic.text = updatedText
+        txtMnemonic!.text = updatedText
         mnemonic = updatedText
         validateMnemonic()
     }
@@ -156,7 +171,7 @@ class RestoreAccountViewController: BaseViewController {
                         self.index += 1
                         self.model.append(SignatureModel.init(title: "Signature".localizedString() + " " + "\(self.index)", publicKey: publickey, mnemonic:self.mnemonic))
                         let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
-                        UserDefaults().set(data, forKey: "SIGNNATURE")
+                        KeychainWrapper.standard.set(data, forKey: "SIGNATURE")
                         KeychainWrapper.standard.set(self.index, forKey: "INDEX")
                         DispatchQueue.main.async {
                             if publickey != ""
@@ -175,7 +190,7 @@ class RestoreAccountViewController: BaseViewController {
 }
 extension RestoreAccountViewController: MnemonicSuggestionsViewDelegate {
     func suggestionWordWasPressed(_ suggestionWord: String) {
-        add(suggestionWord, to: txtMnemonic.text)
+        add(suggestionWord, to: txtMnemonic!.text)
     }
     
 }

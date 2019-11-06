@@ -8,6 +8,7 @@
 
 import UIKit
 import stellarsdk
+import SwiftKeychainWrapper
 
 class TransactionInfoViewController: UIViewController {
     
@@ -71,7 +72,7 @@ class TransactionInfoViewController: UIViewController {
         viewTransaction.layer.cornerRadius = 5
         viewTransaction.layer.borderWidth = 0.5
         viewTransaction.layer.borderColor = UIColor.lightGray.cgColor
-        if let loadedData = UserDefaults().data(forKey: "SIGNNATURE") {
+        if let loadedData = KeychainWrapper.standard.data(forKey: "SIGNATURE") {
 
             if let signnatureModel = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? [SignatureModel] {
                 self.listSigner = signnatureModel
@@ -88,7 +89,7 @@ class TransactionInfoViewController: UIViewController {
         lblSignnature.text = listSigner[index].publicKey
         keyPairToSign = MnemonicHelper.getKeyPairFrom(listSigner[index].mnemonic!)
         do {
-            let envelope = try TransactionEnvelopeXDR(xdr:model.transactionXDR)        
+            let envelope = try TransactionEnvelopeXDR(xdr:model.transactionXDR)
             let transactionHash =  try [UInt8](envelope.tx.hash(network: .testnet))
             let decoratedSignature = keyPairToSign.signDecorated(transactionHash)
             let signatures = decoratedSignature.signature
@@ -119,6 +120,11 @@ class TransactionInfoViewController: UIViewController {
     }
     
     @IBAction func tappedCancelTransactions(_ sender: Any) {
-        
+        let application = UIApplication.shared
+        let luvaApp = "luvaapp://?signature=cancel"
+        let appUrl = URL(string: luvaApp)!
+        if application.canOpenURL(appUrl) {
+            application.open(appUrl, options: [:], completionHandler: nil)
+        }
     }
 }

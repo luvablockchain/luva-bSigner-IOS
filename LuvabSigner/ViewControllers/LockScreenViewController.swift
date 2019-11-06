@@ -158,7 +158,7 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
                                 let publickey = MnemonicHelper.getKeyPairFrom(mnemonic).accountId
                                 self.model.append(SignatureModel.init(title: "Signature".localizedString() + " 0", publicKey: publickey,mnemonic: mnemonic))
                                 let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
-                                UserDefaults().set(data, forKey: "SIGNNATURE")
+                                KeychainWrapper.standard.set(data, forKey: "SIGNATURE")
                                 DispatchQueue.main.async {
                                     if publickey != ""
                                     {
@@ -181,7 +181,7 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
                                     let publickey = MnemonicHelper.getKeyPairFrom(mnemonic).accountId
                                     self.model.append(SignatureModel.init(title: "Signature".localizedString() + " 0", publicKey: publickey,mnemonic: mnemonic))
                                     let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
-                                    UserDefaults().set(data, forKey: "SIGNNATURE")
+                                    KeychainWrapper.standard.set(data, forKey: "SIGNATURE")
                                     DispatchQueue.main.async {
                                         if publickey != ""
                                         {

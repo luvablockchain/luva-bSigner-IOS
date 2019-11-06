@@ -11,7 +11,7 @@ import SwiftKeychainWrapper
 import PKHUD
 
 class MnemonicVerificationViewController: BaseViewController {
-
+    
     @IBOutlet weak var btnClear: UIButton!
     @IBOutlet weak var lblError: UILabel!
     @IBOutlet weak var collectionView2: UICollectionView!
@@ -52,8 +52,8 @@ class MnemonicVerificationViewController: BaseViewController {
         collectionView2.register(MnemonicCollectionViewCell.nib, forCellWithReuseIdentifier: MnemonicCollectionViewCell.key)
         shuffledMnemonicList = mnemoricList.shuffled()
         collectionView2.allowsMultipleSelection = true
-        if let loadedData = UserDefaults().data(forKey: "SIGNNATURE") {
-
+        if let loadedData = KeychainWrapper.standard.data(forKey: "SIGNATURE") {
+            
             if let signnatureModel = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? [SignatureModel] {
                 self.model = signnatureModel
                 if let index = KeychainWrapper.standard.integer(forKey: "INDEX") {
@@ -66,7 +66,7 @@ class MnemonicVerificationViewController: BaseViewController {
     override func viewDidLayoutSubviews() {
         AppearanceHelper.setDashBorders(for: viewBoderCollection, with: BaseViewController.MainColor.cgColor)
     }
-        
+    
     @IBAction func tappedClearButton(_ sender: Any) {
         deselectShuffledCollectionView()
         mnemonicListForVerification.removeAll()
@@ -88,11 +88,17 @@ class MnemonicVerificationViewController: BaseViewController {
                     self.index += 1
                     self.model.append(SignatureModel.init(title: "Signature".localizedString() + " " + "\(self.index)", publicKey: publickey,mnemonic:mnemonic))
                     let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
-                    UserDefaults().set(data, forKey: "SIGNNATURE")
+                    KeychainWrapper.standard.set(data, forKey: "SIGNATURE")
                     KeychainWrapper.standard.set(self.index, forKey: "INDEX")
                     DispatchQueue.main.async {
                         if publickey != ""
                         {
+//                            bSignerServiceManager.sharedInstance.taskGetSubscribeSignature(publicKey: publickey, userId: bSignerServiceManager.sharedInstance.oneSignalUserId).continueOnSuccessWith(continuation: { task in
+//                                
+//
+//                                
+//                            }).continueOnErrorWith(continuation: { error in
+//                            })
                             HUD.hide()
                             self.pushMainTabbarViewController()
                         }
@@ -146,14 +152,14 @@ extension MnemonicVerificationViewController: UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collectionView1 {
             return mnemonicListForVerification.count
-
+            
         } else {
             return shuffledMnemonicList.count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+        
         if collectionView == collectionView1 {
             let cell:MnemonicCollectionViewCell = self.collectionView1.dequeueReusableCell(withReuseIdentifier: MnemonicCollectionViewCell.key, for: indexPath) as! MnemonicCollectionViewCell
             cell.lblTitle.text = mnemonicListForVerification[indexPath.row]
@@ -176,7 +182,7 @@ extension MnemonicVerificationViewController: UICollectionViewDataSource, UIColl
             mnemonicListForVerification.remove(at: indexPath.item)
             collectionView1.reloadData()
             validateVerificationList()
-
+            
         } else {
             mnemonicListForVerification.append(shuffledMnemonicList[indexPath.item])
             collectionView1.reloadData()
@@ -188,7 +194,7 @@ extension MnemonicVerificationViewController: UICollectionViewDataSource, UIColl
         if collectionView == collectionView1 {
             let width = (collectionView1.frame.width - 40)/3
             return CGSize(width: width, height: 30)
-
+            
         } else {
             return CGSize(width: 80, height: 30)
         }
@@ -216,7 +222,7 @@ extension MnemonicVerificationViewController: LockScreenViewControllerDelegate {
     }
     
     func didChangePassCode() {
-    
+        
     }
     
     func didPopViewController() {

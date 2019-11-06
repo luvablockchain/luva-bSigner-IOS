@@ -101,5 +101,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = navigationController
     }
 
+    public func getDeviceToken() {
+        
+        self.setupOnsignal(launchOptions: nil)
+        //Get token
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.badge, .alert , .sound]) { (greanted, error) in
+                if greanted {
+                    DispatchQueue.main.async {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
+                    
+                }
+            }
+        } else {
+            
+            let setting = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(setting)
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+        
+        
+    }
+
 }
 

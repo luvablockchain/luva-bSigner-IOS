@@ -11,16 +11,32 @@ import XLPagerTabStrip
 
 class TransactionsViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    var listTransaction:[TransactionModel] = []
+     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Transaction List".localizedString()
         Broadcaster.register(bSignersNotificationOpenedDelegate.self, observer: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
+}
+
+extension TransactionsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listTransaction.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "transactionTableViewCell", for: indexPath) as! TransactionTableViewCell
+        return cell
+    }
 }
 
 extension TransactionsViewController: bSignersNotificationOpenedDelegate {

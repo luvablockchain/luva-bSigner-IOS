@@ -31,7 +31,7 @@ class ChooseSignersViewController: UIViewController {
         btnChoose.setTitle("Choose".localizedString(), for: .normal)
         btnChoose.layer.cornerRadius = 20
         tableView.separatorStyle = .none
-        if let loadedData = UserDefaults().data(forKey: "SIGNNATURE") {
+        if let loadedData = KeychainWrapper.standard.data(forKey: "SIGNATURE") {
                if let signnatureModel = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? [SignatureModel] {
                    self.listSigners = signnatureModel
                }
