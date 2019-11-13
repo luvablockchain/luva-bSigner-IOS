@@ -43,13 +43,22 @@
 		3F7CF05523419BD000E56D2E /* ApplicationCoordinatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CF05423419BD000E56D2E /* ApplicationCoordinatorHelper.swift */; };
 		3F7CF05723419C9100E56D2E /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CF05623419C9100E56D2E /* UserDefaultsHelper.swift */; };
 		3F7CF05B2341A4B300E56D2E /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CF05A2341A4B300E56D2E /* ApplicationCoordinator.swift */; };
+		3F8724272374039C003A5F85 /* ResponseServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8724262374039B003A5F85 /* ResponseServiceModel.swift */; };
+		3F872429237403D2003A5F85 /* ServiceErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F872428237403D2003A5F85 /* ServiceErrorModel.swift */; };
 		3F9FE33D236FDEDA00319EDE /* bSignerServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9FE33C236FDEDA00319EDE /* bSignerServiceManager.swift */; };
 		3FBE8ED82345951A007238EF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBE8ED72345951A007238EF /* SettingsViewController.swift */; };
 		3FCBA596234AE6590003B25E /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBA595234AE6590003B25E /* MainTabbarViewController.swift */; };
 		3FCBA598234AE67E0003B25E /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBA597234AE67E0003B25E /* TransactionsViewController.swift */; };
 		3FCBA59A234AECA30003B25E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBA599234AECA30003B25E /* HomeViewController.swift */; };
 		3FCBA59C234B25EC0003B25E /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBA59B234B25EC0003B25E /* HomeTableViewCell.swift */; };
+		3FDB3C4423740D79005B303F /* GridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB3C3C23740D79005B303F /* GridView.m */; };
+		3FDB3C4523740D79005B303F /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB3C3D23740D79005B303F /* UIView+SDAutoLayout.m */; };
+		3FDB3C4623740D79005B303F /* WebEmbeddedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB3C4023740D79005B303F /* WebEmbeddedView.m */; };
+		3FDB3C4723740D79005B303F /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB3C4223740D79005B303F /* UITableView+SDAutoTableViewCellHeight.m */; };
 		3FDB591D23333C730038B370 /* MnemonicHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB591C23333C730038B370 /* MnemonicHelper.swift */; };
+		3FF017FE237565610016EFBB /* StringHTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF017FC237565610016EFBB /* StringHTML.swift */; };
+		3FF017FF237565610016EFBB /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF017FD237565610016EFBB /* StringExtensions.swift */; };
+		3FF0180123756C170016EFBB /* DetailTransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF0180023756C170016EFBB /* DetailTransactionTableViewCell.swift */; };
 		3FF173E32346F4A6001DC20D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FF173E52346F4A6001DC20D /* Localizable.strings */; };
 		3FF173F12346F67F001DC20D /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF173EF2346F67F001DC20D /* NSBundle+Language.m */; };
 		3FF173F8234756A3001DC20D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FF173F7234756A2001DC20D /* Main.storyboard */; };
@@ -126,13 +135,27 @@
 		3F7CF05423419BD000E56D2E /* ApplicationCoordinatorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinatorHelper.swift; sourceTree = "<group>"; };
 		3F7CF05623419C9100E56D2E /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		3F7CF05A2341A4B300E56D2E /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
+		3F8724262374039B003A5F85 /* ResponseServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseServiceModel.swift; sourceTree = "<group>"; };
+		3F872428237403D2003A5F85 /* ServiceErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceErrorModel.swift; sourceTree = "<group>"; };
 		3F9FE33C236FDEDA00319EDE /* bSignerServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bSignerServiceManager.swift; sourceTree = "<group>"; };
 		3FBE8ED72345951A007238EF /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3FCBA595234AE6590003B25E /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
 		3FCBA597234AE67E0003B25E /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
 		3FCBA599234AECA30003B25E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3FCBA59B234B25EC0003B25E /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		3FDB3C3B23740D79005B303F /* WebEmbeddedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebEmbeddedView.h; sourceTree = "<group>"; };
+		3FDB3C3C23740D79005B303F /* GridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridView.m; sourceTree = "<group>"; };
+		3FDB3C3D23740D79005B303F /* UIView+SDAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDAutoLayout.m"; sourceTree = "<group>"; };
+		3FDB3C3E23740D79005B303F /* UITableView+SDAutoTableViewCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+SDAutoTableViewCellHeight.h"; sourceTree = "<group>"; };
+		3FDB3C3F23740D79005B303F /* SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAutoLayout.h; sourceTree = "<group>"; };
+		3FDB3C4023740D79005B303F /* WebEmbeddedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebEmbeddedView.m; sourceTree = "<group>"; };
+		3FDB3C4123740D79005B303F /* GridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridView.h; sourceTree = "<group>"; };
+		3FDB3C4223740D79005B303F /* UITableView+SDAutoTableViewCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SDAutoTableViewCellHeight.m"; sourceTree = "<group>"; };
+		3FDB3C4323740D79005B303F /* UIView+SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDAutoLayout.h"; sourceTree = "<group>"; };
 		3FDB591C23333C730038B370 /* MnemonicHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicHelper.swift; sourceTree = "<group>"; };
+		3FF017FC237565610016EFBB /* StringHTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHTML.swift; sourceTree = "<group>"; };
+		3FF017FD237565610016EFBB /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		3FF0180023756C170016EFBB /* DetailTransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTransactionTableViewCell.swift; sourceTree = "<group>"; };
 		3FF173E42346F4A6001DC20D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3FF173E82346F4F3001DC20D /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3FF173EF2346F67F001DC20D /* NSBundle+Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Language.m"; sourceTree = "<group>"; };
@@ -282,6 +305,7 @@
 				3F5C338B2355A51000F55483 /* CustomSignersView.swift */,
 				3F5C338D2355A52B00F55483 /* CustomSignersView.xib */,
 				3F656C3A23711D29003D6CE5 /* TransactionTableViewCell.swift */,
+				3FF0180023756C170016EFBB /* DetailTransactionTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -366,13 +390,42 @@
 			isa = PBXGroup;
 			children = (
 				3F9FE33C236FDEDA00319EDE /* bSignerServiceManager.swift */,
+				3F8724262374039B003A5F85 /* ResponseServiceModel.swift */,
+				3F872428237403D2003A5F85 /* ServiceErrorModel.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		3FDB3C3A23740D79005B303F /* SDAutoLayout */ = {
+			isa = PBXGroup;
+			children = (
+				3FDB3C3B23740D79005B303F /* WebEmbeddedView.h */,
+				3FDB3C3C23740D79005B303F /* GridView.m */,
+				3FDB3C3D23740D79005B303F /* UIView+SDAutoLayout.m */,
+				3FDB3C3E23740D79005B303F /* UITableView+SDAutoTableViewCellHeight.h */,
+				3FDB3C3F23740D79005B303F /* SDAutoLayout.h */,
+				3FDB3C4023740D79005B303F /* WebEmbeddedView.m */,
+				3FDB3C4123740D79005B303F /* GridView.h */,
+				3FDB3C4223740D79005B303F /* UITableView+SDAutoTableViewCellHeight.m */,
+				3FDB3C4323740D79005B303F /* UIView+SDAutoLayout.h */,
+			);
+			path = SDAutoLayout;
+			sourceTree = "<group>";
+		};
+		3FF017FB237565610016EFBB /* SwiftString */ = {
+			isa = PBXGroup;
+			children = (
+				3FF017FC237565610016EFBB /* StringHTML.swift */,
+				3FF017FD237565610016EFBB /* StringExtensions.swift */,
+			);
+			path = SwiftString;
 			sourceTree = "<group>";
 		};
 		3FF173E92346F61E001DC20D /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				3FF017FB237565610016EFBB /* SwiftString */,
+				3FDB3C3A23740D79005B303F /* SDAutoLayout */,
 				3F5C338523556BF500F55483 /* SwiftNotificationCenter */,
 				3FF173EE2346F67F001DC20D /* NSBundle+Language */,
 			);
@@ -653,14 +706,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F1D19712330C7830038D085 /* SignUpViewController.swift in Sources */,
+				3FF017FE237565610016EFBB /* StringHTML.swift in Sources */,
 				3F38684F23547FF400161071 /* ChooseSignersViewController.swift in Sources */,
 				3FCBA596234AE6590003B25E /* MainTabbarViewController.swift in Sources */,
 				3F5C338C2355A51000F55483 /* CustomSignersView.swift in Sources */,
 				3F656C3D23712636003D6CE5 /* TransactionDetailsViewController.swift in Sources */,
 				3FCBA598234AE67E0003B25E /* TransactionsViewController.swift in Sources */,
+				3F872429237403D2003A5F85 /* ServiceErrorModel.swift in Sources */,
 				3F235AEA233C685C00C694AA /* MnemonicSuggestionsView.swift in Sources */,
+				3FDB3C4523740D79005B303F /* UIView+SDAutoLayout.m in Sources */,
 				3F1D19B32330F06E0038D085 /* AppearanceHelper.swift in Sources */,
 				3F1D196F2330C7830038D085 /* AppDelegate.swift in Sources */,
+				3FF017FF237565610016EFBB /* StringExtensions.swift in Sources */,
 				3F1D19AF2330EA100038D085 /* MnemonicCollectionViewCell.swift in Sources */,
 				3F3873392358128000054A3C /* TransactionInfoViewController.swift in Sources */,
 				3F0F52E723447599005D8E05 /* HeaderSignatureCollectionReusableView.swift in Sources */,
@@ -672,12 +729,16 @@
 				3FF173F12346F67F001DC20D /* NSBundle+Language.m in Sources */,
 				3F1D19A82330DBF50038D085 /* MnemonicGenerationViewController.swift in Sources */,
 				3F2BBD48233B587600552C27 /* RestoreAccountViewController.swift in Sources */,
+				3FDB3C4723740D79005B303F /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				3F1595BC2338A6C90093620B /* ConfigModel.swift in Sources */,
 				3F1595BA2338A2940093620B /* LockScreenViewController.swift in Sources */,
 				3F7CF05523419BD000E56D2E /* ApplicationCoordinatorHelper.swift in Sources */,
 				3F5C338A23556BF500F55483 /* WeakObjectSet.swift in Sources */,
+				3FF0180123756C170016EFBB /* DetailTransactionTableViewCell.swift in Sources */,
+				3FDB3C4623740D79005B303F /* WebEmbeddedView.m in Sources */,
 				3F3868512354801600161071 /* ChooseSignersTableViewCell.swift in Sources */,
 				3FCBA59A234AECA30003B25E /* HomeViewController.swift in Sources */,
+				3F8724272374039C003A5F85 /* ResponseServiceModel.swift in Sources */,
 				3F9FE33D236FDEDA00319EDE /* bSignerServiceManager.swift in Sources */,
 				3F5C338923556BF500F55483 /* SwiftNotificationCenter.swift in Sources */,
 				3F5E0A90235EB48500BCB6B1 /* TransactionModel.swift in Sources */,
@@ -687,6 +748,7 @@
 				3F0F52E523447545005D8E05 /* SignatureCollectionViewCell.swift in Sources */,
 				3F1D19AC2330E99F0038D085 /* MnemonicVerificationViewController.swift in Sources */,
 				3FCBA59C234B25EC0003B25E /* HomeTableViewCell.swift in Sources */,
+				3FDB3C4423740D79005B303F /* GridView.m in Sources */,
 				3F5C33922355ABBD00F55483 /* UICustomView.swift in Sources */,
 				3F1595BE2338BC440093620B /* PublicKeyViewController.swift in Sources */,
 				3FBE8ED82345951A007238EF /* SettingsViewController.swift in Sources */,
@@ -886,7 +948,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LuvabSigner/LuvabSigner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -913,7 +975,7 @@
 				PRODUCT_NAME = bSigner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LuvabSigner/LuvabSigner-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

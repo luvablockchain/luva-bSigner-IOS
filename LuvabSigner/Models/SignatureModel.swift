@@ -20,11 +20,21 @@ class SignatureModel: NSObject, NSCoding {
     var public_key: String = ""
     
     var signature: String = ""
+        
+    var weight: Int = 0
+    
+    var signed: Bool = false
+    
+    var signed_at: Double = 0.0
+
     
     init(json:JSON) {
         super.init()
         self.public_key = json["public_key"].stringValue
         self.signature = json["signature"].stringValue
+        self.weight = json["weight"].intValue
+        self.signed = json["signed"].boolValue
+        self.signed_at = json["signed_at"].doubleValue
     }
 
     override init() {

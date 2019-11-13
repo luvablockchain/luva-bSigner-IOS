@@ -12,6 +12,7 @@ import SwiftKeychainWrapper
 import PKHUD
 import EZAlertController
 import stellarsdk
+import OneSignal
 
 struct SignModel {
     var title:[String]
@@ -46,6 +47,8 @@ class HomeViewController: UIViewController {
     
     var model:[SignatureModel] = []
     
+    var amountNumber: NSNumber = NSNumber(value: 0.0)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         ConfigModel.sharedInstance.loadLocalized()
@@ -225,6 +228,12 @@ extension HomeViewController: UITextFieldDelegate {
 }
 
 extension HomeViewController: bSignersNotificationOpenedDelegate {
+    func notifySignTransaction(model: TransactionModel) {
+    }
+    
+    func notifyHostTransaction() {
+    }
+    
     func notifyApproveTransaction(model: TransactionModel) {
         pushChooseSignersViewController(model: model)
     }

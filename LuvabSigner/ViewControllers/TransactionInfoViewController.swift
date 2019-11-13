@@ -65,10 +65,6 @@ class TransactionInfoViewController: UIViewController {
         btnCancel.layer.cornerRadius = 20
         btnConfirm.layer.cornerRadius = 20
         btnConfirm.setTitle("Approve".localizedString(), for: .normal)
-        lblFromKey.text = model.senderUserId
-        lblToKey.text = model.destUserId
-        lblMoney.text = model.amount
-        lblNote.text = model.note
         viewTransaction.layer.cornerRadius = 5
         viewTransaction.layer.borderWidth = 0.5
         viewTransaction.layer.borderColor = UIColor.lightGray.cgColor
@@ -91,6 +87,14 @@ class TransactionInfoViewController: UIViewController {
         do {
             let envelope = try TransactionEnvelopeXDR(xdr:model.transactionXDR)
             let transactionHash =  try [UInt8](envelope.tx.hash(network: .testnet))
+            let operationXDR = envelope.tx.operations[0]
+            let operation = try Operation.fromXDR(operationXDR:operationXDR)
+            let paymentOperation = operation as! PaymentOperation
+            lblFromKey.text = envelope.tx.sourceAccount.accountId
+            lblToKey.text = paymentOperation.destination.accountId
+            let newAmounts = paymentOperation.amount.formattedAmount!.split(".").first ?? ""
+            lblMoney.text = newAmounts.currencyVND
+            lblNote.text = envelope.tx.memo.xdrEncoded
             let decoratedSignature = keyPairToSign.signDecorated(transactionHash)
             let signatures = decoratedSignature.signature
             self.signature = signatures.base64EncodedString(options: NSData.Base64EncodingOptions())

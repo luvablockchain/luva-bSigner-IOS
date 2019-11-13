@@ -14,6 +14,11 @@ class BaseViewController: UIViewController,UIGestureRecognizerDelegate {
     
     var btnBack:UIButton?
     
+    private var alertView: UIView!
+    
+    private var textLabel: UILabel!
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         ConfigModel.sharedInstance.loadLocalized()
@@ -46,7 +51,45 @@ class BaseViewController: UIViewController,UIGestureRecognizerDelegate {
                            shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
-    
+
+    func removeAlertText() {
+        self.alertView.removeFromSuperview()
+    }
+
+    func showAlertWithText(text: String) {
+          let text = text.trimmed()
+          if(text == "") {
+              return
+          }
+          if(self.alertView == nil) {
+              self.alertView = UIView(frame: CGRect.zero)
+              self.alertView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+              self.textLabel = UILabel(frame: CGRect.zero)
+              self.textLabel.textAlignment = NSTextAlignment.center
+          } else {
+              self.removeAlertText()
+          }
+          
+          self.textLabel.text = text
+          self.textLabel.textColor = UIColor.white
+          
+          self.alertView.addSubview(self.textLabel)
+            let _ = self.textLabel.sd_layout().leftSpaceToView(self.alertView, 10)?.rightSpaceToView(self.alertView, 10)?.topSpaceToView(self.alertView, 10)?.autoHeightRatio(0)
+          UIApplication.shared.keyWindow?.addSubview(self.alertView)
+          
+          let _ = self.alertView.sd_layout()
+              .centerXEqualToView(self.alertView.superview)!
+              .centerYEqualToView(self.alertView.superview)!
+              .widthIs(200)
+          
+          self.alertView.setupAutoHeight(withBottomView: self.textLabel, bottomMargin: 10)
+          self.alertView.sd_cornerRadius = NSNumber(value: 5)
+          
+          let deadlineTime = DispatchTime.now() + 2.5
+          DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+              self.removeAlertText()
+          }
+      }
 }
 
 extension UIViewController {
@@ -78,6 +121,15 @@ extension UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.pushViewController(vc!, animated: true)
     }
+    
+    func pushTransactionDetailsViewController(model:TransactionModel) {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "transactionDetailsViewController") as? TransactionDetailsViewController
+        vc?.hidesBottomBarWhenPushed = true
+        vc?.model = model
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+
 
     
     func pushBackUpViewController(isAddAccount:Bool = false, isNewSignature:Bool = false) {

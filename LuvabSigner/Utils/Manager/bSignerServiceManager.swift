@@ -9,16 +9,23 @@
 import UIKit
 import Alamofire
 import BoltsSwift
+import SwiftyJSON
 
 class bSignerServiceManager: NSObject {
-    
-    private let hostAPI = ""
+        
+    private let hostAPI = "http://bsignerapi.luvapay.com:3000"
     
     private let subscribe = "/subscribe"
     
+    private let unsubscribe = "/unsubscribe"
+
     private let transactionList = "/transaction/list"
+        
+    private let signTransaction = "/transaction/sign"
     
-    private let addSignature = "/transaction/addSignature"
+    private let updateTransaction = "/transaction/update"
+    
+    private let hostTransaction = "/transaction/host"
     
     public var oneSignalUserId = ""
     
@@ -27,12 +34,13 @@ class bSignerServiceManager: NSObject {
         return instance
     }()
     
-    public func taskGetSubscribeSignature(publicKey: String, userId: String) -> Task<AnyObject> {
+    public func taskGetSubscribeSignature(userId: String, publicKey: String) -> Task<AnyObject> {
         let taskCompletionSource = TaskCompletionSource<AnyObject>()
         let stringPath = String(format:"%@%@", hostAPI, subscribe)
-        let parameter = ["public_key":publicKey,"user_id":userId] as [String: Any]
-        Alamofire.SessionManager.default.request(stringPath, method: .post,parameters: parameter).validate().responseJSON { (response) in
-            if let error = response.error {
+        let parameter = ["user_id":userId, "public_key":publicKey] as [String: Any]
+        Alamofire.SessionManager.default.request(stringPath, method: .post,parameters: parameter,encoding:JSONEncoding.default).validate().responseJSON { (response) in
+            let responseServiceModel = ResponseServiceModel(response: response)
+            if let error = responseServiceModel.error as NSError? {
                 taskCompletionSource.set(error: error)
             } else {
                 taskCompletionSource.set(result: true as AnyObject)
@@ -42,27 +50,60 @@ class bSignerServiceManager: NSObject {
         return taskCompletionSource.task
     }
     
-    public func taskGetTransactionList(signer: String, userId: String) -> Task<AnyObject> {
+    public func taskGetTransactionList(publicKeys:[String], userId: String) -> Task<AnyObject> {
         let taskCompletionSource = TaskCompletionSource<AnyObject>()
         let stringPath = String(format:"%@%@", hostAPI, transactionList)
-        let parameter = ["signer_keys":signer,"user_id":userId] as [String: Any]
-        Alamofire.SessionManager.default.request(stringPath, method: .post,parameters: parameter).validate().responseJSON { (response) in
-            if let error = response.error {
+        let parameter = ["public_keys":publicKeys,"user_id":userId] as [String: Any]
+        Alamofire.SessionManager.default.request(stringPath, method: .post,parameters: parameter,encoding: JSONEncoding.default).validate().responseJSON { (response) in
+            let responseServiceModel = ResponseServiceModel(response: response)
+            if let error = responseServiceModel.error as NSError? {
                 taskCompletionSource.set(error: error)
             } else {
-                taskCompletionSource.set(result: true as AnyObject)
+                let json = JSON(responseServiceModel.data!)
+                let transactions = json["transactions"].arrayValue
+                    var listTransaction:[TransactionModel] = []
+                    for transaction in transactions {
+                        let model = TransactionModel(json: transaction)
+                        listTransaction.append(model)
+                    }
+                taskCompletionSource.set(result: listTransaction as AnyObject)
             }
             taskCompletionSource.tryCancel()
         }
         return taskCompletionSource.task
     }
     
-    public func taskGetAddSignature(userId: String, transactionXDR: String, publicKey: String, signature: String) -> Task<AnyObject> {
+    public func taskGetSignTransaction(userId: String, xdr: String, publicKey: String, signature: String) -> Task<AnyObject> {
         let taskCompletionSource = TaskCompletionSource<AnyObject>()
-        let stringPath = String(format:"%@%@", hostAPI, addSignature)
-        let parameter = ["user_id":userId,"transaction_xdr":transactionXDR, "public_key":publicKey, "signature": signature] as [String: Any]
-        Alamofire.SessionManager.default.request(stringPath, method: .post,parameters: parameter).validate().responseJSON { (response) in
-            if let error = response.error {
+        let stringPath = String(format:"%@%@", hostAPI, signTransaction)
+        let signatures = [["public_key":publicKey,"signature":signature]]
+        let parameter = ["user_id":userId,"xdr":xdr, "signatures": signatures] as [String: Any]
+        Alamofire.SessionManager.default.request(stringPath, method: .post,parameters: parameter,encoding: JSONEncoding.default).validate().responseJSON { (response) in
+            let responseServiceModel = ResponseServiceModel(response: response)
+            if let error = responseServiceModel.error as NSError? {
+                taskCompletionSource.set(error: error)
+            } else {
+                let json = JSON(responseServiceModel.data!)
+                let signatures = json["invalid_signatures"].arrayValue
+                    var listSignature:[SignatureModel] = []
+                    for signature in signatures {
+                        let model = SignatureModel(json: signature)
+                        listSignature.append(model)
+                    }
+                taskCompletionSource.set(result: listSignature as AnyObject)
+            }
+            taskCompletionSource.tryCancel()
+        }
+        return taskCompletionSource.task
+    }
+    
+    public func taskUpdateTransaction() -> Task<AnyObject> {
+        let taskCompletionSource = TaskCompletionSource<AnyObject>()
+        let stringPath = String(format:"%@%@", hostAPI, updateTransaction)
+        let parameter = [:] as [String: Any]
+        Alamofire.SessionManager.default.request(stringPath, method: .post,parameters: parameter,encoding:JSONEncoding.default).validate().responseJSON { (response) in
+            let responseServiceModel = ResponseServiceModel(response: response)
+            if let error = responseServiceModel.error as NSError? {
                 taskCompletionSource.set(error: error)
             } else {
                 taskCompletionSource.set(result: true as AnyObject)
@@ -72,6 +113,19 @@ class bSignerServiceManager: NSObject {
         return taskCompletionSource.task
     }
 
-
-
+    public func taskGetTransactionHost(xdr: String, signature: String, name:String) -> Task<AnyObject> {
+        let taskCompletionSource = TaskCompletionSource<AnyObject>()
+        let stringPath = String(format:"%@%@", hostAPI, hostTransaction)
+        let parameter = ["xdr":xdr, "signature": signature, "name":name] as [String: Any]
+        Alamofire.SessionManager.default.request(stringPath, method: .post,parameters: parameter,encoding: JSONEncoding.default).validate().responseJSON { (response) in
+            let responseServiceModel = ResponseServiceModel(response: response)
+            if let error = responseServiceModel.error as NSError? {
+                taskCompletionSource.set(error: error)
+            } else {
+                taskCompletionSource.set(result: true as AnyObject)
+            }
+            taskCompletionSource.tryCancel()
+        }
+        return taskCompletionSource.task
+    }
 }

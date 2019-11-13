@@ -175,9 +175,14 @@ class RestoreAccountViewController: BaseViewController {
                         KeychainWrapper.standard.set(self.index, forKey: "INDEX")
                         DispatchQueue.main.async {
                             if publickey != ""
-                            {
-                                HUD.hide()
-                                self.pushMainTabbarViewController()
+                            { bSignerServiceManager.sharedInstance.taskGetSubscribeSignature(userId: bSignerServiceManager.sharedInstance.oneSignalUserId,publicKey: publickey).continueOnSuccessWith(continuation: { task in
+                                    HUD.hide()
+                                self.showAlertWithText(text: "Subscribe signature success".localizedString())
+                                    self.pushMainTabbarViewController()
+                                }).continueOnErrorWith(continuation: { error in
+                                    HUD.hide()
+                                    self.showAlertWithText(text: "Some thing went wrong".localizedString())
+                                })
                             }
                         }
                     }

@@ -25,8 +25,15 @@ protocol LockScreenViewControllerDelegate:NSObject {
 class LockScreenViewController: UIViewController {
     
     @IBOutlet weak var btnBack: UIButton!
+    
     @IBOutlet weak var lblTitle: UILabel!
+    
     @IBOutlet weak var svPass: UIStackView!
+    
+    private var alertView: UIView!
+    
+    private var textLabel: UILabel!
+
     
     private var passwordContainerView: PasswordContainerView!
     let kPasswordDigit = 6
@@ -88,8 +95,46 @@ class LockScreenViewController: UIViewController {
                 lblTitle.text = "Confirm New Passcode".localizedString()
             }
         }
-
     }
+    
+    func removeAlertText() {
+        self.alertView.removeFromSuperview()
+    }
+
+    func showAlertWithText(text: String) {
+          let text = text.trimmed()
+          if(text == "") {
+              return
+          }
+          if(self.alertView == nil) {
+              self.alertView = UIView(frame: CGRect.zero)
+              self.alertView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+              self.textLabel = UILabel(frame: CGRect.zero)
+              self.textLabel.textAlignment = NSTextAlignment.center
+          } else {
+            removeAlertText()
+          }
+          
+          self.textLabel.text = text
+          self.textLabel.textColor = UIColor.white
+          
+          self.alertView.addSubview(self.textLabel)
+            let _ = self.textLabel.sd_layout().leftSpaceToView(self.alertView, 10)?.rightSpaceToView(self.alertView, 10)?.topSpaceToView(self.alertView, 10)?.autoHeightRatio(0)
+          UIApplication.shared.keyWindow?.addSubview(self.alertView)
+          
+          let _ = self.alertView.sd_layout()
+              .centerXEqualToView(self.alertView.superview)!
+              .centerYEqualToView(self.alertView.superview)!
+              .widthIs(200)
+          
+          self.alertView.setupAutoHeight(withBottomView: self.textLabel, bottomMargin: 10)
+          self.alertView.sd_cornerRadius = NSNumber(value: 5)
+          
+          let deadlineTime = DispatchTime.now() + 2.5
+          DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            self.removeAlertText()
+          }
+      }
     
     @IBAction func tappedBackButton(_ sender: Any) {
         if isCreateAccount {
@@ -162,8 +207,15 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
                                 DispatchQueue.main.async {
                                     if publickey != ""
                                     {
-                                        HUD.hide()
-                                        self.pushChooseSignersViewController()
+                                        bSignerServiceManager.sharedInstance.taskGetSubscribeSignature(userId: bSignerServiceManager.sharedInstance.oneSignalUserId,publicKey: publickey).continueOnSuccessWith(continuation: { task in
+                                            HUD.hide()
+                                            self.showAlertWithText(text: "Subscribe signature success".localizedString())
+                                            self.pushChooseSignersViewController()
+                                        }).continueOnErrorWith(continuation: { error in
+                                            HUD.hide()
+                                            self.showAlertWithText(text: "Some thing went wrong")
+                                        })
+                                        
                                     }
                                 }
                             }
@@ -185,8 +237,14 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
                                     DispatchQueue.main.async {
                                         if publickey != ""
                                         {
-                                            HUD.hide()
-                                            self.pushMainTabbarViewController()
+                                        bSignerServiceManager.sharedInstance.taskGetSubscribeSignature(userId: bSignerServiceManager.sharedInstance.oneSignalUserId,publicKey: publickey).continueOnSuccessWith(continuation: { task in
+                                                HUD.hide()
+                                                self.showAlertWithText(text: "Subscribe signature success".localizedString())
+                                                self.pushMainTabbarViewController()
+                                            }).continueOnErrorWith(continuation: { error in
+                                                HUD.hide()
+                                                self.showAlertWithText(text: "Some thing went wrong")
+                                            })
                                         }
                                     }
                                 }
@@ -228,6 +286,12 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
     }
 }
 extension LockScreenViewController: bSignersNotificationOpenedDelegate {
+    func notifySignTransaction(model: TransactionModel) {
+    }
+    
+    func notifyHostTransaction() {
+    }
+    
     func notifyChooseSigners() {
         pushChooseSignersViewController()
     }

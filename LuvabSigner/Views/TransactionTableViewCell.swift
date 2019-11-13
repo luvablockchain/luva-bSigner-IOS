@@ -10,10 +10,17 @@ import UIKit
 
 class TransactionTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var lblTransactionXDR: UILabel!
+    @IBOutlet weak var viewTransaction: UIView!
+    @IBOutlet weak var lblPublicKey: UILabel!
+    
+    @IBOutlet weak var lblDateTime: UILabel!
+    @IBOutlet weak var lblName: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        viewTransaction.layer.cornerRadius = 5
+        viewTransaction.layer.borderWidth = 1
+        viewTransaction.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+        selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import OneSignal
+import SwiftyJSON
 
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
@@ -56,13 +57,16 @@ extension UIApplication {
         return base
     }
 }
-extension String {
-    func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
-        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingBox = self.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: font], context: nil)
-        return boundingBox.height
+extension Decimal {
+    var formattedAmount: String? {
+        let formatter = NumberFormatter()
+        formatter.generatesDecimalNumbers = true
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+        return formatter.string(from: self as NSDecimalNumber)
     }
-    
+}
+extension String {    
     public func localizedString() -> String {
         return NSLocalizedString(self, comment: "")
     }
@@ -74,7 +78,49 @@ extension String {
     func decodeUrl() -> String {
         return self.removingPercentEncoding ?? ""
     }
+    
+    func trimmed() -> String {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    var currencyVND: String {
+        get {
+            let result = String.numberFormatterVND.string(from: NSNumber(value: Int(self) ?? 0)) ?? ""
+            return result
+        }
+    }
+    
+    static var numberFormatterVND: NumberFormatter {
+        get {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+            formatter.maximumFractionDigits = 0
+            formatter.locale = Locale(identifier: "vi_VN")
+            return formatter
+        }
+    }
+}
 
+extension Date {
+    public var shortDateTime: String {
+        
+        get {
+            let df = DateFormatter()
+            df.locale = Locale.current
+            df.dateStyle = .short
+            df.timeStyle = .short
+            let stringFromDate = df.string(from: self)
+            return stringFromDate
+            
+        }
+    }
+}
+
+extension Int {
+    public var dateFromTimeInterval: Date {
+        
+        return Date(timeIntervalSince1970: TimeInterval(self))
+    }
 }
 
 extension UIView {
@@ -141,12 +187,27 @@ extension AppDelegate: OSPermissionObserver, OSSubscriptionObserver {
     func setupOnsignal(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         OneSignal.setSubscription(true)
         let notificationReceivedBlock: OSHandleNotificationReceivedBlock = { notification in
-            
+            if let additionalData = notification?.payload?.additionalData {
+                let type = additionalData["type"] as! String
+                let data = additionalData["data"] as! JSON
+            }
         }
         
         let notificationOpenedBlock: OSHandleNotificationActionBlock = { result in
             if let additionalData = result?.notification.payload?.additionalData {
-
+                let type = additionalData["type"] as! String
+                let data = additionalData["data"] as! JSON
+                let transaction = data["transactions"]
+                let model = TransactionModel(json: transaction)
+                if type == "sign_transaction" {
+                    Broadcaster.notify(bSignersNotificationOpenedDelegate.self){
+                        $0.notifySignTransaction(model: model)
+                    }
+                } else if type == "host_transaction" {
+                    Broadcaster.notify(bSignersNotificationOpenedDelegate.self){
+                        $0.notifyHostTransaction()
+                    }
+                }
             }
         }
         

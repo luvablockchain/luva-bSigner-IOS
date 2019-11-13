@@ -91,5 +91,4 @@ extension ChooseSignersViewController: UITableViewDelegate, UITableViewDataSourc
         signnature = listSigners[indexPath.row].publicKey!
         signers = listSigners[indexPath.row]
     }
-    
 }

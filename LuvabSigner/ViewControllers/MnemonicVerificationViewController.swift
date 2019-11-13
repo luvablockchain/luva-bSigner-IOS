@@ -93,14 +93,14 @@ class MnemonicVerificationViewController: BaseViewController {
                     DispatchQueue.main.async {
                         if publickey != ""
                         {
-//                            bSignerServiceManager.sharedInstance.taskGetSubscribeSignature(publicKey: publickey, userId: bSignerServiceManager.sharedInstance.oneSignalUserId).continueOnSuccessWith(continuation: { task in
-//                                
-//
-//                                
-//                            }).continueOnErrorWith(continuation: { error in
-//                            })
-                            HUD.hide()
-                            self.pushMainTabbarViewController()
+                            bSignerServiceManager.sharedInstance.taskGetSubscribeSignature(userId: bSignerServiceManager.sharedInstance.oneSignalUserId,publicKey: publickey).continueOnSuccessWith(continuation: { task in
+                                HUD.hide()
+                                self.showAlertWithText(text: "Subscribe signature success".localizedString())
+                                self.pushMainTabbarViewController()
+                            }).continueOnErrorWith(continuation: { error in
+                                HUD.hide()
+                                self.showAlertWithText(text: "Some thing went wrong".localizedString())
+                            })
                         }
                     }
                 }

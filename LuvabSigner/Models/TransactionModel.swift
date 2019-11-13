@@ -9,6 +9,11 @@
 import UIKit
 import SwiftyJSON
 
+enum TransactionType: String {
+    case host_transaction = "host_transaction", sign_transaction = "sign_transaction"
+}
+
+
 class TransactionModel: NSObject {
     
     var logId: String = ""
@@ -27,13 +32,14 @@ class TransactionModel: NSObject {
     
     var destination: String = ""
     
-    var transaction_xdr: String = ""
+    var xdr: String = ""
     
-    var transaction_name: String = ""
+    var name: String = ""
+            
+    var listSignature = Array<JSON>()
     
-    var signatures = Array<String>()
-
-    
+    var transactionType: TransactionType = .host_transaction
+        
     init(json:JSON) {
         super.init()
         self.logId = json["logId"].stringValue
@@ -44,13 +50,9 @@ class TransactionModel: NSObject {
         self.senderUserId = json["senderUserId"].stringValue
         self.signers = json["signers"].stringValue
         self.destination = json["destination"].stringValue
-        if let array = json["signatures"].array {
-            for item in array {
-                signatures.append(item.string ?? "")
-            }
-        }
-        self.transaction_xdr = json["transaction_xdr"].stringValue
-        self.transaction_name = json["transaction_name"].stringValue
+        self.listSignature = json["signatures"].arrayValue
+        self.name = json["name"].stringValue
+        self.xdr = json["xdr"].stringValue
     }
 
 }

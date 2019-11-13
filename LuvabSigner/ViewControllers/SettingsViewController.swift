@@ -518,6 +518,12 @@ extension SettingsViewController: LockScreenViewControllerDelegate {
 }
 
 extension SettingsViewController: bSignersNotificationOpenedDelegate {
+    func notifySignTransaction(model: TransactionModel) {
+    }
+    
+    func notifyHostTransaction() {
+    }
+    
     func notifyApproveTransaction(model: TransactionModel) {
         pushChooseSignersViewController(model: model)
     }

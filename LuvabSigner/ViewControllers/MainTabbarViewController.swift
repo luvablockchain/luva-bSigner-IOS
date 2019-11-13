@@ -34,6 +34,7 @@ class MainTabbarViewController: UITabBarController,UITabBarControllerDelegate {
         }
         Broadcaster.register(bSignersNotificationOpenedDelegate.self, observer: self)
         UserDefaultsHelper.accountStatus = .waitingToBecomeSinger
+        UIApplication.shared.getAppDelegate().getDeviceToken()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,6 +110,14 @@ class MainTabbarViewController: UITabBarController,UITabBarControllerDelegate {
 
 }
 extension MainTabbarViewController: bSignersNotificationOpenedDelegate {
+    func notifySignTransaction(model: TransactionModel) {
+        
+    }
+    
+    func notifyHostTransaction() {
+        
+    }
+    
     func notifyApproveTransaction(model: TransactionModel) {
         pushChooseSignersViewController(model: model)
     }
