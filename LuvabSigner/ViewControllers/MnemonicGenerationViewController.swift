@@ -27,8 +27,6 @@ class MnemonicGenerationViewController: BaseViewController {
     
     var isAddAcount = false
     
-    var isNewSignature = false
-
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Recovery Phrase".localizedString()
@@ -54,12 +52,12 @@ class MnemonicGenerationViewController: BaseViewController {
     }
     
     override func tappedAtLeftButton(sender: UIButton) {
-        if isNewSignature {
+        if bSignerServiceManager.sharedInstance.checkStatus {
             EZAlertController.alert("Are you sure".localizedString() + "?", message:"This action will cancel account creation".localizedString() + ". " + "Shown recovery phrase will be deleted".localizedString(), buttons: ["Cancel".localizedString(), "OK".localizedString()]) { (alertAction, position) -> Void in
                 if position == 0 {
                     self.dismiss(animated: true, completion: nil)
                 } else if position == 1 {
-                    self.pushSignUpViewController(isNewSignature: true)
+                    self.pushSignUpViewController()
                 }
             }
         } else {
@@ -80,7 +78,7 @@ class MnemonicGenerationViewController: BaseViewController {
     }
     
     @IBAction func tappedNextButton(_ sender: Any) {
-        pushMnemonicVerificationViewController(mnemoricList: self.mnemonicList,isAddAccount: isAddAcount, isNewSignature: isNewSignature)
+        pushMnemonicVerificationViewController(mnemoricList: self.mnemonicList,isAddAccount: isAddAcount)
     }
 }
 

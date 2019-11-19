@@ -10,6 +10,7 @@ import UIKit
 import stellarsdk
 import SwiftKeychainWrapper
 import EZAlertController
+import PKHUD
 
 class TransactionDetailsViewController: BaseViewController {
 
@@ -50,12 +51,12 @@ class TransactionDetailsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Transaction Details".localizedString()
-        lblFrom.text = "From:".localizedString()
-        lblTo.text = "To:".localizedString()
+        lblFrom.text = "From".localizedString() + ":"
+        lblTo.text = "To".localizedString() + ":"
         lblAmount.text = "Amount".localizedString()
         lblMemo.text = "Memo".localizedString()
         lblTitle.text = "Signature list".localizedString()
-        
+        Broadcaster.register(bSignersNotificationOpenedDelegate.self, observer: self)
         if let loadedData = KeychainWrapper.standard.data(forKey: "SIGNATURE") {
 
             if let signnatureModel = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? [SignatureModel] {
@@ -84,11 +85,19 @@ class TransactionDetailsViewController: BaseViewController {
         } catch {
             print("Invalid xdr string")
         }
+        bSignerServiceManager.sharedInstance.isSeenDetails = true
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        bSignerServiceManager.sharedInstance.isSeenDetails = false
+    }
+    
 }
 
 extension TransactionDetailsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -101,19 +110,36 @@ extension TransactionDetailsViewController: UITableViewDelegate, UITableViewData
         cell.delegate = self
         cell.lblSignature.text = "Signature".localizedString() + ": " + listSignature[indexPath.row].public_key
         cell.btnSignTransaction.tag = indexPath.row
-        if listSignature[indexPath.row].signed == true {
-            cell.lblStatus.text = "Đã ký"
-            cell.imgStatus.image = UIImage.init(named: "ic_success-1")
-            let date = Int(listSignature[indexPath.row].signed_at).dateFromTimeInterval
-            cell.lblTime.text = "Signing time".localizedString() + ": " + date.shortDateTime
-            cell.btnSignTransaction.isEnabled = false
-            cell.btnSignTransaction.backgroundColor = .lightGray
-        } else {
-            cell.lblStatus.text = "Chưa ký"
-            cell.imgStatus.image = UIImage.init(named: "ic_uncheck")
-            cell.lblTime.text = "Signing time".localizedString() + ": "
-            cell.btnSignTransaction.isEnabled = true
-            cell.btnSignTransaction.backgroundColor = BaseViewController.MainColor
+        for signature in listSigner {
+            if signature.publicKey == listSignature[indexPath.row].public_key {
+                if listSignature[indexPath.row].signed == true {
+                    cell.lblStatus.text = "Signed".localizedString()
+                    cell.imgStatus.image = UIImage.init(named: "ic_success-1")
+                    let date = Int(listSignature[indexPath.row].signed_at).dateFromTimeInterval
+                    cell.lblTime.text = "Signing time".localizedString() + ": " + date.shortDateTime
+                    cell.btnSignTransaction.isEnabled = false
+                    cell.btnSignTransaction.backgroundColor = .lightGray
+                } else {
+                    cell.lblStatus.text = "Not signed".localizedString()
+                    cell.imgStatus.image = UIImage.init(named: "ic_uncheck")
+                    cell.lblTime.text = "Signing time".localizedString() + ": "
+                    cell.btnSignTransaction.isEnabled = true
+                    cell.btnSignTransaction.backgroundColor = BaseViewController.MainColor
+                }
+            } else {
+                if listSignature[indexPath.row].signed == true {
+                     cell.lblStatus.text = "Signed".localizedString()
+                     cell.imgStatus.image = UIImage.init(named: "ic_success-1")
+                     let date = Int(listSignature[indexPath.row].signed_at).dateFromTimeInterval
+                     cell.lblTime.text = "Signing time".localizedString() + ": " + date.shortDateTime
+                 } else {
+                     cell.lblStatus.text = "Not signed".localizedString()
+                     cell.imgStatus.image = UIImage.init(named: "ic_uncheck")
+                     cell.lblTime.text = "Signing time".localizedString() + ": "
+                 }
+                cell.btnSignTransaction.isEnabled = false
+                cell.btnSignTransaction.backgroundColor = .lightGray
+            }
         }
         return cell
     }
@@ -121,16 +147,17 @@ extension TransactionDetailsViewController: UITableViewDelegate, UITableViewData
 
 extension TransactionDetailsViewController: DetailTransactionTableViewCellDelegate {
     func didSignTransaction(index: Int) {
+        HUD.show(.labeledProgress(title: nil, subtitle: "Please wait..."))
         var indexSigner = 0
         for signer in listSigner {
-            if signer.public_key == listSignature[index].public_key {
+            if signer.publicKey == listSignature[index].public_key {
                 checkSignature = true
                 break;
             }
             indexSigner += 1
         }
         if checkSignature {
-            keyPairToSign = MnemonicHelper.getKeyPairFrom(listSigner[indexSigner - 1].mnemonic!)
+            keyPairToSign = MnemonicHelper.getKeyPairFrom(listSigner[indexSigner].mnemonic!)
             do {
                 let envelope = try TransactionEnvelopeXDR(xdr:model.xdr)
                 let transactionHash =  try [UInt8](envelope.tx.hash(network: .testnet))
@@ -140,9 +167,13 @@ extension TransactionDetailsViewController: DetailTransactionTableViewCellDelega
                 bSignerServiceManager.sharedInstance.taskGetSignTransaction(userId: bSignerServiceManager.sharedInstance.oneSignalUserId, xdr: model.xdr, publicKey: listSignature[index].public_key, signature:signature).continueOnSuccessWith(continuation: { task in
                     let model = task as! [SignatureModel]
                     if model.count > 0 {
-                        
+                        HUD.hide()
+                        EZAlertController.alert("", message: "Some thing when wrong".localizedString() + ". " + "Please try again".localizedString() + ".", acceptMessage: "OK") {
+                            self.dismiss(animated: true, completion: nil)
+                        }
                     } else {
                         bSignerServiceManager.sharedInstance.taskGetTransactionList(publicKeys: self.arraySignature, userId: bSignerServiceManager.sharedInstance.oneSignalUserId).continueOnSuccessWith(continuation: { task in
+                            HUD.hide()
                             let listTransaction = task as! [TransactionModel]
                             for model in listTransaction {
                                 if model.xdr == self.model.xdr {
@@ -156,20 +187,60 @@ extension TransactionDetailsViewController: DetailTransactionTableViewCellDelega
                             }
                             self.tableView.reloadData()
                         }).continueOnErrorWith(continuation: { error in
-                            self.showAlertWithText(text: "Some thing went wrong")
+                            HUD.hide()
+                            self.showAlertWithText(text: "Some thing went wrong".localizedString() + ". " + "Please try again".localizedString() + ".")
                         })
-
                     }
                 }).continueOnErrorWith(continuation: { error in
-                    self.showAlertWithText(text: "Some thing went wrong")
+                    HUD.hide()
+                    self.showAlertWithText(text: "Some thing went wrong".localizedString() + ". " + "Please try again".localizedString() + ".")
                 })
             } catch {
+                HUD.hide()
                 print("Invalid xdr string")
             }
         } else {
+            HUD.hide()
             EZAlertController.alert("", message: "This signature is not on the device".localizedString() + ".", acceptMessage: "OK".localizedString()) {
                 self.dismiss(animated: true, completion: nil)
             }
         }
+    }
+}
+
+extension TransactionDetailsViewController: bSignersNotificationOpenedDelegate {
+    func notifySignTransaction(model: TransactionModel, isOpen: Bool) {
+        if !isOpen {
+            bSignerServiceManager.sharedInstance.taskGetTransactionList(publicKeys: self.arraySignature, userId: bSignerServiceManager.sharedInstance.oneSignalUserId).continueOnSuccessWith(continuation: { task in
+                HUD.hide()
+                let listTransaction = task as! [TransactionModel]
+                for model in listTransaction {
+                    if model.xdr == self.model.xdr {
+                        var newSignature:[SignatureModel] = []
+                        for signature in model.listSignature {
+                            let model = SignatureModel(json: signature)
+                            newSignature.append(model)
+                        }
+                        self.listSignature = newSignature
+                    }
+                }
+                self.tableView.reloadData()
+            }).continueOnErrorWith(continuation: { error in
+                HUD.hide()
+                self.showAlertWithText(text: "Some thing went wrong".localizedString() + ". " + "Please try again".localizedString() + ".")
+            })
+        }
+    }
+    
+    func notifyHostTransaction(isOpen: Bool) {
+        if isOpen {
+            pushMainTabbarViewController(selectedIndex: 1)
+        }
+    }
+        
+    func notifyApproveTransaction(model: TransactionModel) {
+    }
+    
+    func notifyChooseSigners() {
     }
 }

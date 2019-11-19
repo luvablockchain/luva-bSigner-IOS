@@ -38,8 +38,14 @@ class TransactionModel: NSObject {
             
     var listSignature = Array<JSON>()
     
+    var signatureModel:JSON!
+    
     var transactionType: TransactionType = .host_transaction
         
+    override init() {
+        super.init()
+    }
+
     init(json:JSON) {
         super.init()
         self.logId = json["logId"].stringValue
@@ -51,6 +57,7 @@ class TransactionModel: NSObject {
         self.signers = json["signers"].stringValue
         self.destination = json["destination"].stringValue
         self.listSignature = json["signatures"].arrayValue
+        self.signatureModel = json["signatures"]
         self.name = json["name"].stringValue
         self.xdr = json["xdr"].stringValue
     }

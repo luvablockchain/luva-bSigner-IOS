@@ -11,7 +11,7 @@ import UIKit
 class TransactionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var viewTransaction: UIView!
-    @IBOutlet weak var lblPublicKey: UILabel!
+    @IBOutlet weak var lblStatus: UILabel!
     
     @IBOutlet weak var lblDateTime: UILabel!
     @IBOutlet weak var lblName: UILabel!

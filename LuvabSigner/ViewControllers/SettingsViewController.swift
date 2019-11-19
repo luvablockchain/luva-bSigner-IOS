@@ -377,7 +377,7 @@ class SettingsViewController: FormViewController {
                 }()
             }
             <<< LabelRow () {
-                $0.title = "Logout".localizedString()
+                $0.title = "Exit".localizedString()
             }.cellSetup({ (cell, row) in
                 cell.selectionStyle = UITableViewCell.SelectionStyle.default
                 cell.imageView?.image = UIImage.init(named: "ic_logout")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
@@ -518,10 +518,17 @@ extension SettingsViewController: LockScreenViewControllerDelegate {
 }
 
 extension SettingsViewController: bSignersNotificationOpenedDelegate {
-    func notifySignTransaction(model: TransactionModel) {
+    
+    func notifySignTransaction(model: TransactionModel, isOpen: Bool) {
+        if isOpen && bSignerServiceManager.sharedInstance.isSeenDetails == false {
+            pushTransactionDetailsViewController(model: model)
+        }
     }
     
-    func notifyHostTransaction() {
+    func notifyHostTransaction(isOpen: Bool) {
+        if isOpen {
+            tabBarController?.selectedIndex = 1
+        }
     }
     
     func notifyApproveTransaction(model: TransactionModel) {

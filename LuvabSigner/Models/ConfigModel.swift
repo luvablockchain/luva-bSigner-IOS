@@ -62,7 +62,9 @@ public enum AccountType: Int {
 public enum CheckPassType: Int {
     case on = 1, off = 2
 }
-
+public enum SeenTransaction: Int {
+    case on = 1, off = 2
+}
 class ConfigModel: NSObject {
     
     @objc var identifier: String = "1"
@@ -87,6 +89,18 @@ class ConfigModel: NSObject {
             rawLanguageApp = newValue.rawValue
         }
     }
+    
+    @objc var rawSeenTransaction: Int = SeenTransaction.on.rawValue
+    
+    var seenTransaction: SeenTransaction {
+        get {
+            return SeenTransaction(rawValue: rawSeenTransaction) ?? SeenTransaction.off
+        }
+        set {
+            rawSeenTransaction = newValue.rawValue
+        }
+    }
+
     
     @objc var rawCheckPassType: Int = CheckPassType.off.rawValue
     

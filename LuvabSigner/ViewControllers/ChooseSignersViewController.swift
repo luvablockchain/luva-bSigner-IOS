@@ -40,16 +40,20 @@ class ChooseSignersViewController: UIViewController {
                 if position == 0 {
                     self.dismiss(animated: true, completion: nil)
                 } else if position == 1 {
-                    self.pushSignUpViewController(isNewSignature: true)
+                    bSignerServiceManager.sharedInstance.checkStatus = true
+                    self.pushSignUpViewController()
                 }
             }
 
+        }
+        if ConfigModel.sharedInstance.enablePassCode == .on &&         ConfigModel.sharedInstance.accountType == .normal{
+            presentToLockScreenViewController(delegate: self)
         }
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIApplication.didEnterBackgroundNotification
             , object: nil)
         
     }
-        
+    
     @objc func didEnterBackground() {
         pushMainTabbarViewController()
     }
@@ -90,5 +94,32 @@ extension ChooseSignersViewController: UITableViewDelegate, UITableViewDataSourc
         btnChoose.setTitleColor(.white, for: .normal)
         signnature = listSigners[indexPath.row].publicKey!
         signers = listSigners[indexPath.row]
+    }
+}
+
+extension ChooseSignersViewController: LockScreenViewControllerDelegate {
+    
+    func didChangePassCode() {
+        
+    }
+    
+    func didConfirmPassCodeSuccess() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func didInPutPassCodeSuccess(_ pass: String) {
+        
+    }
+    
+    func didConfirmPassCode() {
+        
+    }
+    
+    func didPopViewController() {
+        
+    }
+    
+    func didDisablePassCodeSuccess() {
+        
     }
 }

@@ -58,7 +58,7 @@
 "Changed" = "Changed";
 "languge to" = "languge to";
 "Restart" = "Restart";
-"Logout" = "Logout";
+"Exit" = "Exit";
 "Force restart app" = "Force restart app";
 "Change" = "Change";
 "require restart app" = "require restart app";
@@ -89,3 +89,17 @@
 "create new" = "create new";
 "Transaction List" = "Transaction List";
 "Restore Signature" = "Restore Signature";
+"Create signature success" = "Create signature success";
+"Some thing went wrong" = "Some thing went wrong";
+"Remove signature success" = "Remove signature success";
+"This signature is not on the device" = "This signature is not on the device";
+"Signed" = "Signed";
+"Signing time" = "Signing time";
+"Please try again" = "Please try again";
+"Completed" = "Completed";
+"Processing" = "Processing";
+"Signature list" = "Signature list";
+"Transaction Details" = "Transaction Details";
+"Status" = "Status";
+"Name" = "Name";
+"Not signed" = "Not signed";

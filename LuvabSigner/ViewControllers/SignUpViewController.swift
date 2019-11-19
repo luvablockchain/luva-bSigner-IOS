@@ -8,6 +8,7 @@
 
 import UIKit
 import PKHUD
+import SwiftKeychainWrapper
 
 class SignUpViewController: UIViewController {
         
@@ -17,8 +18,6 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var btnRecoverAccount: UIButton!
     @IBOutlet weak var btnCreateAccount: UIButton!
     
-    var isNewSignature = false
-
     override func viewDidLoad() {
         super.viewDidLoad()
         ConfigModel.sharedInstance.loadLocalized()
@@ -39,11 +38,11 @@ class SignUpViewController: UIViewController {
     }
         
     @IBAction func tappedCreateAccount(_ sender: Any) {
-        pushBackUpViewController(isNewSignature: isNewSignature)
+        pushBackUpViewController()
     }
     
     @IBAction func tappedRecoverAccount(_ sender: Any) {
-        pushRestoreAccountViewController(isNewSignature: isNewSignature)
+        pushRestoreAccountViewController()
     }
 }
 

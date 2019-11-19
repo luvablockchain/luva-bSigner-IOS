@@ -9,6 +9,7 @@
 import UIKit
 import stellarsdk
 import SwiftKeychainWrapper
+import EZAlertController
 
 class TransactionInfoViewController: UIViewController {
     
@@ -17,9 +18,7 @@ class TransactionInfoViewController: UIViewController {
     @IBOutlet weak var lblFrom: UILabel!
     
     @IBOutlet weak var viewTransaction: UIView!
-    
-    @IBOutlet weak var lblName: UILabel!
-    
+        
     @IBOutlet weak var lblTo: UILabel!
     
     @IBOutlet weak var btnConfirm: UIButton!
@@ -52,7 +51,8 @@ class TransactionInfoViewController: UIViewController {
     
     var index = 0
     
-    var stellar:StellarSDK!
+    var checkSignature = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         lblTransactions.text = "Transaction Info".localizedString()
@@ -77,29 +77,47 @@ class TransactionInfoViewController: UIViewController {
   
         for signer in listSigner {
             if signer.publicKey == model.signers {
+                self.checkSignature = true
                 break;
             }
             index += 1
         }
-        lblName.text = listSigner[index].title
-        lblSignnature.text = listSigner[index].publicKey
-        keyPairToSign = MnemonicHelper.getKeyPairFrom(listSigner[index].mnemonic!)
-        do {
-            let envelope = try TransactionEnvelopeXDR(xdr:model.transactionXDR)
-            let transactionHash =  try [UInt8](envelope.tx.hash(network: .testnet))
-            let operationXDR = envelope.tx.operations[0]
-            let operation = try Operation.fromXDR(operationXDR:operationXDR)
-            let paymentOperation = operation as! PaymentOperation
-            lblFromKey.text = envelope.tx.sourceAccount.accountId
-            lblToKey.text = paymentOperation.destination.accountId
-            let newAmounts = paymentOperation.amount.formattedAmount!.split(".").first ?? ""
-            lblMoney.text = newAmounts.currencyVND
-            lblNote.text = envelope.tx.memo.xdrEncoded
-            let decoratedSignature = keyPairToSign.signDecorated(transactionHash)
-            let signatures = decoratedSignature.signature
-            self.signature = signatures.base64EncodedString(options: NSData.Base64EncodingOptions())
-        } catch {
-            print("Invalid xdr string")
+        if checkSignature {
+            lblSignnature.text = listSigner[index].publicKey
+            keyPairToSign = MnemonicHelper.getKeyPairFrom(listSigner[index].mnemonic!)
+            do {
+                let envelope = try TransactionEnvelopeXDR(xdr:model.transactionXDR)
+                let transactionHash =  try [UInt8](envelope.tx.hash(network: .testnet))
+                let operationXDR = envelope.tx.operations[0]
+                let operation = try Operation.fromXDR(operationXDR:operationXDR)
+                let paymentOperation = operation as! PaymentOperation
+                lblFromKey.text = envelope.tx.sourceAccount.accountId
+                lblToKey.text = paymentOperation.destination.accountId
+                let newAmounts = paymentOperation.amount.formattedAmount!.split(".").first ?? ""
+                lblMoney.text = newAmounts.currencyVND
+                lblNote.text = envelope.tx.memo.xdrEncoded
+                let decoratedSignature = keyPairToSign.signDecorated(transactionHash)
+                let signatures = decoratedSignature.signature
+                self.signature = signatures.base64EncodedString(options: NSData.Base64EncodingOptions())
+            } catch {
+                print("Invalid xdr string")
+            }
+        } else {
+            lblSignnature.text = model.signers
+            do {
+                let envelope = try TransactionEnvelopeXDR(xdr:model.transactionXDR)
+                let operationXDR = envelope.tx.operations[0]
+                let operation = try Operation.fromXDR(operationXDR:operationXDR)
+                let paymentOperation = operation as! PaymentOperation
+                lblFromKey.text = envelope.tx.sourceAccount.accountId
+                lblToKey.text = paymentOperation.destination.accountId
+                let newAmounts = paymentOperation.amount.formattedAmount!.split(".").first ?? ""
+                lblMoney.text = newAmounts.currencyVND
+                lblNote.text = envelope.tx.memo.xdrEncoded
+            } catch {
+                print("Invalid xdr string")
+            }
+
         }
         NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackground), name: UIApplication.didEnterBackgroundNotification
             , object: nil)
@@ -115,11 +133,22 @@ class TransactionInfoViewController: UIViewController {
     }
 
     @IBAction func tappedConfirmTransactions(_ sender: Any) {
-        let application = UIApplication.shared
-        let luvaApp = "luvaapp://?signature=\(self.signature!)&logId=\(self.model.logId)&signerPublicKey=\(self.listSigner[index].publicKey!)"
-        let appUrl = URL(string: luvaApp)!
-        if application.canOpenURL(appUrl) {
-            application.open(appUrl, options: [:], completionHandler: nil)
+        if checkSignature {
+            let application = UIApplication.shared
+            let luvaApp = "luvaapp://?signature=\(self.signature!)&transactionXDR=\(self.model.transactionXDR)&signerPublicKey=\(self.listSigner[index].publicKey!)"
+            let appUrl = URL(string: luvaApp)!
+            if application.canOpenURL(appUrl) {
+                application.open(appUrl, options: [:], completionHandler: nil)
+            }
+        } else {
+            EZAlertController.alert("", message: "This signature is not on the device".localizedString() + ".", acceptMessage: "OK".localizedString()) {
+                let application = UIApplication.shared
+                let luvaApp = "luvaapp://?signature=cancel"
+                let appUrl = URL(string: luvaApp)!
+                if application.canOpenURL(appUrl) {
+                    application.open(appUrl, options: [:], completionHandler: nil)
+                }
+            }
         }
     }
     

@@ -13,8 +13,10 @@ import SwiftyJSON
 
 class bSignerServiceManager: NSObject {
         
-    private let hostAPI = "http://bsignerapi.luvapay.com:3000"
+    public var hostAPI = "http://bsignerapi.luvapay.com:3000"
     
+   // public var hostAPI = "http://10.10.9.57:3000"
+
     private let subscribe = "/subscribe"
     
     private let unsubscribe = "/unsubscribe"
@@ -29,6 +31,14 @@ class bSignerServiceManager: NSObject {
     
     public var oneSignalUserId = ""
     
+    public var checkStatus = false
+    
+    public var isSeenDetails = false
+    
+    public var isSeenTransactions = false
+    
+    public var isOpenTransactions = false
+    
     public static let sharedInstance : bSignerServiceManager = {
         let instance = bSignerServiceManager()
         return instance
@@ -37,6 +47,22 @@ class bSignerServiceManager: NSObject {
     public func taskGetSubscribeSignature(userId: String, publicKey: String) -> Task<AnyObject> {
         let taskCompletionSource = TaskCompletionSource<AnyObject>()
         let stringPath = String(format:"%@%@", hostAPI, subscribe)
+        let parameter = ["user_id":userId, "public_key":publicKey] as [String: Any]
+        Alamofire.SessionManager.default.request(stringPath, method: .post,parameters: parameter,encoding:JSONEncoding.default).validate().responseJSON { (response) in
+            let responseServiceModel = ResponseServiceModel(response: response)
+            if let error = responseServiceModel.error as NSError? {
+                taskCompletionSource.set(error: error)
+            } else {
+                taskCompletionSource.set(result: true as AnyObject)
+            }
+            taskCompletionSource.tryCancel()
+        }
+        return taskCompletionSource.task
+    }
+    
+    public func taskGetUnSubscribeSignature(userId: String, publicKey: String) -> Task<AnyObject> {
+        let taskCompletionSource = TaskCompletionSource<AnyObject>()
+        let stringPath = String(format:"%@%@", hostAPI, unsubscribe)
         let parameter = ["user_id":userId, "public_key":publicKey] as [String: Any]
         Alamofire.SessionManager.default.request(stringPath, method: .post,parameters: parameter,encoding:JSONEncoding.default).validate().responseJSON { (response) in
             let responseServiceModel = ResponseServiceModel(response: response)

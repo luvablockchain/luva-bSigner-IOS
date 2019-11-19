@@ -93,7 +93,7 @@ class BaseViewController: UIViewController,UIGestureRecognizerDelegate {
 }
 
 extension UIViewController {
-    func pushToLockScreenViewController(delegate:LockScreenViewControllerDelegate, passCode: String = "", mnemonic: String = "", isCreateAccount: Bool, isDisablePass: Bool = false, isAddAccount:Bool = false, isNewSignature:Bool = false) {
+    func pushToLockScreenViewController(delegate:LockScreenViewControllerDelegate, passCode: String = "", mnemonic: String = "", isCreateAccount: Bool, isDisablePass: Bool = false, isAddAccount:Bool = false) {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "lockScreenViewController") as? LockScreenViewController
         vc?.delegate = delegate
         vc?.passCode = passCode
@@ -101,7 +101,6 @@ extension UIViewController {
         vc?.isEnableBackButton = true
         vc?.isCreateAccount = isCreateAccount
         vc?.isDisablePassCode = isDisablePass
-        vc?.isNewSignature = isNewSignature
         vc?.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc!, animated: true)
     }
@@ -122,58 +121,52 @@ extension UIViewController {
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
-    func pushTransactionDetailsViewController(model:TransactionModel) {
+    func pushTransactionDetailsViewController(model:TransactionModel? = nil) {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "transactionDetailsViewController") as? TransactionDetailsViewController
         vc?.hidesBottomBarWhenPushed = true
         vc?.model = model
         navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.pushViewController(vc!, animated: true)
     }
-
-
     
-    func pushBackUpViewController(isAddAccount:Bool = false, isNewSignature:Bool = false) {
+    func pushBackUpViewController(isAddAccount:Bool = false) {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "backUpViewController") as? BackUpViewController
         vc?.hidesBottomBarWhenPushed = true
         vc?.isAddAcount = isAddAccount
-        vc?.isNewSignature = isNewSignature
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
-    func pushRestoreAccountViewController(isAddAccount:Bool = false, isNewSignature:Bool = false) {
+    func pushRestoreAccountViewController(isAddAccount:Bool = false) {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "restoreAccountViewController") as? RestoreAccountViewController
         vc?.hidesBottomBarWhenPushed = true
         vc?.isAddAcount = isAddAccount
-        vc?.isNewSignature = isNewSignature
         self.navigationController?.pushViewController(vc!, animated: true)
     }
-    func pushMnemonicGenerationViewController(isAddAccount:Bool = false, isNewSignature:Bool = false) {
+    func pushMnemonicGenerationViewController(isAddAccount:Bool = false) {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "mnemonicGenerationViewController") as? MnemonicGenerationViewController
         vc?.hidesBottomBarWhenPushed = true
         vc?.isAddAcount = isAddAccount
-        vc?.isNewSignature = isNewSignature
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
-    func pushMnemonicVerificationViewController(mnemoricList:[String] = [],isAddAccount:Bool = false, isNewSignature:Bool = false) {
+    func pushMnemonicVerificationViewController(mnemoricList:[String] = [],isAddAccount:Bool = false) {
         
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "mnemonicVerificationViewController") as? MnemonicVerificationViewController
         vc?.mnemoricList = mnemoricList
         vc?.isAddAcount = isAddAccount
-        vc?.isNewSignature = isNewSignature
         vc?.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
-    func pushMainTabbarViewController() {
+    func pushMainTabbarViewController(selectedIndex: Int = 0) {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "mainTabbarViewController") as? MainTabbarViewController
+        vc?.selectedIndex = selectedIndex
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
-    func pushSignUpViewController(isNewSignature:Bool = false) {
+    func pushSignUpViewController() {
         let vc = self.storyboard!.instantiateViewController(withIdentifier: "signUpViewController") as? SignUpViewController
-        vc?.isNewSignature = isNewSignature
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     

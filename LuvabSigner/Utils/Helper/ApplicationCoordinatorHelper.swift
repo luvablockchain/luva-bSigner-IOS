@@ -18,8 +18,8 @@ enum AccountStatus: Int {
 protocol bSignersNotificationOpenedDelegate: class {
     func notifyChooseSigners()
     func notifyApproveTransaction(model:TransactionModel)
-    func notifySignTransaction(model:TransactionModel)
-    func notifyHostTransaction()
+    func notifySignTransaction(model:TransactionModel, isOpen: Bool)
+    func notifyHostTransaction(isOpen:Bool)
 }
 
 

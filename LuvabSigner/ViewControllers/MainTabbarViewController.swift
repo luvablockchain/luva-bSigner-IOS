@@ -20,7 +20,11 @@ class MainTabbarViewController: UITabBarController,UITabBarControllerDelegate {
 
         ConfigModel.sharedInstance.loadLocalized()
         UITabBar.appearance().tintColor = BaseViewController.MainColor
-        self.selectedIndex = 0
+        if bSignerServiceManager.sharedInstance.isOpenTransactions {
+            self.selectedIndex = 1
+        } else {
+            self.selectedIndex = 0
+        }
         self.previousIndex = self.selectedIndex
         self.delegate = self
         for index in 0..<tabBar.items!.count {
@@ -32,7 +36,6 @@ class MainTabbarViewController: UITabBarController,UITabBarControllerDelegate {
                 tabBar.items![index].title = "Settings".localizedString()
             }
         }
-        Broadcaster.register(bSignersNotificationOpenedDelegate.self, observer: self)
         UserDefaultsHelper.accountStatus = .waitingToBecomeSinger
         UIApplication.shared.getAppDelegate().getDeviceToken()
     }
@@ -108,21 +111,4 @@ class MainTabbarViewController: UITabBarController,UITabBarControllerDelegate {
         }
     }
 
-}
-extension MainTabbarViewController: bSignersNotificationOpenedDelegate {
-    func notifySignTransaction(model: TransactionModel) {
-        
-    }
-    
-    func notifyHostTransaction() {
-        
-    }
-    
-    func notifyApproveTransaction(model: TransactionModel) {
-        pushChooseSignersViewController(model: model)
-    }
-    
-    func notifyChooseSigners() {
-        pushChooseSignersViewController()
-    }
 }

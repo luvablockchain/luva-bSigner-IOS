@@ -57,7 +57,7 @@
 "Changed" = "Thay đổi";
 "languge to" = "ngôn ngữ sang ";
 "Restart" = "Khởi động";
-"Logout" = "Đăng xuất";
+"Exit" = "Thoát";
 "Force restart app" = "Yêu cầu khởi động lại ứng dụng";
 "Change" = "thay đổi";
 "require restart app" = "yêu cầu khởi động lại ứng dụng";
@@ -88,3 +88,17 @@
 "create new" = "tiến hành tạo mới";
 "Transaction List" = "Danh sách giao dịch";
 "Restore Signature" = "Khôi phục chữ ký";
+"Create signature success" = "Tạo chữ ký thành công";
+"Some thing went wrong" = "Đã xảy ra lỗi";
+"Remove signature success" = "Xoá chữ ký thành công";
+"This signature is not on the device" = "Chữ ký này không có trên thiết bị";
+"Signed" = "Đã ký";
+"Signing time" = "Thời gian ký";
+"Please try again" = "Vui lòng thử lại";
+"Completed" = "Hoàn thành";
+"Processing" = "Đang xử lý";
+"Signature list" = "Danh sách chữ ký";
+"Transaction Details" = "Chi tiết giao dịch";
+"Status" = "Trạng thái";
+"Name" = "Tên";
+"Not signed" = "Chưa ký";

@@ -189,23 +189,58 @@ extension AppDelegate: OSPermissionObserver, OSSubscriptionObserver {
         let notificationReceivedBlock: OSHandleNotificationReceivedBlock = { notification in
             if let additionalData = notification?.payload?.additionalData {
                 let type = additionalData["type"] as! String
-                let data = additionalData["data"] as! JSON
+                let data = additionalData["data"] as AnyObject?
+                let json = JSON(data!)
+                let transaction = json["transactions"]
+                let signature = json["signatures"].array
+                let name = json["name"].stringValue
+                let xdr = json["xdr"].stringValue
+                var listSignature:[SignatureModel] = []
+                for signer in signature! {
+                    let model = SignatureModel(json: signer)
+                    listSignature.append(model)
+                }
+                if type == "sign_transaction" {
+                    let model = TransactionModel()
+                    model.xdr = xdr
+                    model.listSignature = signature!
+                    model.name = name
+                    Broadcaster.notify(bSignersNotificationOpenedDelegate.self) {
+                        $0.notifySignTransaction(model: model, isOpen: false)
+                    }
+                } else if type == "host_transaction" {
+                    Broadcaster.notify(bSignersNotificationOpenedDelegate.self) {
+                        $0.notifyHostTransaction(isOpen: false)
+                    }
+                }
             }
         }
         
         let notificationOpenedBlock: OSHandleNotificationActionBlock = { result in
             if let additionalData = result?.notification.payload?.additionalData {
                 let type = additionalData["type"] as! String
-                let data = additionalData["data"] as! JSON
-                let transaction = data["transactions"]
-                let model = TransactionModel(json: transaction)
+                let data = additionalData["data"] as AnyObject?
+                let json = JSON(data!)
+                let signature = json["signatures"].array
+                let xdr = json["xdr"].stringValue
+                let name = json["name"].stringValue
+                var listSignature:[SignatureModel] = []
+                for signer in signature! {
+                    let model = SignatureModel(json: signer)
+                    listSignature.append(model)
+                }
                 if type == "sign_transaction" {
-                    Broadcaster.notify(bSignersNotificationOpenedDelegate.self){
-                        $0.notifySignTransaction(model: model)
+                    let model = TransactionModel()
+                    model.xdr = xdr
+                    model.listSignature = signature!
+                    model.name = name
+                    bSignerServiceManager.sharedInstance.isSeenTransactions = true
+                    Broadcaster.notify(bSignersNotificationOpenedDelegate.self) {
+                        $0.notifySignTransaction(model: model, isOpen: true)
                     }
                 } else if type == "host_transaction" {
-                    Broadcaster.notify(bSignersNotificationOpenedDelegate.self){
-                        $0.notifyHostTransaction()
+                    Broadcaster.notify(bSignersNotificationOpenedDelegate.self) {
+                        $0.notifyHostTransaction(isOpen: true)
                     }
                 }
             }

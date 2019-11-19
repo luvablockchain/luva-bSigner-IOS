@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -247,7 +247,7 @@
                                         <connections>
                                             <outlet property="lblDateTime" destination="Gi0-5V-zhq" id="5z7-oo-H7X"/>
                                             <outlet property="lblName" destination="gbg-Uc-gjK" id="Zua-8m-MVq"/>
-                                            <outlet property="lblPublicKey" destination="RUQ-Cp-hLz" id="GxJ-Qf-qP2"/>
+                                            <outlet property="lblStatus" destination="RUQ-Cp-hLz" id="GxJ-Qf-qP2"/>
                                             <outlet property="viewTransaction" destination="voV-RQ-frk" id="Myi-yu-nah"/>
                                         </connections>
                                     </tableViewCell>
@@ -257,10 +257,24 @@
                                     <outlet property="delegate" destination="v33-dM-Y7h" id="Tug-sw-tF6"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lYV-J7-I5P">
+                                <rect key="frame" x="191" y="430.5" width="32" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="nEi-Xq-xnf"/>
+                                </constraints>
+                                <state key="normal" image="ic_reload">
+                                    <color key="titleColor" red="0.43921568630000002" green="0.70980392160000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedReloadData:" destination="v33-dM-Y7h" eventType="touchUpInside" id="oVx-Mz-sHE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="lYV-J7-I5P" firstAttribute="centerY" secondItem="rGD-Vm-EIV" secondAttribute="centerY" id="4vu-En-0qR"/>
                             <constraint firstItem="rGD-Vm-EIV" firstAttribute="bottom" secondItem="WIM-hf-EGa" secondAttribute="bottom" id="DK9-CX-8TT"/>
+                            <constraint firstItem="lYV-J7-I5P" firstAttribute="centerX" secondItem="rGD-Vm-EIV" secondAttribute="centerX" id="Gqe-vb-OTV"/>
                             <constraint firstItem="rGD-Vm-EIV" firstAttribute="trailing" secondItem="WIM-hf-EGa" secondAttribute="trailing" id="WKp-Jj-0TZ"/>
                             <constraint firstItem="WIM-hf-EGa" firstAttribute="leading" secondItem="rGD-Vm-EIV" secondAttribute="leading" id="j8o-P4-oqN"/>
                             <constraint firstItem="WIM-hf-EGa" firstAttribute="top" secondItem="rGD-Vm-EIV" secondAttribute="top" id="r81-vn-Cyl"/>
@@ -269,6 +283,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="5SO-6I-ZdM"/>
                     <connections>
+                        <outlet property="btnReload" destination="lYV-J7-I5P" id="Mbe-ZS-FTn"/>
                         <outlet property="tableView" destination="WIM-hf-EGa" id="85z-62-Zc2"/>
                     </connections>
                 </viewController>
@@ -617,30 +632,20 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2Q-JH-b4e">
                                                 <rect key="frame" x="10" y="299" width="394" height="120"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gKB-6Q-jbc">
-                                                        <rect key="frame" x="10" y="28" width="374" height="44"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7h-0B-lJ4">
-                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="18"/>
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rxf-C3-Jwj">
-                                                                <rect key="frame" x="0.0" y="26" width="374" height="18"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rxf-C3-Jwj">
+                                                        <rect key="frame" x="10" y="41" width="374" height="18"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="gKB-6Q-jbc" secondAttribute="trailing" constant="10" id="FJf-iu-HhH"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Rxf-C3-Jwj" secondAttribute="trailing" constant="10" id="6qm-GC-n6x"/>
+                                                    <constraint firstItem="Rxf-C3-Jwj" firstAttribute="leading" secondItem="d2Q-JH-b4e" secondAttribute="leading" constant="10" id="HGB-iS-uQ9"/>
                                                     <constraint firstAttribute="height" constant="120" id="Lzg-MT-G0y"/>
-                                                    <constraint firstItem="gKB-6Q-jbc" firstAttribute="leading" secondItem="d2Q-JH-b4e" secondAttribute="leading" constant="10" id="MdX-PA-44T"/>
-                                                    <constraint firstItem="gKB-6Q-jbc" firstAttribute="centerY" secondItem="d2Q-JH-b4e" secondAttribute="centerY" constant="-10" id="emI-It-CCM"/>
+                                                    <constraint firstItem="Rxf-C3-Jwj" firstAttribute="centerY" secondItem="d2Q-JH-b4e" secondAttribute="centerY" constant="-10" id="hdG-9g-njl"/>
+                                                    <constraint firstItem="Rxf-C3-Jwj" firstAttribute="centerX" secondItem="d2Q-JH-b4e" secondAttribute="centerX" id="xY8-Fu-AfR"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j9o-br-y73">
@@ -739,7 +744,6 @@
                         <outlet property="lblFromKey" destination="ApQ-u8-o18" id="wD7-lk-IPW"/>
                         <outlet property="lblMemo" destination="sP1-oJ-GKe" id="uBd-IO-rGu"/>
                         <outlet property="lblMoney" destination="ijH-E6-Bdm" id="CfG-C7-6ER"/>
-                        <outlet property="lblName" destination="N7h-0B-lJ4" id="Zhh-Q3-QKW"/>
                         <outlet property="lblNote" destination="WwM-Ur-Mfs" id="Zef-kG-NqH"/>
                         <outlet property="lblSignnature" destination="Rxf-C3-Jwj" id="6yN-Jg-b6n"/>
                         <outlet property="lblTitle" destination="Bvy-sC-hAw" id="gSX-7l-naX"/>
@@ -1573,6 +1577,7 @@
         <image name="ic_enableEdit" width="48" height="48"/>
         <image name="ic_home" width="24" height="24"/>
         <image name="ic_key" width="49" height="48"/>
+        <image name="ic_reload" width="32" height="32"/>
         <image name="ic_setting" width="24" height="24"/>
         <image name="ic_transaction" width="24" height="24"/>
         <image name="ic_trash" width="24" height="24"/>

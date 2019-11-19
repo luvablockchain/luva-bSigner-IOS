@@ -19,7 +19,7 @@ struct SignModel {
     var publicKey:[String]
 }
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController {
     
     
     @IBOutlet weak var btnRestoreSignature: UIButton!
@@ -208,10 +208,18 @@ extension HomeViewController: HomeTableViewCellDelegate {
             if position == 0 {
                 self.dismiss(animated: true, completion: nil)
             } else if position == 1 {
-                self.model.remove(at: index)
-                let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
-                KeychainWrapper.standard.set(data, forKey: "SIGNATURE")
-                self.tableView.reloadData()
+                 HUD.show(.labeledProgress(title: nil, subtitle: "Loading..."))
+                bSignerServiceManager.sharedInstance.taskGetUnSubscribeSignature(userId: bSignerServiceManager.sharedInstance.oneSignalUserId, publicKey: self.model[index].publicKey!).continueOnSuccessWith(continuation: { task in
+                    self.model.remove(at: index)
+                    let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
+                    KeychainWrapper.standard.set(data, forKey: "SIGNATURE")
+                    self.tableView.reloadData()
+                    HUD.hide()
+                    self.showAlertWithText(text: "Remove signature success".localizedString())
+                }).continueOnErrorWith(continuation: { error in
+                    HUD.hide()
+                    self.showAlertWithText(text: "Some thing went wrong".localizedString() + ". " + "Please try again".localizedString() + ".")
+                })
             }
         }
     }
@@ -228,10 +236,16 @@ extension HomeViewController: UITextFieldDelegate {
 }
 
 extension HomeViewController: bSignersNotificationOpenedDelegate {
-    func notifySignTransaction(model: TransactionModel) {
+    func notifySignTransaction(model: TransactionModel, isOpen: Bool) {
+        if isOpen && bSignerServiceManager.sharedInstance.isSeenDetails == false {
+            pushTransactionDetailsViewController(model: model)
+        }
     }
     
-    func notifyHostTransaction() {
+    func notifyHostTransaction(isOpen: Bool) {
+        if isOpen {
+            tabBarController?.selectedIndex = 1
+        }
     }
     
     func notifyApproveTransaction(model: TransactionModel) {

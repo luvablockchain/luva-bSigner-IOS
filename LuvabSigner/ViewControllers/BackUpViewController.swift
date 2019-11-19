@@ -19,9 +19,7 @@ class BackUpViewController: BaseViewController{
     @IBOutlet weak var lblBackUp: UILabel!
     
     var isAddAcount = false
-    
-    var isNewSignature = false
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         lblBackUp.text = "Backup Your Account".localizedString()
@@ -37,7 +35,7 @@ class BackUpViewController: BaseViewController{
     }
     
     @IBAction func tappedConfirmCreateAccount(_ sender: Any) {
-        pushMnemonicGenerationViewController(isAddAccount: isAddAcount,isNewSignature: isNewSignature)
+        pushMnemonicGenerationViewController(isAddAccount: isAddAcount)
     }
     
 }

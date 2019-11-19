@@ -42,7 +42,6 @@ class LockScreenViewController: UIViewController {
     var mnemonic: String?
     var isCreateAccount = false
     var isDisablePassCode = false
-    var isNewSignature = false
     weak var delegate:LockScreenViewControllerDelegate?
     var model:[SignatureModel] = []
     
@@ -50,7 +49,6 @@ class LockScreenViewController: UIViewController {
         super.viewDidLoad()
         ConfigModel.sharedInstance.loadLocalized()
         navigationController?.setNavigationBarHidden(true, animated: true)
-        Broadcaster.register(bSignersNotificationOpenedDelegate.self, observer: self)
         let imgBack = UIImage.init(named: "ic_back")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         btnBack.setImage(imgBack, for: .normal)
         btnBack.tintColor = BaseViewController.MainColor
@@ -195,7 +193,7 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
                 delegate?.didInPutPassCodeSuccess(input)
             } else {
                 if passCode == input {
-                    if isNewSignature {
+                    if bSignerServiceManager.sharedInstance.checkStatus {
                         KeychainWrapper.standard.set(passCode, forKey: "MYPASS")
                         if let mnemonic = self.mnemonic {
                             HUD.show(.labeledProgress(title: nil, subtitle: "Loading..."))
@@ -203,17 +201,20 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
                                 let publickey = MnemonicHelper.getKeyPairFrom(mnemonic).accountId
                                 self.model.append(SignatureModel.init(title: "Signature".localizedString() + " 0", publicKey: publickey,mnemonic: mnemonic))
                                 let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
-                                KeychainWrapper.standard.set(data, forKey: "SIGNATURE")
                                 DispatchQueue.main.async {
                                     if publickey != ""
                                     {
                                         bSignerServiceManager.sharedInstance.taskGetSubscribeSignature(userId: bSignerServiceManager.sharedInstance.oneSignalUserId,publicKey: publickey).continueOnSuccessWith(continuation: { task in
+                                            KeychainWrapper.standard.set(data, forKey: "SIGNATURE")
                                             HUD.hide()
-                                            self.showAlertWithText(text: "Subscribe signature success".localizedString())
+                                            self.showAlertWithText(text: "Create signature success".localizedString())
+                                        bSignerServiceManager.sharedInstance.checkStatus = false
                                             self.pushChooseSignersViewController()
                                         }).continueOnErrorWith(continuation: { error in
                                             HUD.hide()
-                                            self.showAlertWithText(text: "Some thing went wrong")
+                                        self.navigationController?.popToRootViewController(animated: true)
+
+                                            self.showAlertWithText(text: "Some thing went wrong".localizedString() + ". " + "Please try again".localizedString() + ".")
                                         })
                                         
                                     }
@@ -233,17 +234,18 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
                                     let publickey = MnemonicHelper.getKeyPairFrom(mnemonic).accountId
                                     self.model.append(SignatureModel.init(title: "Signature".localizedString() + " 0", publicKey: publickey,mnemonic: mnemonic))
                                     let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
-                                    KeychainWrapper.standard.set(data, forKey: "SIGNATURE")
                                     DispatchQueue.main.async {
                                         if publickey != ""
                                         {
                                         bSignerServiceManager.sharedInstance.taskGetSubscribeSignature(userId: bSignerServiceManager.sharedInstance.oneSignalUserId,publicKey: publickey).continueOnSuccessWith(continuation: { task in
+                                            KeychainWrapper.standard.set(data, forKey: "SIGNATURE")
                                                 HUD.hide()
-                                                self.showAlertWithText(text: "Subscribe signature success".localizedString())
+                                                self.showAlertWithText(text: "Create signature success".localizedString())
                                                 self.pushMainTabbarViewController()
                                             }).continueOnErrorWith(continuation: { error in
+                                            self.navigationController?.popToRootViewController(animated: true)
                                                 HUD.hide()
-                                                self.showAlertWithText(text: "Some thing went wrong")
+                                                self.showAlertWithText(text: "Some thing went wrong".localizedString() + ". " + "Please try again".localizedString() + ".")
                                             })
                                         }
                                     }
@@ -283,20 +285,5 @@ extension LockScreenViewController: PasswordInputCompleteProtocol {
                 passwordContainerView.clearInput()
             }
         }
-    }
-}
-extension LockScreenViewController: bSignersNotificationOpenedDelegate {
-    func notifySignTransaction(model: TransactionModel) {
-    }
-    
-    func notifyHostTransaction() {
-    }
-    
-    func notifyChooseSigners() {
-        pushChooseSignersViewController()
-    }
-    
-    func notifyApproveTransaction(model: TransactionModel) {
-        
     }
 }

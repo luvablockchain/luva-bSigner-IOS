@@ -93,6 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationController = UINavigationController(rootViewController: vc)
         window?.rootViewController = navigationController
     }
+    
     func pushTransactionInfoViewController(model:TransactionModel) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "transactionInfoViewController") as! TransactionInfoViewController
@@ -100,6 +101,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationController = UINavigationController(rootViewController: vc)
         window?.rootViewController = navigationController
     }
+    
+    func pushMainTabbarViewController(selectedIndex:Int = 0) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "mainTabbarViewController") as! MainTabbarViewController
+        vc.selectedIndex = selectedIndex
+        let navigationController = UINavigationController(rootViewController: vc)
+        window?.rootViewController = navigationController
+    }
+    func pushTransactionDetailsViewController(model:TransactionModel) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "transactionDetailsViewController") as! TransactionDetailsViewController
+        vc.model = model
+        let navigationController = UINavigationController(rootViewController: vc)
+        window?.rootViewController = navigationController
+    }
+
 
     public func getDeviceToken() {
         

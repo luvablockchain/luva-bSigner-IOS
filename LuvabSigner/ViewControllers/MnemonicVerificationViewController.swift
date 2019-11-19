@@ -33,9 +33,7 @@ class MnemonicVerificationViewController: BaseViewController {
     var model:[SignatureModel] = []
     
     var index = 0
-    
-    var isNewSignature = false
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Verify Recovery Phrase".localizedString()
@@ -76,7 +74,7 @@ class MnemonicVerificationViewController: BaseViewController {
     }
     
     @IBAction func tappedNextButton(_ sender: Any) {
-        if isNewSignature {
+        if bSignerServiceManager.sharedInstance.checkStatus {
             pushToLockScreenViewController(delegate: self, isCreateAccount: true)
         } else {
             if isAddAcount {
@@ -88,18 +86,19 @@ class MnemonicVerificationViewController: BaseViewController {
                     self.index += 1
                     self.model.append(SignatureModel.init(title: "Signature".localizedString() + " " + "\(self.index)", publicKey: publickey,mnemonic:mnemonic))
                     let data = NSKeyedArchiver.archivedData(withRootObject: self.model)
-                    KeychainWrapper.standard.set(data, forKey: "SIGNATURE")
-                    KeychainWrapper.standard.set(self.index, forKey: "INDEX")
                     DispatchQueue.main.async {
                         if publickey != ""
                         {
                             bSignerServiceManager.sharedInstance.taskGetSubscribeSignature(userId: bSignerServiceManager.sharedInstance.oneSignalUserId,publicKey: publickey).continueOnSuccessWith(continuation: { task in
                                 HUD.hide()
-                                self.showAlertWithText(text: "Subscribe signature success".localizedString())
+                                KeychainWrapper.standard.set(data, forKey: "SIGNATURE")
+                                KeychainWrapper.standard.set(self.index, forKey: "INDEX")
+                                self.showAlertWithText(text: "Create signature success".localizedString())
                                 self.pushMainTabbarViewController()
                             }).continueOnErrorWith(continuation: { error in
                                 HUD.hide()
-                                self.showAlertWithText(text: "Some thing went wrong".localizedString())
+                            self.navigationController?.popToRootViewController(animated: true)
+                                self.showAlertWithText(text: "Some thing went wrong".localizedString() + ". " + "Please try again".localizedString() + ".")
                             })
                         }
                     }
@@ -241,7 +240,7 @@ extension MnemonicVerificationViewController: LockScreenViewControllerDelegate {
         if passcode.isEmpty {
             passcode = pass
             let mnemonic = MnemonicHelper.getStringFromSeparatedWords(in: mnemoricList)
-            pushToLockScreenViewController(delegate: self, passCode: pass,mnemonic: mnemonic,isCreateAccount: true,isNewSignature: true)
+            pushToLockScreenViewController(delegate: self, passCode: pass,mnemonic: mnemonic,isCreateAccount: true)
         }
     }
 }
