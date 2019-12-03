@@ -15,9 +15,7 @@ import SwiftyJSON
 class TransactionsViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
-    @IBOutlet weak var btnReload: UIButton!
-    
+        
     var listTransaction:[TransactionModel] = []
     
     var listSignature:[String] = []
@@ -28,11 +26,25 @@ class TransactionsViewController: BaseViewController {
     
     var arrSignature:[SignatureModel] = []
 
+    var btnRight:UIButton?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Transaction List".localizedString()
         btnBack?.isHidden = true
-        btnReload.isHidden = true
+        if let _ = navigationController {
+            btnRight = UIButton.init(type: .system)
+            if #available(iOS 11.0, *) {
+                btnRight?.contentHorizontalAlignment = .trailing
+            }
+            btnRight!.setImage(UIImage(named: "ic_reload")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate), for: .normal)
+            btnRight!.tintColor = BaseViewController.MainColor
+            btnRight!.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+            btnRight!.addTarget(self, action:#selector(tappedAtRightButton), for: .touchUpInside)
+            let rightBarButton = UIBarButtonItem()
+            rightBarButton.customView = btnRight
+            self.navigationItem.rightBarButtonItem = rightBarButton
+        }
         Broadcaster.register(bSignersNotificationOpenedDelegate.self, observer: self)
         if let loadedData = KeychainWrapper.standard.data(forKey: "SIGNATURE") {
 
@@ -44,16 +56,15 @@ class TransactionsViewController: BaseViewController {
         }
         HUD.show(.labeledProgress(title: nil, subtitle: "Loading..."))
         bSignerServiceManager.sharedInstance.taskGetTransactionList(publicKeys: listSignature, userId: bSignerServiceManager.sharedInstance.oneSignalUserId).continueOnSuccessWith(continuation: { task in
-            self.btnReload.isHidden = true
             HUD.hide()
             self.listTransaction = task as! [TransactionModel]
+            self.listTransaction = self.listTransaction.sorted(by: { (first, second) -> Bool in
+                let timeSecond = Int(second.hosted_at).dateFromTimeInterval
+                let timeFirst = Int(first.hosted_at).dateFromTimeInterval
+                return timeSecond.isEarly(timeFirst)
+            })
             self.tableView.reloadData()
         }).continueOnErrorWith(continuation: { error in
-            if self.listTransaction.count > 0 {
-                self.btnReload.isHidden = true
-            } else {
-                self.btnReload.isHidden = false
-            }
             HUD.hide()
             self.showAlertWithText(text: "Some thing went wrong".localizedString() + ". " + "Please try again".localizedString() + ".")
         })
@@ -61,6 +72,23 @@ class TransactionsViewController: BaseViewController {
         bSignerServiceManager.sharedInstance.isSeenTransactions = true
     }
     
+    @objc func tappedAtRightButton(sender:UIButton) {
+        HUD.show(.labeledProgress(title: nil, subtitle: "Loading..."))
+        bSignerServiceManager.sharedInstance.taskGetTransactionList(publicKeys: listSignature, userId: bSignerServiceManager.sharedInstance.oneSignalUserId).continueOnSuccessWith(continuation: { task in
+            HUD.hide()
+            self.listTransaction = task as! [TransactionModel]
+            self.listTransaction = self.listTransaction.sorted(by: { (first, second) -> Bool in
+                let timeSecond = Int(second.hosted_at).dateFromTimeInterval
+                let timeFirst = Int(first.hosted_at).dateFromTimeInterval
+                return timeSecond.isEarly(timeFirst)
+            })
+            self.tableView.reloadData()
+        }).continueOnErrorWith(continuation: { error in
+            HUD.hide()
+            self.showAlertWithText(text: "Some thing went wrong".localizedString() + ". " + "Please try again".localizedString() + ".")
+        })
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         bSignerServiceManager.sharedInstance.isSeenTransactions = false
@@ -72,18 +100,7 @@ class TransactionsViewController: BaseViewController {
     }
 
     @IBAction func tappedReloadData(_ sender: Any) {
-        bSignerServiceManager.sharedInstance.taskGetTransactionList(publicKeys: listSignature, userId: bSignerServiceManager.sharedInstance.oneSignalUserId).continueOnSuccessWith(continuation: { task in
-            self.listTransaction = task as! [TransactionModel]
-            self.btnReload.isHidden = true
-            self.tableView.reloadData()
-        }).continueOnErrorWith(continuation: { error in
-            if self.listTransaction.count > 0 {
-                self.btnReload.isHidden = true
-            } else {
-                self.btnReload.isHidden = false
-            }
-            self.showAlertWithText(text: "Some thing went wrong".localizedString() + ". " + "Please try again".localizedString() + ".")
-        })
+
     }
 }
 
@@ -106,8 +123,8 @@ extension TransactionsViewController: UITableViewDelegate, UITableViewDataSource
                 cell.lblStatus.text = "Status".localizedString() + ": " + "Processing".localizedString()
             }
         }
-
-        cell.lblDateTime.text = ""
+        let time = Int(listTransaction[indexPath.row].hosted_at).dateFromTimeInterval
+        cell.lblDateTime.text = "Time".localizedString() + ": " + time.shortDateTime
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -127,9 +144,13 @@ extension TransactionsViewController: bSignersNotificationOpenedDelegate {
         self.listTransaction.removeAll()
         bSignerServiceManager.sharedInstance.taskGetTransactionList(publicKeys: listSignature, userId: bSignerServiceManager.sharedInstance.oneSignalUserId).continueOnSuccessWith(continuation: { task in
             self.listTransaction = task as! [TransactionModel]
+            self.listTransaction = self.listTransaction.sorted(by: { (first, second) -> Bool in
+                let timeSecond = Int(second.hosted_at).dateFromTimeInterval
+                let timeFirst = Int(first.hosted_at).dateFromTimeInterval
+                return timeSecond.isEarly(timeFirst)
+            })
             self.tableView.reloadData()
         }).continueOnErrorWith(continuation: { error in
-            self.btnReload.isHidden = false
             self.showAlertWithText(text: "Some thing went wrong".localizedString() + ". " + "Please try again".localizedString() + ".")
         })
     }

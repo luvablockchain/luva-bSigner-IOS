@@ -14,6 +14,8 @@ import PKHUD
 
 class TransactionDetailsViewController: BaseViewController {
 
+    @IBOutlet weak var lblWeight: UILabel!
+    @IBOutlet weak var lblTitleWeight: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var lblFrom: UILabel!
@@ -48,14 +50,20 @@ class TransactionDetailsViewController: BaseViewController {
     
     var arraySignature:[String] = []
     
+    var sourceAccount: String = ""
+    
+    var destination: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Transaction Details".localizedString()
-        lblFrom.text = "From".localizedString() + ":"
-        lblTo.text = "To".localizedString() + ":"
-        lblAmount.text = "Amount".localizedString()
+        lblAmount.text = "Luva Number".localizedString()
         lblMemo.text = "Memo".localizedString()
         lblTitle.text = "Signature list".localizedString()
+        self.lblFrom.text = "Loading".localizedString() + "..."
+        self.lblTo.text = "Loading".localizedString() + "..."
+        self.lblTitleWeight.text = "Threshold".localizedString()
+        self.lblWeight.text = String(model.med_threshold)
         Broadcaster.register(bSignersNotificationOpenedDelegate.self, observer: self)
         if let loadedData = KeychainWrapper.standard.data(forKey: "SIGNATURE") {
 
@@ -71,6 +79,7 @@ class TransactionDetailsViewController: BaseViewController {
             let model = SignatureModel(json: signature)
             listSignature.append(model)
         }
+        
         tableView.separatorStyle = .none
         do {
             let envelope = try TransactionEnvelopeXDR(xdr:model.xdr)
@@ -79,13 +88,31 @@ class TransactionDetailsViewController: BaseViewController {
             let paymentOperation = operation as! PaymentOperation
             lblFromKey.text = envelope.tx.sourceAccount.accountId
             lblToKey.text = paymentOperation.destination.accountId
+            self.sourceAccount = envelope.tx.sourceAccount.accountId
+            self.destination = paymentOperation.destination.accountId
             let newAmounts = paymentOperation.amount.formattedAmount!.split(".").first ?? ""
-            lblAmounts.text = newAmounts.currencyVND
-            lblNote.text = envelope.tx.memo.xdrEncoded
+            let attLuva = NSAttributedString.init(string: "LUVA" ,
+                                                  attributes:[NSAttributedString.Key.baselineOffset: 5,NSAttributedString.Key.font:UIFont.systemFont(ofSize: 10)])
+            let attMoney = NSMutableAttributedString(string: newAmounts.currencyVND)
+            lblAmounts.attributedText = attMoney + attLuva
+            lblNote.text = ""
         } catch {
             print("Invalid xdr string")
         }
         bSignerServiceManager.sharedInstance.isSeenDetails = true
+        bSignerServiceManager.sharedInstance.taskGetFederation(publicKey: self.sourceAccount, type: "id").continueOnSuccessWith(continuation: { task in
+            let federation = task as! String
+            self.lblFrom.text = "From".localizedString() + ": " + federation
+            bSignerServiceManager.sharedInstance.taskGetFederation(publicKey: self.destination, type: "id").continueOnSuccessWith(continuation: { task in
+                let federation = task as! String
+                self.lblTo.text = "To".localizedString() + ": " + federation
+            }).continueOnErrorWith(continuation: { error in
+                self.lblFrom.text = "From".localizedString() + ":"
+            })
+            
+        }).continueOnErrorWith(continuation: { error in
+            self.lblTo.text = "To".localizedString() + ":"
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,6 +137,7 @@ extension TransactionDetailsViewController: UITableViewDelegate, UITableViewData
         cell.delegate = self
         cell.lblSignature.text = "Signature".localizedString() + ": " + listSignature[indexPath.row].public_key
         cell.btnSignTransaction.tag = indexPath.row
+        cell.lblWeight.text = "Weight".localizedString() + ": " + String(listSignature[indexPath.row].weight)
         for signature in listSigner {
             if signature.publicKey == listSignature[indexPath.row].public_key {
                 if listSignature[indexPath.row].signed == true {

@@ -11,6 +11,28 @@ import UIKit
 import OneSignal
 import SwiftyJSON
 
+extension NSAttributedString {
+
+    func replacingCharacters(in range: NSRange, with attributedString: NSAttributedString) -> NSMutableAttributedString {
+        let ns = NSMutableAttributedString(attributedString: self)
+        ns.replaceCharacters(in: range, with: attributedString)
+        return ns
+    }
+    
+    static func += (lhs: inout NSAttributedString, rhs: NSAttributedString) {
+        let ns = NSMutableAttributedString(attributedString: lhs)
+        ns.append(rhs)
+        lhs = ns
+    }
+    
+    static func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
+        let ns = NSMutableAttributedString(attributedString: lhs)
+        ns.append(rhs)
+        return NSAttributedString(attributedString: ns)
+    }
+    
+}
+
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
         assert(red >= 0 && red <= 255, "Invalid red component")
@@ -95,6 +117,7 @@ extension String {
             let formatter = NumberFormatter()
             formatter.numberStyle = .currency
             formatter.maximumFractionDigits = 0
+            formatter.currencySymbol = ""
             formatter.locale = Locale(identifier: "vi_VN")
             return formatter
         }
@@ -113,6 +136,10 @@ extension Date {
             return stringFromDate
             
         }
+    }
+    
+    func isEarly(_ other: Date) -> Bool {
+        return self.compare(other) == .orderedAscending
     }
 }
 
@@ -191,7 +218,6 @@ extension AppDelegate: OSPermissionObserver, OSSubscriptionObserver {
                 let type = additionalData["type"] as! String
                 let data = additionalData["data"] as AnyObject?
                 let json = JSON(data!)
-                let transaction = json["transactions"]
                 let signature = json["signatures"].array
                 let name = json["name"].stringValue
                 let xdr = json["xdr"].stringValue

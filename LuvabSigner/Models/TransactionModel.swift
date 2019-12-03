@@ -41,7 +41,15 @@ class TransactionModel: NSObject {
     var signatureModel:JSON!
     
     var transactionType: TransactionType = .host_transaction
-        
+    
+    var hosted_at: Double = 0.0
+
+    var low_threshold: Int = 0
+    
+    var med_threshold: Int = 0
+    
+    var high_threshold: Int = 0
+    
     override init() {
         super.init()
     }
@@ -60,6 +68,9 @@ class TransactionModel: NSObject {
         self.signatureModel = json["signatures"]
         self.name = json["name"].stringValue
         self.xdr = json["xdr"].stringValue
+        self.hosted_at = json["hosted_at"].doubleValue
+        self.low_threshold = json["low_threshold"].intValue
+        self.med_threshold = json["med_threshold"].intValue
+        self.high_threshold = json["high_threshold"].intValue
     }
-
 }

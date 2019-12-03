@@ -10,8 +10,8 @@
 "First time user" = "Bạn mới sử dụng";
 "See our Help section" = "Hãy xem phần trợ giúp của chúng tôi";
 "BY REGISTER YOU AGREE TO OUR TERMS OF SERVICE AND PRIVACY POLICY" = "Để đăng ký tài khoản bạn phải đồng ý với các điều khoản và chính sách bảo mật của chúng tôi";
-"CREATE ACCOUNT" = "Tạo tài khoản";
-"RESTORE ACCOUNT" = "Khôi phục tài khoản";
+"CREATE SIGNATURE" = "Tạo chữ ký";
+"RESTORE SIGNATURE" = "Khôi phục chữ ký";
 "Backup Your Account" = "Sao lưu tài khoản của bạn";
 "You will be shown a 12 word recovery phrase" = "Bạn sẽ được hiển thị một cụm từ phục hồi gồm 12 từ";
 "It will allow you to recover access to your account in case your phone is lost or stolen" = "Nó sẽ cho phép bạn khôi phục quyền truy cập vào tài khoản của bạn trong trường hợp điện thoại của bạn bị mất hoặc bị đánh cắp";
@@ -72,7 +72,7 @@
 "Transaction Info" = "Thông tin giao dịch";
 "From" = "Từ";
 "To" = "Đến";
-"Amount" = "Số tiền";
+"Luva Number" = "Số Luva";
 "Memo" = "Lời nhắn";
 "Approve Transaction" =  "Xác nhận giao dịch";
 "Approve" = "Xác nhận";
@@ -102,3 +102,6 @@
 "Status" = "Trạng thái";
 "Name" = "Tên";
 "Not signed" = "Chưa ký";
+"Loading" = "Đang tải";
+"Transaction's signatures was changed" = "Chữ ký của giao dịch đã được thay đổi";
+"Signature Changed" = "Chữ ký đã thay đổi";

@@ -154,4 +154,23 @@ class bSignerServiceManager: NSObject {
         }
         return taskCompletionSource.task
     }
+    
+    public func taskGetFederation(publicKey: String, type :String) -> Task<AnyObject> {
+        
+        let taskCompletionSource = TaskCompletionSource<AnyObject>()
+        let stringPath = String(format:"https://luvapay.com/federation")
+        let patameters = ["q":publicKey, "type": type]
+        Alamofire.SessionManager.default.request(stringPath, method: .get,parameters: patameters).validate().responseJSON { (response) in
+            if let error = response.error {
+                taskCompletionSource.set(error: error)
+            } else {
+                let json = JSON(response.result.value!)
+                let ferdation = json["stellar_address"].stringValue
+                taskCompletionSource.set(result: ferdation as AnyObject)
+            }
+            taskCompletionSource.tryCancel()
+        }
+        return taskCompletionSource.task
+    }
+
 }

@@ -25,6 +25,7 @@ class DetailTransactionTableViewCell: UITableViewCell {
     
     @IBOutlet weak var imgStatus: UIImageView!
     
+    @IBOutlet weak var lblWeight: UILabel!
     weak var delegate: DetailTransactionTableViewCellDelegate?
     
     override func awakeFromNib() {

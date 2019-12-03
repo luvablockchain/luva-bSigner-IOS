@@ -388,7 +388,7 @@ class SettingsViewController: FormViewController {
                 cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
             }).onCellSelection {[weak self] cell, row in
                 row.reload()
-                EZAlertController.alert("", message:"You want to exit this application".localizedString() + ".", buttons: ["Ok".localizedString(), "Cancel".localizedString()]) { (alertAction, position) -> Void in
+                EZAlertController.alert("", message:"You want to exit this application".localizedString() + ".", buttons: ["Cancel".localizedString(), "OK".localizedString()]) { (alertAction, position) -> Void in
                     if position == 0 {
                         self!.dismiss(animated: true, completion: nil)
                     } else if position == 1 {

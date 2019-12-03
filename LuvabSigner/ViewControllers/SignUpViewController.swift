@@ -24,9 +24,9 @@ class SignUpViewController: UIViewController {
         lblTitle.text = "Multiply your security".localizedString()
         lblHelp.text = "First time user".localizedString() + "? " + "See our Help section".localizedString()
         lblPolicy.text = "BY REGISTER YOU AGREE TO OUR TERMS OF SERVICE AND PRIVACY POLICY".localizedString()
-        btnCreateAccount.setTitle("CREATE ACCOUNT".localizedString(), for: .normal)
+        btnCreateAccount.setTitle("CREATE SIGNATURE".localizedString(), for: .normal)
         btnCreateAccount.layer.cornerRadius = 5
-        btnRecoverAccount.setTitle("RESTORE ACCOUNT".localizedString(), for: .normal)
+        btnRecoverAccount.setTitle("RESTORE SIGNATURE".localizedString(), for: .normal)
         btnRecoverAccount.layer.cornerRadius = 5
         btnRecoverAccount.layer.borderWidth = 0.5
         btnRecoverAccount.layer.borderColor = BaseViewController.MainColor.cgColor

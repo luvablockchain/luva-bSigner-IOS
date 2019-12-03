@@ -109,15 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationController = UINavigationController(rootViewController: vc)
         window?.rootViewController = navigationController
     }
-    func pushTransactionDetailsViewController(model:TransactionModel) {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: "transactionDetailsViewController") as! TransactionDetailsViewController
-        vc.model = model
-        let navigationController = UINavigationController(rootViewController: vc)
-        window?.rootViewController = navigationController
-    }
-
-
+    
     public func getDeviceToken() {
         
         self.setupOnsignal(launchOptions: nil)
